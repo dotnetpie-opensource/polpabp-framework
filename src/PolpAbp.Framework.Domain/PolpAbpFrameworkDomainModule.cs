@@ -6,7 +6,7 @@ namespace PolpAbp.Framework
     [DependsOn(
         typeof(AbpIdentityDomainModule)
     )]
-    public class FrameworkDomainModule : AbpModule
+    public class PolpAbpFrameworkDomainModule : AbpModule
     {
     }
 }

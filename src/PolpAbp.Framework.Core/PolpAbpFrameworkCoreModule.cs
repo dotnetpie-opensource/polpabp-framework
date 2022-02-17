@@ -4,9 +4,9 @@ using Volo.Abp.Modularity;
 namespace PolpAbp.Framework
 {
     [DependsOn(
-        typeof(FrameworkCoreSharedModule)
+        typeof(PolpAbpFrameworkCoreSharedModule)
     )]
-    public class FrameworkCoreModule : AbpModule
+    public class PolpAbpFrameworkCoreModule : AbpModule
     {
     }
 }

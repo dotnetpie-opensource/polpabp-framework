@@ -2,7 +2,7 @@
 
 namespace PolpAbp.Framework
 {
-    public class FrameworkCoreSharedModule : AbpModule
+    public class PolpAbpFrameworkCoreSharedModule : AbpModule
     {
         // TODO: Fix abpzero
         //public override void Initialize()
