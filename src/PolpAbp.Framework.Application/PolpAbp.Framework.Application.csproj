@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>PolpAbp.Framework</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PolpAbp.Framework.Application.Contracts\PolpAbp.Framework.Application.Contracts.csproj" />
+    <ProjectReference Include="..\PolpAbp.Framework.Domain\PolpAbp.Framework.Domain.csproj" />
+  </ItemGroup>
+    
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Emailing" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Domain" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.IdentityModel" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.TextTemplating" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.UI.Navigation" Version="3.3.2" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Domain" Version="3.3.2" />
+  </ItemGroup>
+    
+</Project>
