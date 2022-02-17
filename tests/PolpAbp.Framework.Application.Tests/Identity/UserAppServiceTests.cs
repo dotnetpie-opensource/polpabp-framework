@@ -1,4 +1,5 @@
 ﻿using PolpAbp.Framework.Identity.Dto;
+using System;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -24,5 +25,14 @@ namespace PolpAbp.Framework.Identity
 
             Assert.True(users.TotalCount > 0);
         }
+
+        [Fact]
+        public async Task CanListUsersByIdsAsync()
+        {
+            var users = await _userAppService.GetListAsync(new Guid[] { FrameworkTestConsts.AdminId });
+
+            Assert.Single(users.Items);
+        }
+
     }
 }
