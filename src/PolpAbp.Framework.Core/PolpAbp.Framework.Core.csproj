@@ -1,10 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-  </PropertyGroup>
+	<Import Project="..\..\common.props" />
 
-  <ItemGroup>
-    <ProjectReference Include="..\PolpAbp.Framework.Core.Shared\PolpAbp.Framework.Core.Shared.csproj" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\PolpAbp.Framework.Core.Shared\PolpAbp.Framework.Core.Shared.csproj" />
+	</ItemGroup>
 </Project>
