@@ -7,7 +7,7 @@ using Shouldly;
 
 namespace PolpAbp.Framework.Identity
 {
-    public class UserLookupAppServiceTests : ApplicationldentityTestBase
+    public class UserLookupAppServiceTests : FrameworkApplicationldentityTestBase
     {
         private readonly IUserLookupAppService _appService;
 

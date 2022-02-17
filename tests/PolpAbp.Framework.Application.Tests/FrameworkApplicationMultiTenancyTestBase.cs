@@ -3,7 +3,7 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace PolpAbp.Framework
 {
-    public abstract class ApplicationMultiTenancyTestBase : FrameworkTestBase<FrameworkApplicationTestsModule>
+    public abstract class FrameworkApplicationMultiTenancyTestBase : FrameworkTestBase<FrameworkApplicationTestsModule>
     {
         protected virtual void UsingDbContext(Action<ITenantManagementDbContext> action)
         {

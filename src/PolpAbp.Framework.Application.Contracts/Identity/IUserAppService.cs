@@ -19,6 +19,7 @@ namespace PolpAbp.Framework.Identity
         /// <param name="input">Critiera</param>
         /// <returns>A list of users</returns>
         Task<PagedResultDto<IdentityUserAdaptorDto>> GetListAsync(GetIdentityUsersInput input);
+
         /// <summary>
         /// Finds the list of user, across a department, with the given criteria.
         /// The client must establish the tenant context.

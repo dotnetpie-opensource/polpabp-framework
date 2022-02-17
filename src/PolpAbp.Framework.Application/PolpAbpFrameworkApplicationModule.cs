@@ -21,6 +21,7 @@ namespace PolpAbp.Framework
         typeof(AbpTextTemplatingModule),
         typeof(AbpEmailingModule),
         typeof(AbpUiNavigationModule),
+        typeof(AbpIdentityApplicationModule), // required for automapper
         typeof(PolpAbpFrameworkApplicationContractsModule),
         typeof(PolpAbpFrameworkDomainModule)
     )]

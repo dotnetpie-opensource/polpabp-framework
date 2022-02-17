@@ -8,17 +8,26 @@ namespace PolpAbp.Framework.Identity.Dto
     {
         public Guid? ProfilePictureId { get; set; }
 
-        public string EmailAddress { get; set; }
+        /// <summary>
+        /// A redundancy item on purpose
+        /// </summary>
+        public string EmailAddress => Email;
 
-        public bool IsEmailConfirmed { get; set; }
+        /// <summary>
+        /// A redundancy item on purpose
+        /// </summary>
+        public bool IsEmailConfirmed => EmailConfirmed;
 
         public List<UserListRoleDto> Roles { get; set; }
+
+        public List<UserListOrgUnitDto> OrgUnits { get; set; }
 
         public bool IsActive { get; set; }
 
         public IdentityUserAdaptorDto()
         {
             Roles = new List<UserListRoleDto>();
+            OrgUnits = new List<UserListOrgUnitDto>();
         }
     }
 
@@ -27,5 +36,11 @@ namespace PolpAbp.Framework.Identity.Dto
         public Guid RoleId { get; set; }
 
         public string RoleName { get; set; }
+    }
+
+    public class UserListOrgUnitDto
+    {
+        public Guid OrgUnitId { get;set; }
+        public string OrgUnitName { get; set; }
     }
 }
