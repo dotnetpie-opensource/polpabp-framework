@@ -15,7 +15,7 @@ function bump() {
     const newVer = getVersion().trim();
 
 // bump versions on package/bower/manifest
-    return src(['./src/common.props'])
+    return src(['./common.props'])
         .pipe(bumpversion({
             version: newVer
         }))
