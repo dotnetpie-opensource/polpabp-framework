@@ -4,7 +4,10 @@ src/PolpAbp.Framework.Application.Contracts/PolpAbp.Framework.Application.Contra
 src/PolpAbp.Framework.Core/PolpAbp.Framework.Core.csproj \
 src/PolpAbp.Framework.Core.Shared/PolpAbp.Framework.Core.Shared.csproj \
 src/PolpAbp.Framework.Domain/PolpAbp.Framework.Domain.csproj \
-src/PolpAbp.Framework.EntityFrameworkCore/PolpAbp.Framework.EntityFrameworkCore.csproj
+src/PolpAbp.Framework.EntityFrameworkCore/PolpAbp.Framework.EntityFrameworkCore.csproj \
+tests/PolpAbp.Framework.Domain.Tests/PolpAbp.Framework.Domain.Tests.csproj \
+tests/PolpAbp.Framework.EntityFrameworkCore.Tests/PolpAbp.Framework.EntityFrameworkCore.Tests.csproj \
+tests/PolpAbp.Framework.TestBase/PolpAbp.Framework.TestBase.csproj
 
 ProjectNames:=$(basename $(Projects))
 Nugets:=$(addsuffix .nupkg,$(ProjectNames))
