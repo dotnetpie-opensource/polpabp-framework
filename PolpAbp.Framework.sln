@@ -1,0 +1,95 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Core", "src\PolpAbp.Framework.Core\PolpAbp.Framework.Core.csproj", "{AE4B3465-83E7-4B77-B228-EE44AC30B146}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Core.Shared", "src\PolpAbp.Framework.Core.Shared\PolpAbp.Framework.Core.Shared.csproj", "{24490DA3-82D0-4CC2-8E33-7009577D948E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Domain", "src\PolpAbp.Framework.Domain\PolpAbp.Framework.Domain.csproj", "{6CF3E370-A38B-4C06-B057-54C7AA7E8720}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.EntityFrameworkCore", "src\PolpAbp.Framework.EntityFrameworkCore\PolpAbp.Framework.EntityFrameworkCore.csproj", "{A2345733-53B9-4AF2-B15E-D533D66EDA07}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Application.Contracts", "src\PolpAbp.Framework.Application.Contracts\PolpAbp.Framework.Application.Contracts.csproj", "{1398BA99-43AB-410C-9934-51F445E6626A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Application", "src\PolpAbp.Framework.Application\PolpAbp.Framework.Application.csproj", "{2032611E-C4BE-4712-85EE-3DA8E7340660}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.TestBase", "tests\PolpAbp.Framework.TestBase\PolpAbp.Framework.TestBase.csproj", "{35BD5DA3-5050-4627-92D7-F500E9512A0F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.EntityFrameworkCore.Tests", "tests\PolpAbp.Framework.EntityFrameworkCore.Tests\PolpAbp.Framework.EntityFrameworkCore.Tests.csproj", "{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Domain.Tests", "tests\PolpAbp.Framework.Domain.Tests\PolpAbp.Framework.Domain.Tests.csproj", "{846D089F-094D-4767-9074-20245D43CBDD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolpAbp.Framework.Application.Tests", "tests\PolpAbp.Framework.Application.Tests\PolpAbp.Framework.Application.Tests.csproj", "{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{59BF8379-73FE-48D4-8A9C-3BAC1F627F65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{F8FC9FD2-F154-4DE1-9883-152754686CE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE4B3465-83E7-4B77-B228-EE44AC30B146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE4B3465-83E7-4B77-B228-EE44AC30B146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE4B3465-83E7-4B77-B228-EE44AC30B146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE4B3465-83E7-4B77-B228-EE44AC30B146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24490DA3-82D0-4CC2-8E33-7009577D948E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24490DA3-82D0-4CC2-8E33-7009577D948E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24490DA3-82D0-4CC2-8E33-7009577D948E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24490DA3-82D0-4CC2-8E33-7009577D948E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CF3E370-A38B-4C06-B057-54C7AA7E8720}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CF3E370-A38B-4C06-B057-54C7AA7E8720}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CF3E370-A38B-4C06-B057-54C7AA7E8720}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CF3E370-A38B-4C06-B057-54C7AA7E8720}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2345733-53B9-4AF2-B15E-D533D66EDA07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2345733-53B9-4AF2-B15E-D533D66EDA07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2345733-53B9-4AF2-B15E-D533D66EDA07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2345733-53B9-4AF2-B15E-D533D66EDA07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1398BA99-43AB-410C-9934-51F445E6626A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1398BA99-43AB-410C-9934-51F445E6626A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1398BA99-43AB-410C-9934-51F445E6626A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1398BA99-43AB-410C-9934-51F445E6626A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2032611E-C4BE-4712-85EE-3DA8E7340660}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2032611E-C4BE-4712-85EE-3DA8E7340660}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2032611E-C4BE-4712-85EE-3DA8E7340660}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2032611E-C4BE-4712-85EE-3DA8E7340660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35BD5DA3-5050-4627-92D7-F500E9512A0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35BD5DA3-5050-4627-92D7-F500E9512A0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35BD5DA3-5050-4627-92D7-F500E9512A0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35BD5DA3-5050-4627-92D7-F500E9512A0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{846D089F-094D-4767-9074-20245D43CBDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{846D089F-094D-4767-9074-20245D43CBDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{846D089F-094D-4767-9074-20245D43CBDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{846D089F-094D-4767-9074-20245D43CBDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE4B3465-83E7-4B77-B228-EE44AC30B146} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{24490DA3-82D0-4CC2-8E33-7009577D948E} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{6CF3E370-A38B-4C06-B057-54C7AA7E8720} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{A2345733-53B9-4AF2-B15E-D533D66EDA07} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{1398BA99-43AB-410C-9934-51F445E6626A} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{2032611E-C4BE-4712-85EE-3DA8E7340660} = {59BF8379-73FE-48D4-8A9C-3BAC1F627F65}
+		{35BD5DA3-5050-4627-92D7-F500E9512A0F} = {F8FC9FD2-F154-4DE1-9883-152754686CE8}
+		{6C89DFB0-36BB-4E48-9572-38FFE8FD11D1} = {F8FC9FD2-F154-4DE1-9883-152754686CE8}
+		{846D089F-094D-4767-9074-20245D43CBDD} = {F8FC9FD2-F154-4DE1-9883-152754686CE8}
+		{1FF22C27-A2A4-45E3-80A6-6E477ECBA85C} = {F8FC9FD2-F154-4DE1-9883-152754686CE8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {073D6317-BF69-4A4F-A63A-EA3BF3FA88EC}
+	EndGlobalSection
+EndGlobal
