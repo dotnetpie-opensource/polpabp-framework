@@ -7,7 +7,6 @@ using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Identity;
 using Volo.Abp.Users;
-using PolpAbp.Framework.Identity;
 
 namespace PolpAbp.Framework.Identity
 {
@@ -52,7 +51,7 @@ namespace PolpAbp.Framework.Identity
 
             return new PagedResultDto<IUserData>(count, payload);
         }
-        
+
         public async Task<ListResultDto<IUserData>> ResolveAsync(ResolveUsersInputDto input)
         {
             var items = await _userRepositoryExt.GetListAsync(input.Ids);

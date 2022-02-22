@@ -1,4 +1,5 @@
-﻿using PolpAbp.Framework.Identity.Dto;
+﻿using Microsoft.AspNetCore.Authorization;
+using PolpAbp.Framework.Identity.Dto;
 using System;
 using System.Linq;
 using System.Threading;
@@ -29,6 +30,7 @@ namespace PolpAbp.Framework.Identity
             OrganizationUnitRepository = organizationUnitRepository;
         }
 
+        [Authorize(IdentityPermissions.Users.Default)]
         public async Task<PagedResultDto<IdentityUserAdaptorDto>> 
             GetListAsync(GetIdentityUsersInput input, CancellationToken cancellationToken = default) 
         {
@@ -75,6 +77,7 @@ namespace PolpAbp.Framework.Identity
             return new PagedResultDto<IdentityUserAdaptorDto>(count, aList);
         }
 
+        [Authorize(IdentityPermissions.Users.Default)]
         public async Task<ListResultDto<IdentityUserAdaptorDto>> GetListAsync(Guid[] ids, CancellationToken cancellationToken = default)
         {
             var roles = await RoleRepository.GetListAsync();
@@ -118,6 +121,7 @@ namespace PolpAbp.Framework.Identity
             return new ListResultDto<IdentityUserAdaptorDto>(aList);
         }
 
+        [Authorize(IdentityPermissions.Users.Default)]
         public async Task<PagedResultDto<IdentityUserAdaptorDto>> 
             GetListAsync(Guid orgUnitId, GetIdentityUsersInput input, CancellationToken cancellationToken = default)
         {
