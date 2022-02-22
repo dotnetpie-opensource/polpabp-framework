@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Threading.Tasks;
+using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
+using Volo.Abp.Guids;
 using Volo.Abp.Identity;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.Uow;
 
@@ -15,18 +19,36 @@ namespace PolpAbp.Framework
         private readonly ITenantManager _tenantManager;
         private readonly IdentityUserManager _userManager;
         private readonly OrganizationUnitManager _organizationUnitManager;
+        private readonly IIdentityRoleRepository _roleRepository;
+        private readonly ILookupNormalizer _lookupNormalizer;
+        private readonly IGuidGenerator _guidGenerator;
+        private readonly IdentityRoleManager _identityRoleManager;
+        private readonly IPermissionManager _permissionManager;
+        private readonly IPermissionDataSeeder _permissionDataSeeder;
         private readonly ICurrentTenant _currentTenant;
 
         public FrameworkTestDataSeedContributor(IdentityUserManager userManager,
             ITenantManager tenantManager,
             ITenantRepository tenantRepository,
             OrganizationUnitManager organizationUnitManager,
+            IIdentityRoleRepository roleRepository,
+            ILookupNormalizer lookupNormalizer,
+            IGuidGenerator guidGenerator,
+            IdentityRoleManager identityRoleManager,
+            IPermissionManager permissionManager,
+            IPermissionDataSeeder permissionDataSeeder,
             ICurrentTenant currentTenant)
         {
             _tenantManager = tenantManager;
             _userManager = userManager;
             _tenantRepository = tenantRepository;
             _organizationUnitManager = organizationUnitManager;
+            _roleRepository = roleRepository;
+            _lookupNormalizer = lookupNormalizer;
+            _guidGenerator = guidGenerator;
+            _identityRoleManager = identityRoleManager;
+            _permissionManager = permissionManager;
+            _permissionDataSeeder = permissionDataSeeder;
             _currentTenant = currentTenant;
         }
 
@@ -46,6 +68,34 @@ namespace PolpAbp.Framework
                     FrameworkTestConsts.AdminEmail, FrameworkTestConsts.TenantId);
 
                 await _userManager.CreateAsync(adminUser);
+
+                const string adminRoleName = "admin";
+                var adminRole = await _roleRepository.FindByNormalizedNameAsync(_lookupNormalizer.NormalizeName("admin"));
+                if (adminRole == null)
+                {
+                    adminRole = new IdentityRole(
+                        _guidGenerator.Create(),
+                        adminRoleName,
+                        FrameworkTestConsts.TenantId
+                    )
+                    {
+                        IsStatic = true,
+                        IsPublic = true
+                    };
+
+                    (await _identityRoleManager.CreateAsync(adminRole)).CheckErrors();
+                }
+
+                (await _userManager.AddToRoleAsync(adminUser, adminRoleName)).CheckErrors();
+
+                var permissionNames = IdentityPermissions.GetAll();
+
+                // Add permission to roles 
+                await _permissionDataSeeder.SeedAsync(
+                RolePermissionValueProvider.ProviderName,
+                "admin",
+                permissionNames,
+                FrameworkTestConsts.TenantId);
 
                 // Look up the user 
                 // var storedAdminUser = await _userManager.GetByIdAsync(adminUser.Id);
