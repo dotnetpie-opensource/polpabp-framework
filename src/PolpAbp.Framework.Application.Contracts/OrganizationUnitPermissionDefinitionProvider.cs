@@ -1,6 +1,6 @@
 ﻿using PolpAbp.Framework.Authorization;
-using PolpAbp.Framework.Localization;
 using Volo.Abp.Authorization.Permissions;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 
 namespace PolpAbp.Framework
@@ -20,7 +20,7 @@ namespace PolpAbp.Framework
 
         private static LocalizableString L(string name)
         {
-            return LocalizableString.Create<FrameworkResource>(name);
+            return LocalizableString.Create<IdentityResource>(name);
         }
     }
 }

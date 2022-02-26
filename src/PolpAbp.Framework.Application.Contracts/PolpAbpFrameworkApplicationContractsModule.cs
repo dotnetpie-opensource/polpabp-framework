@@ -1,12 +1,11 @@
 using Volo.Abp.Account;
 using Volo.Abp.Identity;
+using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
+using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.VirtualFileSystem;
-using PolpAbp.Framework.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
-using Volo.Abp.Identity.Localization;
 
 namespace PolpAbp.Framework
 {
@@ -31,12 +30,6 @@ namespace PolpAbp.Framework
                 options.Resources
                     .Get<IdentityResource>()
                     .AddVirtualJson("/Localization/OrgUnits/Resources");
-            });
-
-            Configure<AbpExceptionLocalizationOptions>(options =>
-            {
-                options.MapCodeNamespace("PolpApb.Framework", typeof(FrameworkResource));
-
             });
         }
     }
