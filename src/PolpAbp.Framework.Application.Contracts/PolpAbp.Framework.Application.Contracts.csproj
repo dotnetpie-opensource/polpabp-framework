@@ -18,6 +18,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Localization\OrgUnits\Resources\*.json" />
+		<Content Remove="Localization\OrgUnits\Resources\*.json" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\PolpAbp.Framework.Core.Shared\PolpAbp.Framework.Core.Shared.csproj" />
 	</ItemGroup>
 

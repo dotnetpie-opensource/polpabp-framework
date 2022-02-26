@@ -6,6 +6,7 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.VirtualFileSystem;
 using PolpAbp.Framework.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
+using Volo.Abp.Identity.Localization;
 
 namespace PolpAbp.Framework
 {
@@ -28,8 +29,8 @@ namespace PolpAbp.Framework
             Configure<AbpLocalizationOptions>(options =>
             {
                 options.Resources
-                    .Add<FrameworkResource>("en")
-                    .AddVirtualJson("/Localization/Resources");
+                    .Get<IdentityResource>()
+                    .AddVirtualJson("/Localization/OrgUnits/Resources");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>
