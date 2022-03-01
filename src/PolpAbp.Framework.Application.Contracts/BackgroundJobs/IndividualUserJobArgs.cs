@@ -8,5 +8,7 @@ namespace PolpAbp.Framework.BackgroundJobs
 
         public Guid UserId { get; set; }
 
+        public Guid? OperatorId { get; set; }
+
     }
 }
