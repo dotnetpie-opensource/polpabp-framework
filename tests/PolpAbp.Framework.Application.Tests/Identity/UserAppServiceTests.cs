@@ -1,6 +1,7 @@
 ﻿using PolpAbp.Framework.Identity.Dto;
 using System;
 using System.Threading.Tasks;
+using Volo.Abp.Data;
 using Xunit;
 
 namespace PolpAbp.Framework.Identity
@@ -32,6 +33,9 @@ namespace PolpAbp.Framework.Identity
             var users = await _userAppService.GetListAsync(new Guid[] { FrameworkTestConsts.AdminId });
 
             Assert.Single(users.Items);
+            Assert.NotNull(users.Items[0].ExtraProperties);
+            Assert.NotNull(users.Items[0].GetProperty<string>("Test"));
+
         }
 
     }

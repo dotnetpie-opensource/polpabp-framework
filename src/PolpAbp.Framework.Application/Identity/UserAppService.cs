@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.Identity;
+using Volo.Abp.ObjectExtending;
 using Volo.Abp.ObjectMapping;
 
 namespace PolpAbp.Framework.Identity
@@ -47,6 +48,15 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+                // Map extra properties
+                if (a.ExtraProperties != null)
+                {
+                    foreach (var keyValue in a.ExtraProperties)
+                    {
+                        b.ExtraProperties[keyValue.Key] = keyValue.Value;
+                    }
+                }
+
                 if (a.Roles != null)
                 {
                     b.Roles = a.Roles.Select(m => {
@@ -91,6 +101,16 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+                // Map extra properties 
+                // Map extra properties
+                if (a.ExtraProperties != null)
+                {
+                    foreach (var keyValue in a.ExtraProperties)
+                    {
+                        b.ExtraProperties[keyValue.Key] = keyValue.Value;
+                    }
+                }
+
                 if (a.Roles != null)
                 {
                     b.Roles = a.Roles.Select(m => {
@@ -136,6 +156,15 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+                // Map extra properties
+                if (a.ExtraProperties != null)
+                {
+                    foreach (var keyValue in a.ExtraProperties)
+                    {
+                        b.ExtraProperties[keyValue.Key] = keyValue.Value;
+                    }
+                }
+
                 if (a.Roles != null)
                 {
                     b.Roles = a.Roles.Select(m => {

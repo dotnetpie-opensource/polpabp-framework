@@ -66,6 +66,7 @@ namespace PolpAbp.Framework
             {
                 var adminUser = new IdentityUser(FrameworkTestConsts.AdminId, "admin",
                     FrameworkTestConsts.AdminEmail, FrameworkTestConsts.TenantId);
+                adminUser.ExtraProperties.Add("Test", "1234");
 
                 await _userManager.CreateAsync(adminUser);
 
