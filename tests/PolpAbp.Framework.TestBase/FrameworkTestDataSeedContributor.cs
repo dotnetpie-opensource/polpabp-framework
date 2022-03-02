@@ -110,9 +110,11 @@ namespace PolpAbp.Framework
                 await _userManager.CreateAsync(new IdentityUser(Guid.NewGuid(), FrameworkTestConsts.UserName2,
                     FrameworkTestConsts.User2Email, FrameworkTestConsts.TenantId));
 
+                var orgUnit = new OrganizationUnit(FrameworkTestConsts.OrgUnitId,
+                    FrameworkTestConsts.Group1DsiplayName, null, FrameworkTestConsts.TenantId);
+                await _organizationUnitManager.CreateAsync(orgUnit);
 
-                await _organizationUnitManager.CreateAsync(new OrganizationUnit(FrameworkTestConsts.OrgUnitId,
-                    FrameworkTestConsts.Group1DsiplayName, null, FrameworkTestConsts.TenantId));
+                await _userManager.AddToOrganizationUnitAsync(adminUser, orgUnit);
             }
         }
     }

@@ -35,7 +35,8 @@ namespace PolpAbp.Framework.Identity
             Assert.Single(users.Items);
             Assert.NotNull(users.Items[0].ExtraProperties);
             Assert.NotNull(users.Items[0].GetProperty<string>("Test"));
-
+            Assert.NotNull(users.Items[0].OrgUnits);
+            Assert.True(users.Items[0].OrgUnits.Count > 0);
         }
 
     }
