@@ -51,7 +51,7 @@ namespace PolpAbp.Framework.Identity
                                     (u.Surname != null && u.Surname.Contains(filter)) ||
                                     (u.PhoneNumber != null && u.PhoneNumber.Contains(filter))
                             )
-                            .OrderBy(sorting ?? nameof(IdentityUser.UserName))
+                            .OrderBy(sorting ?? nameof(IdentityUser.Name))
                             .PageBy(skipCount, maxResultCount)
                             .ToListAsync(GetCancellationToken(cancellationToken));
         }
@@ -63,6 +63,96 @@ namespace PolpAbp.Framework.Identity
         {
             return await this
                 .Where(x => x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
+                .WhereIf(
+                    !filter.IsNullOrWhiteSpace(),
+                    u =>
+                        u.UserName.Contains(filter) ||
+                        u.Email.Contains(filter) ||
+                        (u.Name != null && u.Name.Contains(filter)) ||
+                        (u.Surname != null && u.Surname.Contains(filter)) ||
+                        (u.PhoneNumber != null && u.PhoneNumber.Contains(filter))
+                )
+                .LongCountAsync(GetCancellationToken(cancellationToken));
+        }
+
+        public async Task<List<IdentityUser>> GetUsersInRolAsync(
+        Guid RoleId,
+        string sorting = null,
+        int maxResultCount = int.MaxValue,
+        int skipCount = 0,
+        string filter = null,
+        bool includeDetails = false,
+        CancellationToken cancellationToken = default)
+        {
+            return await DbSet
+                            .IncludeDetails(includeDetails)
+                            .Where(x => x.Roles.Any(y => y.RoleId == RoleId))
+                            .WhereIf(
+                                !filter.IsNullOrWhiteSpace(),
+                                u =>
+                                    u.UserName.Contains(filter) ||
+                                    u.Email.Contains(filter) ||
+                                    (u.Name != null && u.Name.Contains(filter)) ||
+                                    (u.Surname != null && u.Surname.Contains(filter)) ||
+                                    (u.PhoneNumber != null && u.PhoneNumber.Contains(filter))
+                            )
+                            .OrderBy(sorting ?? nameof(IdentityUser.Name))
+                            .PageBy(skipCount, maxResultCount)
+                            .ToListAsync(GetCancellationToken(cancellationToken));
+        }
+
+        public virtual async Task<long> CountUsersInRoleAsync(
+                 Guid RoleId,
+                 string filter = null,
+                 CancellationToken cancellationToken = default)
+        {
+            return await this
+                .Where(x => x.Roles.Any(y => y.RoleId == RoleId))
+                .WhereIf(
+                    !filter.IsNullOrWhiteSpace(),
+                    u =>
+                        u.UserName.Contains(filter) ||
+                        u.Email.Contains(filter) ||
+                        (u.Name != null && u.Name.Contains(filter)) ||
+                        (u.Surname != null && u.Surname.Contains(filter)) ||
+                        (u.PhoneNumber != null && u.PhoneNumber.Contains(filter))
+                )
+                .LongCountAsync(GetCancellationToken(cancellationToken));
+        }
+
+        public async Task<List<IdentityUser>> GetUsersNotInRolAsync(
+             Guid RoleId,
+             string sorting = null,
+             int maxResultCount = int.MaxValue,
+             int skipCount = 0,
+             string filter = null,
+             bool includeDetails = false,
+             CancellationToken cancellationToken = default)
+        {
+            return await DbSet
+                            .IncludeDetails(includeDetails)
+                            .Where(x => x.Roles.All(y => y.RoleId != RoleId))
+                            .WhereIf(
+                                !filter.IsNullOrWhiteSpace(),
+                                u =>
+                                    u.UserName.Contains(filter) ||
+                                    u.Email.Contains(filter) ||
+                                    (u.Name != null && u.Name.Contains(filter)) ||
+                                    (u.Surname != null && u.Surname.Contains(filter)) ||
+                                    (u.PhoneNumber != null && u.PhoneNumber.Contains(filter))
+                            )
+                            .OrderBy(sorting ?? nameof(IdentityUser.Name))
+                            .PageBy(skipCount, maxResultCount)
+                            .ToListAsync(GetCancellationToken(cancellationToken));
+        }
+
+        public virtual async Task<long> CountUsersNotInRoleAsync(
+                 Guid RoleId,
+                 string filter = null,
+                 CancellationToken cancellationToken = default)
+        {
+            return await this
+                .Where(x => x.Roles.All(y => y.RoleId != RoleId))
                 .WhereIf(
                     !filter.IsNullOrWhiteSpace(),
                     u =>
