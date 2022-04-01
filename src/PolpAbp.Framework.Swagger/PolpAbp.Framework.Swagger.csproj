@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<AssemblyName>PolpAbp.Framework.Swagger</AssemblyName>
+		<PackageId>PolpAbp.Framework.Swagger</PackageId>
+		<RootNamespace>PolpAbp.Framework</RootNamespace>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.SwashBuckle" Version="3.3.2" />
+	</ItemGroup>	
+
+</Project>
