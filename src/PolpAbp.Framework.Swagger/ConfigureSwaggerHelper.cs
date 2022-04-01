@@ -15,7 +15,7 @@ namespace PolpAbp.Framework
                 options =>
                 {
                     options.DocumentFilter<ShowInSwaggerAttribute>(); // <- ADD THIS!
-                    options.SwaggerDoc("v1", new OpenApiInfo { Title = title, Version = version });
+                    options.SwaggerDoc(version, new OpenApiInfo { Title = title, Version = version });
                     options.DocInclusionPredicate((docName, description) => true);
                     options.CustomSchemaIds(type => type.FullName);
                     if (customAction != null)
