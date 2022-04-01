@@ -22,7 +22,7 @@ namespace PolpAbp.Framework
         {
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationContractsModule>("PolpApb.Framework");
+                options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationContractsModule>("PolpAbp.Framework");
             });
 
             Configure<AbpLocalizationOptions>(options =>
