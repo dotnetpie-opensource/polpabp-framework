@@ -75,7 +75,7 @@ namespace PolpAbp.Framework.Identity
                 .LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
-        public async Task<List<IdentityUser>> GetUsersInRolAsync(
+        public async Task<List<IdentityUser>> GetUsersInRoleAsync(
         Guid RoleId,
         string sorting = null,
         int maxResultCount = int.MaxValue,
@@ -120,7 +120,7 @@ namespace PolpAbp.Framework.Identity
                 .LongCountAsync(GetCancellationToken(cancellationToken));
         }
 
-        public async Task<List<IdentityUser>> GetUsersNotInRolAsync(
+        public async Task<List<IdentityUser>> GetUsersNotInRoleAsync(
              Guid RoleId,
              string sorting = null,
              int maxResultCount = int.MaxValue,

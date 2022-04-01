@@ -14,7 +14,7 @@ namespace PolpAbp.Framework.Identity
         Task<long> CountUsersNotInRoleAsync(Guid RoleId, string filter = null, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetListAsync(Guid[] ids, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersInOrganizationUnitAsync(Guid organizationUnitId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
-        Task<List<IdentityUser>> GetUsersInRolAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
-        Task<List<IdentityUser>> GetUsersNotInRolAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
+        Task<List<IdentityUser>> GetUsersInRoleAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
+        Task<List<IdentityUser>> GetUsersNotInRoleAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
     }
 }
