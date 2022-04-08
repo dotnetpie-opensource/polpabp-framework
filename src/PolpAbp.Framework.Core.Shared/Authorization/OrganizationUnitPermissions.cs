@@ -13,7 +13,7 @@ namespace PolpAbp.Framework.Authorization
         public const string ManageTree = Default + ".ManageTree";
         public const string ManageMembers = Default + ".ManageMembers";
         public const string ManageRoles = Default + ".ManageRoles";
-        public const string ManagePermissions = Default + "ManagePermissions";
+        public const string ManagePermissions = Default + ".ManagePermissions";
 
         public static string[] GetAll()
         {
