@@ -24,10 +24,12 @@ namespace PolpAbp.Framework.Identity
             bool includeDetails = false,
             CancellationToken cancellationToken = default)
         {
-            return await DbSet
+            var ret = await DbSet
                 .IncludeDetails(includeDetails)
                 .Where( x => ids.Contains(x.Id))
                 .ToListAsync(GetCancellationToken(cancellationToken));
+
+            return ids.Select(a => ret.Find(b => b.Id == a)).Where(c => c != null).ToList();
         }
 
         public async Task<List<IdentityUser>> GetUsersInOrganizationUnitAsync(
