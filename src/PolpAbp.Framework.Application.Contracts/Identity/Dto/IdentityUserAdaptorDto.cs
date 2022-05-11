@@ -24,6 +24,10 @@ namespace PolpAbp.Framework.Identity.Dto
 
         public bool IsActive { get; set; }
 
+        public bool IsExternal { get; set; }
+
+        public bool TwoFactorEnabled { get; set; }
+
         public IdentityUserAdaptorDto()
         {
             Roles = new List<UserListRoleDto>();
