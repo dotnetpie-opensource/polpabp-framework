@@ -48,6 +48,12 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+
+                // IsExternal 
+                b.IsExternal = a.IsExternal;
+                // Two factor 
+                b.TwoFactorEnabled = a.TwoFactorEnabled;
+
                 // Map extra properties
                 if (a.ExtraProperties != null)
                 {
@@ -101,6 +107,12 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+
+                // IsExternal 
+                b.IsExternal = a.IsExternal;
+                // Two factor 
+                b.TwoFactorEnabled = a.TwoFactorEnabled;
+
                 // Map extra properties 
                 // Map extra properties
                 if (a.ExtraProperties != null)
@@ -156,6 +168,12 @@ namespace PolpAbp.Framework.Identity
             {
                 var b = new IdentityUserAdaptorDto();
                 ObjectMapper.Map<IdentityUser, IdentityUserDto>(a, b);
+
+                // IsExternal 
+                b.IsExternal = a.IsExternal;
+                // Two factor 
+                b.TwoFactorEnabled = a.TwoFactorEnabled;
+
                 // Map extra properties
                 if (a.ExtraProperties != null)
                 {
