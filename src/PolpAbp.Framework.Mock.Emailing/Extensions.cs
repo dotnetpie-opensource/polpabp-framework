@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Emailing;
 
-namespace PolpAbp.Framework.Mock
+namespace PolpAbp.Framework.Mock.Emailing
 {
     public static class Extensions
     {

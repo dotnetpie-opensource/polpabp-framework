@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.BackgroundJobs;
 
-namespace PolpAbp.Framework.Mock
+namespace PolpAbp.Framework.Mock.BackgroundJobs
 {
     public static class Extensions
     {

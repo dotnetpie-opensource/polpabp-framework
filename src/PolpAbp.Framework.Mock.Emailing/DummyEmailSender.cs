@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Volo.Abp.Emailing;
 
-namespace PolpAbp.Framework.Mock
+namespace PolpAbp.Framework.Mock.Emailing
 {
     public class DummyEmailSender : IEmailSender
     {

@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Volo.Abp.BackgroundJobs;
 
-namespace PolpAbp.Framework.Mock
+namespace PolpAbp.Framework.Mock.BackgroundJobs
 {
     public class DummyBackgroundJobManager : IBackgroundJobManager
     {
