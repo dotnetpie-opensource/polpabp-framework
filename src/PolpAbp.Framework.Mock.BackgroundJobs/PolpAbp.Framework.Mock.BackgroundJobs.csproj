@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<RootNamespace>PolpAbp.Framework.Mock.BackgroundJobs</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Volo.Abp.BackgroundJobs" Version="3.3.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PolpAbp.Framework.Mock\PolpAbp.Framework.Mock.csproj" />
+	</ItemGroup>
+
+</Project>
