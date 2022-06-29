@@ -5,9 +5,15 @@ src/PolpAbp.Framework.Core/PolpAbp.Framework.Core.csproj \
 src/PolpAbp.Framework.Core.Shared/PolpAbp.Framework.Core.Shared.csproj \
 src/PolpAbp.Framework.Domain/PolpAbp.Framework.Domain.csproj \
 src/PolpAbp.Framework.EntityFrameworkCore/PolpAbp.Framework.EntityFrameworkCore.csproj \
+src/PolpAbp.Framework.Hangfire/PolpAbp.Framework.Hangfire.csproj \
+src/PolpAbp.Framework.Mock/PolpAbp.Framework.Mock.csproj \
+src/PolpAbp.Framework.Mock.BackgroundJobs/PolpAbp.Framework.Mock.BackgroundJobs.csproj \
+src/PolpAbp.Framework.Mock.Emailing/PolpAbp.Framework.Mock.Emailing.csproj \
+src/PolpAbp.Framework.Swagger/PolpAbp.Framework.Swagger.csproj \
 tests/PolpAbp.Framework.Domain.Tests/PolpAbp.Framework.Domain.Tests.csproj \
 tests/PolpAbp.Framework.EntityFrameworkCore.Tests/PolpAbp.Framework.EntityFrameworkCore.Tests.csproj \
-tests/PolpAbp.Framework.TestBase/PolpAbp.Framework.TestBase.csproj
+tests/PolpAbp.Framework.TestBase/PolpAbp.Framework.TestBase.csproj 
+
 
 ProjectNames:=$(basename $(Projects))
 Nugets:=$(addsuffix .nupkg,$(ProjectNames))
