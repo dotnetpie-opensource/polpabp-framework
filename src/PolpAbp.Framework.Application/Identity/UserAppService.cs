@@ -41,7 +41,7 @@ namespace PolpAbp.Framework.Identity
             var orgUnits = await OrganizationUnitRepository.GetListAsync();
             var orgUnitsDict = orgUnits.ToDictionary(x => x.Id, x => x.DisplayName);
 
-            var count = await IdentityUserRepository.GetCountAsync(input.Filter, cancellationToken);
+            var count = await IdentityUserRepository.GetCountAsync(input.Filter, cancellationToken:cancellationToken);
 
             var list = await IdentityUserRepository.GetListAsync(input.Sorting, input.MaxResultCount, input.SkipCount, input.Filter, includeDetails: true, cancellationToken: cancellationToken);
             var aList = list.Select(a =>
