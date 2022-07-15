@@ -3,7 +3,7 @@
 	<Import Project="..\..\common.props" />
 
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<AssemblyName>PolpAbp.Framework.Swagger</AssemblyName>
 		<PackageId>PolpAbp.Framework.Swagger</PackageId>
 		<RootNamespace>PolpAbp.Framework.Swagger</RootNamespace>
