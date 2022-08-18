@@ -24,7 +24,8 @@ namespace PolpAbp.Framework.Identity
             bool includeDetails = false,
             CancellationToken cancellationToken = default)
         {
-            var ret = await DbSet
+            var dbSet = await GetDbSetAsync();
+            var ret = await dbSet
                 .IncludeDetails(includeDetails)
                 .Where( x => ids.Contains(x.Id))
                 .ToListAsync(GetCancellationToken(cancellationToken));
@@ -41,7 +42,8 @@ namespace PolpAbp.Framework.Identity
             bool includeDetails = false,
             CancellationToken cancellationToken = default)
         {
-            return await DbSet
+            var dbSet = await GetDbSetAsync();
+            return await dbSet
                             .IncludeDetails(includeDetails)
                             .Where(x => x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
                             .WhereIf(
@@ -63,8 +65,9 @@ namespace PolpAbp.Framework.Identity
             string filter = null,
             CancellationToken cancellationToken = default)
         {
-            return await this
-                .Where(x => x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
+            var queryable = await GetQueryableAsync();
+
+            return  await queryable.Where(x => x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
                 .WhereIf(
                     !filter.IsNullOrWhiteSpace(),
                     u =>
@@ -86,7 +89,8 @@ namespace PolpAbp.Framework.Identity
             bool includeDetails = false,
             CancellationToken cancellationToken = default)
         {
-            return await DbSet
+            var dbSet = await GetDbSetAsync();
+            return await dbSet
                             .IncludeDetails(includeDetails)
                             .Where(x => !x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
                             .WhereIf(
@@ -109,8 +113,9 @@ namespace PolpAbp.Framework.Identity
                 string filter = null,
                 CancellationToken cancellationToken = default)
         {
-            return await this
-                .Where(x => !x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
+            var queryable = await GetQueryableAsync();
+
+            return await queryable.Where(x => !x.OrganizationUnits.Any(y => y.OrganizationUnitId == organizationUnitId))
                 .WhereIf(
                     !filter.IsNullOrWhiteSpace(),
                     u =>
@@ -133,7 +138,8 @@ namespace PolpAbp.Framework.Identity
         bool includeDetails = false,
         CancellationToken cancellationToken = default)
         {
-            return await DbSet
+            var dbSet = await GetDbSetAsync();
+            return await dbSet
                             .IncludeDetails(includeDetails)
                             .Where(x => x.Roles.Any(y => y.RoleId == RoleId))
                             .WhereIf(
@@ -155,8 +161,9 @@ namespace PolpAbp.Framework.Identity
                  string filter = null,
                  CancellationToken cancellationToken = default)
         {
-            return await this
-                .Where(x => x.Roles.Any(y => y.RoleId == RoleId))
+            var queryable = await GetQueryableAsync();
+
+            return await queryable.Where(x => x.Roles.Any(y => y.RoleId == RoleId))
                 .WhereIf(
                     !filter.IsNullOrWhiteSpace(),
                     u =>
@@ -178,7 +185,8 @@ namespace PolpAbp.Framework.Identity
              bool includeDetails = false,
              CancellationToken cancellationToken = default)
         {
-            return await DbSet
+            var dbSet = await GetDbSetAsync();
+            return await dbSet
                             .IncludeDetails(includeDetails)
                             .Where(x => x.Roles.All(y => y.RoleId != RoleId))
                             .WhereIf(
@@ -200,8 +208,9 @@ namespace PolpAbp.Framework.Identity
                  string filter = null,
                  CancellationToken cancellationToken = default)
         {
-            return await this
-                .Where(x => x.Roles.All(y => y.RoleId != RoleId))
+            var queryable = await GetQueryableAsync();
+
+            return await queryable.Where(x => x.Roles.All(y => y.RoleId != RoleId))
                 .WhereIf(
                     !filter.IsNullOrWhiteSpace(),
                     u =>

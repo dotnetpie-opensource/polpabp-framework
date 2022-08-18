@@ -6,7 +6,7 @@ using Volo.Abp.IdentityServer;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
-using Volo.Abp.TextTemplating;
+using Volo.Abp.TextTemplating.Scriban;
 using Volo.Abp.UI.Navigation;
 
 namespace PolpAbp.Framework
@@ -18,7 +18,7 @@ namespace PolpAbp.Framework
         typeof(AbpIdentityModelModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpIdentityDomainModule),
-        typeof(AbpTextTemplatingModule),
+        typeof(AbpTextTemplatingScribanModule),
         typeof(AbpEmailingModule),
         typeof(AbpUiNavigationModule),
         typeof(AbpIdentityApplicationModule), // required for automapper
