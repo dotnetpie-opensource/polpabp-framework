@@ -8,6 +8,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<EmbeddedResource Include="Emailing\Account\Templates\*.tpl" />
+		<None Remove="Emailing\Account\Templates\*.tpl" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\PolpAbp.Framework.Application.Contracts\PolpAbp.Framework.Application.Contracts.csproj" />
 		<ProjectReference Include="..\PolpAbp.Framework.Domain\PolpAbp.Framework.Domain.csproj" />
 	</ItemGroup>

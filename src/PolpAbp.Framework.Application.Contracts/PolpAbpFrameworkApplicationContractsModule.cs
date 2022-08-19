@@ -1,8 +1,8 @@
 using Volo.Abp.Account;
+using Volo.Abp.Account.Localization;
 using Volo.Abp.Identity;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
-using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.VirtualFileSystem;
@@ -25,8 +25,13 @@ namespace PolpAbp.Framework
                 options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationContractsModule>("PolpAbp.Framework");
             });
 
+
             Configure<AbpLocalizationOptions>(options =>
             {
+                options.Resources
+                    .Get<AccountResource>()
+                    .AddVirtualJson("/Localization/Account/Resources");
+
                 options.Resources
                     .Get<IdentityResource>()
                     .AddVirtualJson("/Localization/OrgUnits/Resources");

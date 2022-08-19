@@ -1,0 +1,12 @@
+﻿{
+  "culture": "zh-Hans",
+  "texts": {
+    "EmailActivation_Subject": "激活您的用户账号",
+    "EmailActivation_Title": "欢迎使用系统.",
+    "EmailActivation_SubTitle": "您的邮箱地址是系统和您之间的重要通信渠道。",
+    "EmailActivation_ClickTheLinkBelowToVerifyYourEmail": "请点击以下链接确认您的邮箱地址,并激活您的用户账号:",
+    "NotyPasswordChange_Subject": "您的密码已经改变",
+    "NotyPasswordChange_Title": "账户密码变化安全通知",
+    "NotyPasswordChange_Body": "您的账户密码已经变化。如果您没有进行这样的操作，请立即检查您的账户。"
+  }
+}
