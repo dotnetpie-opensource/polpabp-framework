@@ -84,22 +84,13 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
-                if (IsBackgroundEmail)
-                {
-                    await _emailSender.QueueAsync(
-                        user.Email,
-                        StringLocalizer["EmailActivation_Subject"],
-                        emailContent
-                    );
-                }
-                else
-                {
-                    await _emailSender.SendAsync(
-                        user.Email,
-                        StringLocalizer["EmailActivation_Subject"],
-                        emailContent
-                    );
-                }
+                // todo: Should we use the background ??
+                // In that case, the email may not be sent instantly.
+                await _emailSender.SendAsync(
+                    user.Email,
+                    StringLocalizer["EmailActivation_Subject"],
+                    emailContent
+                );
             }
         }
 
