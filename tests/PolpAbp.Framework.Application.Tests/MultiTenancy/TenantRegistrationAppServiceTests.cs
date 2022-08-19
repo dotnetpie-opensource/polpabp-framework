@@ -16,7 +16,17 @@ namespace PolpAbp.Framework.MultiTenancy
         }
 
         [Fact]
-        public async Task RegisterTenant()
+        public async Task CannotRegisterDuplicateTenantAsync()
+        {
+            var tenancyName = "Tenant1";
+            await Assert.ThrowsAsync<Volo.Abp.UserFriendlyException>(async () =>
+            {
+                await _appService.RegisterTenant(new TenantCreateDto { Name = tenancyName, AdminEmailAddress = "xx@test.com", AdminPassword = "123456" });
+            });
+        }
+
+        [Fact]
+        public async Task CanRegisterFreshTenantAsync()
         {
             var tenancyName = Guid.NewGuid().ToString("N").ToLowerInvariant();
             var tenant = await _appService.RegisterTenant(new TenantCreateDto { Name = tenancyName, AdminEmailAddress = "xx@test.com", AdminPassword = "123456" });
