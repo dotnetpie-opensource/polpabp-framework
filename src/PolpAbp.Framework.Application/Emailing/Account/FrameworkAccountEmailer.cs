@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using System;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace PolpAbp.Framework.Emailing.Account
         private readonly IdentityUserManager _userManager;
         private readonly IDataFilter _dataFilter;
         private readonly ITenantRepository _tenantRepository;
+        private readonly IConfiguration _configuration;
 
         public FrameworkAccountEmailer(
             IEmailSender emailSender,
@@ -33,7 +35,8 @@ namespace PolpAbp.Framework.Emailing.Account
             ICurrentTenant currentTenant,
             IdentityUserManager userManager,
             IDataFilter dataFilter,
-            ITenantRepository tenantRepository)
+            ITenantRepository tenantRepository,
+            IConfiguration configuration)
         {
             _emailSender = emailSender;
             StringLocalizer = stringLocalizer;
@@ -43,8 +46,16 @@ namespace PolpAbp.Framework.Emailing.Account
             _userManager = userManager;
             _dataFilter = dataFilter;
             _tenantRepository = tenantRepository;
+            _configuration = configuration;
         }
 
+        protected bool IsBackgroundEmail
+        {
+            get
+            {
+                return _configuration.GetValue<bool>("PolpAbpFramework:BackgroundEmail");
+            }
+        }
 
         public async Task SendEmailActivationLinkAsync(string email)
         {
@@ -73,11 +84,22 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
-                await _emailSender.SendAsync(
-                    user.Email,
-                    StringLocalizer["EmailActivation_Subject"],
-                    emailContent
-                );
+                if (IsBackgroundEmail)
+                {
+                    await _emailSender.QueueAsync(
+                        user.Email,
+                        StringLocalizer["EmailActivation_Subject"],
+                        emailContent
+                    );
+                }
+                else
+                {
+                    await _emailSender.SendAsync(
+                        user.Email,
+                        StringLocalizer["EmailActivation_Subject"],
+                        emailContent
+                    );
+                }
             }
         }
 
@@ -100,11 +122,22 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
-                await _emailSender.SendAsync(
-                    user.Email,
-                    StringLocalizer["NotyPasswordChange_Subject"],
-                    emailContent
-                );
+                if (IsBackgroundEmail)
+                {
+                    await _emailSender.QueueAsync(
+                        user.Email,
+                        StringLocalizer["NotyPasswordChange_Subject"],
+                        emailContent
+                    );
+                }
+                else
+                {
+                    await _emailSender.SendAsync(
+                        user.Email,
+                        StringLocalizer["NotyPasswordChange_Subject"],
+                        emailContent
+                    );
+                }
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using Volo.Abp.AutoMapper;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Volo.Abp.AutoMapper;
 using Volo.Abp.Emailing;
 using Volo.Abp.Identity;
 using Volo.Abp.IdentityModel;
@@ -8,6 +10,7 @@ using Volo.Abp.PermissionManagement;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating.Scriban;
 using Volo.Abp.UI.Navigation;
+using Volo.Abp.UI.Navigation.Urls;
 
 namespace PolpAbp.Framework
 {
@@ -32,6 +35,14 @@ namespace PolpAbp.Framework
             Configure<AbpAutoMapperOptions>(options =>
             {
                 options.AddMaps<FrameworkApplicationAutoMapperProfile>();
+            });
+
+            // Configure
+            var configuration = context.Services.GetConfiguration();
+            var activationPath = configuration.GetValue<string>("PolpAbpFramework:AccountEmailActivationPath");
+            Configure<AppUrlOptions>(options =>
+            {
+                options.Applications["MVC"].Urls[FrameworkUrlNames.EmailActivation] = activationPath ?? "Account/EmailActivation";
             });
 
         }
