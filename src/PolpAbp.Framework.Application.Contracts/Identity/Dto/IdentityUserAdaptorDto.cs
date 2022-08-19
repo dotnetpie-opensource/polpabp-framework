@@ -22,8 +22,6 @@ namespace PolpAbp.Framework.Identity.Dto
 
         public List<UserListOrgUnitDto> OrgUnits { get; set; }
 
-        public bool IsActive { get; set; }
-
         public bool IsExternal { get; set; }
 
         public bool TwoFactorEnabled { get; set; }

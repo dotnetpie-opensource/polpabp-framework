@@ -19,6 +19,19 @@ namespace PolpAbp.Framework.Identity
         {
         }
 
+        public virtual async Task<List<IdentityUser>> FindUsersByEmailAsync(string email,
+            bool includeDetails = false,
+            CancellationToken cancellationToken = default)
+        {
+            var dbSet = await GetDbSetAsync();
+            var ret = await dbSet
+                .IncludeDetails(includeDetails)
+                .Where(x => x.Email == email)
+                .ToListAsync(GetCancellationToken(cancellationToken));
+
+            return ret;
+        }
+
         public virtual async Task<List<IdentityUser>> GetListAsync( 
             Guid[] ids,
             bool includeDetails = false,

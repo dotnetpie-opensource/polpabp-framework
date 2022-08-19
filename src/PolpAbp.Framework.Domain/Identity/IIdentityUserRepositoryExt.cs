@@ -13,6 +13,16 @@ namespace PolpAbp.Framework.Identity
         Task<long> CountUsersInRoleAsync(Guid RoleId, string filter = null, CancellationToken cancellationToken = default);
         Task<long> CountUsersNotInOrganizationUnitAsync(Guid organizationUnitId, string filter = null, CancellationToken cancellationToken = default);
         Task<long> CountUsersNotInRoleAsync(Guid RoleId, string filter = null, CancellationToken cancellationToken = default);
+        /// <summary>
+        ///  Finds the list of users with the given email.
+        ///  This method will report all users across tenant. 
+        ///  It must be used in the context of IMultiTenancy being disabled.
+        /// </summary>
+        /// <param name="email">Email</param>
+        /// <param name="includeDetails">Details</param>
+        /// <param name="cancellationToken">Cancellation Token</param>
+        /// <returns>List of users</returns>
+        Task<List<IdentityUser>> FindUsersByEmailAsync(string email, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetListAsync(Guid[] ids, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersInOrganizationUnitAsync(Guid organizationUnitId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersInRoleAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
