@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Volo.Abp.Data;
 using Volo.Abp.ObjectExtending;
 
@@ -46,6 +47,30 @@ namespace AutoMapper
                             return result;
                         })
                 );
+        }
+
+        /// <summary>
+        /// Configure a map to ignore the non-existing properties in the source entry.
+        /// </summary>
+        /// <typeparam name="TSource">Source type</typeparam>
+        /// <typeparam name="TDestination">Target type</typeparam>
+        /// <param name="expression">Mapping expression</param>
+        /// <returns>Mapping extension</returns>
+        public static IMappingExpression<TSource, TDestination> IgnoreSourceMissingProperties<TSource, TDestination>
+            (this IMappingExpression<TSource, TDestination> expression)
+        {
+            var flags = BindingFlags.Public | BindingFlags.Instance;
+            var sourceType = typeof(TSource);
+            var destinationProperties = typeof(TDestination).GetProperties(flags);
+
+            foreach (var property in destinationProperties)
+            {
+                if (sourceType.GetProperty(property.Name, flags) == null)
+                {
+                    expression.ForMember(property.Name, opt => opt.Ignore());
+                }
+            }
+            return expression;
         }
     }
 }
