@@ -7,6 +7,9 @@
     "EmailActivation_ClickTheLinkBelowToVerifyYourEmail": "Please click the link below to verify your email address:",
     "NotyPasswordChange_Subject": "Your password changed",
     "NotyPasswordChange_Title": "Password Change Security Notification",
-    "NotyPasswordChange_Body": "Your passowrd has changed. If you do not recognize this operation, your account may be compromized. Please take action right now."
+    "NotyPasswordChange_Body": "Your passowrd has changed. If you do not recognize this operation, your account may be compromized. Please take action right now.",
+    "ResendActivationLink": "Resend activation link",
+    "ResendActivationLink_Information": "Please provide your account information as required below. Then the system will send you a new activation email to your registered email box.",
+    "ResendActivationLink_Success": "An account activation email has been sent to your e-mail address. If you don't see this email in your inbox within 15 minutes, look for it in your junk mail folder. If you find it there, please mark it as -Not Junk-."
   }
 }
