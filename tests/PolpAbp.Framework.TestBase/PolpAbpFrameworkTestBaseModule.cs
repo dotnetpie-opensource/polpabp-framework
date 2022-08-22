@@ -35,9 +35,7 @@ namespace PolpAbp.Framework
                 {
                     await scope.ServiceProvider
                         .GetRequiredService<IDataSeeder>()
-                        .SeedAsync(new DataSeedContext()
-                        .WithProperty("RunStage", "Startup")
-                        );
+                        .SeedAsync(new DataSeedContext());
                 }
             });
         }

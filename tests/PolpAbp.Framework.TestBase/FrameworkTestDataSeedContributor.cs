@@ -54,14 +54,12 @@ namespace PolpAbp.Framework
 
         public async Task SeedAsync(DataSeedContext context)
         {
-            // Specify the condition when the following logic run.
-            var runState = context?["RunStage"] as string;
-
-            if (!string.Equals(runState, "Startup"))
+            // Re-entrant
+            var anyOne = await _tenantRepository.FindByNameAsync("Tenant1");
+            if (anyOne != null)
             {
                 return;
             }
-
 
             var tenant = await _tenantManager.CreateAsync("Tenant1");
             var p = tenant.GetType().GetProperty("Id");
