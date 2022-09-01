@@ -2,39 +2,38 @@
 using System;
 using System.Net;
 using System.Threading.Tasks;
+using Volo.Abp;
+using Volo.Abp.DependencyInjection;
 
 namespace PolpAbp.Framework.Infrastructure
 {
 
-    public class CaptureExceptionMiddleware
+    public class CaptureExceptionMiddleware : IMiddleware, ITransientDependency
     {
-        private readonly RequestDelegate _next;
-
-        public CaptureExceptionMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
-        public async Task InvokeAsync(HttpContext httpContext)
+      
+        public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
             try
             {
-                await _next(httpContext);
+                await next(context);
             }
             catch (TaskCanceledException ex)
             {
-                await HandleExceptionAsync(httpContext, 499,
+                await HandleExceptionAsync(context, 499,
                     "Request cancelled.", ex);
             }
             catch (OperationCanceledException ex)
             {
-                await HandleExceptionAsync(httpContext, 499,
+                await HandleExceptionAsync(context, 499,
                     "Request cancelled.", ex);
             }
-            catch (Exception ex)
+            catch (BusinessException ex)
             {
-                await HandleExceptionAsync(httpContext, (int)HttpStatusCode.InternalServerError,
-                    "Internal Server Error from the custom middleware.", ex);
+                if (ex.Message.Contains("Tenant not found"))
+                {
+                    context.Response.Cookies.Delete("PolpAbpTenantId");
+                }
+                throw ex;
             }
         }
 
