@@ -33,7 +33,8 @@ namespace PolpAbp.Framework.Infrastructure
                 {
                     context.Response.Cookies.Delete("PolpAbpTenantId");
                 }
-                throw ex;
+                await HandleExceptionAsync(context, 499,
+                                 "Outdated client information.", ex);
             }
         }
 
