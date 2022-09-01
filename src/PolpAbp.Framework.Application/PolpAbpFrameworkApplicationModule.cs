@@ -41,7 +41,7 @@ namespace PolpAbp.Framework
 
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
-                options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationModule>("PolpAbp.ZeroAdaptors");
+                options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationModule>("PolpAbp.Framework");
             });
 
             // Configure
