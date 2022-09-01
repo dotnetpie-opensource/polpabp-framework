@@ -11,6 +11,7 @@ using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating.Scriban;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
+using Volo.Abp.VirtualFileSystem;
 
 namespace PolpAbp.Framework
 {
@@ -21,6 +22,7 @@ namespace PolpAbp.Framework
         typeof(AbpIdentityModelModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpIdentityDomainModule),
+        typeof(AbpVirtualFileSystemModule),
         typeof(AbpTextTemplatingScribanModule),
         typeof(AbpEmailingModule),
         typeof(AbpUiNavigationModule),
@@ -37,6 +39,11 @@ namespace PolpAbp.Framework
                 options.AddMaps<FrameworkApplicationAutoMapperProfile>();
             });
 
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<PolpAbpFrameworkApplicationModule>("PolpAbp.ZeroAdaptors");
+            });
+
             // Configure
             var configuration = context.Services.GetConfiguration();
             var activationPath = configuration.GetValue<string>("PolpAbpFramework:AccountEmailActivationPath");
@@ -44,6 +51,7 @@ namespace PolpAbp.Framework
             {
                 options.Applications["MVC"].Urls[FrameworkUrlNames.EmailActivation] = activationPath ?? "Account/EmailActivation";
             });
+
 
         }
     }
