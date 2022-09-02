@@ -46,7 +46,7 @@ namespace PolpAbp.Framework
 
             // Configure
             var configuration = context.Services.GetConfiguration();
-            var activationPath = configuration.GetValue<string>("PolpAbpFramework:AccountEmailActivationPath");
+            var activationPath = configuration.GetValue<string>("PolpAbp:Account:EmailActivationPath");
             Configure<AppUrlOptions>(options =>
             {
                 options.Applications["MVC"].Urls[FrameworkUrlNames.EmailActivation] = activationPath ?? "Account/EmailActivation";

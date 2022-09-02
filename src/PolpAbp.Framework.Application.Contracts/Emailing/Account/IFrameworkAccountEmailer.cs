@@ -6,12 +6,23 @@ namespace PolpAbp.Framework.Emailing.Account
     public interface IFrameworkAccountEmailer
     {
         /// <summary>
-        /// Sends out the activation email to confirm that the email exists
+        /// Sends out an activation message to the given account, 
+        /// in order for the account owner to confirm the existence of the email
         /// or to activate the account depending on the usage of the host.
+        /// This method is run regardless the current tenant.
         /// </summary>
-        /// <param name="email">Account email</param>
+        /// <param name="userId">User Identifier</param>
         /// <returns>Task</returns>
-        Task SendEmailActivationLinkAsync(string email);
+        Task SendEmailActivationLinkAsync(Guid userId);
+
+        /// <summary>
+        /// Sends out a security message when the password of an account is changed. 
+        /// This method is run regardless the current tenant.
+        /// This method may put the message into a queue in the background, depending 
+        /// on the host configurations.
+        /// </summary>
+        /// <param name="userId">User Identifier</param>
+        /// <returns>Task</returns>
         Task SendPasswordChangeNotyAsync(Guid userId);
     }
 }

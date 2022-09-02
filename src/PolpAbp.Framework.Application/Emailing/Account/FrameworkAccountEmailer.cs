@@ -21,7 +21,6 @@ namespace PolpAbp.Framework.Emailing.Account
         private readonly IEmailSender _emailSender;
         protected IStringLocalizer<AccountResource> StringLocalizer { get; }
         private readonly IAppUrlProvider _appUrlProvider;
-        private readonly ICurrentTenant _currentTenant;
         private readonly IdentityUserManager _userManager;
         private readonly IDataFilter _dataFilter;
         private readonly ITenantRepository _tenantRepository;
@@ -41,7 +40,6 @@ namespace PolpAbp.Framework.Emailing.Account
             _emailSender = emailSender;
             StringLocalizer = stringLocalizer;
             _appUrlProvider = appUrlProvider;
-            _currentTenant = currentTenant;
             _templateRenderer = templateRenderer;
             _userManager = userManager;
             _dataFilter = dataFilter;
@@ -49,20 +47,20 @@ namespace PolpAbp.Framework.Emailing.Account
             _configuration = configuration;
         }
 
-        protected bool IsBackgroundEmail
+        protected bool IsBackgroundEmailEnabled
         {
             get
             {
-                return _configuration.GetValue<bool>("PolpAbpFramework:BackgroundEmail");
+                return _configuration.GetValue<bool>("PolpAbp:Framework:BackgroundEmailEnabled");
             }
         }
 
-        public async Task SendEmailActivationLinkAsync(string email)
+        public async Task SendEmailActivationLinkAsync(Guid userId)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
 
-                var user = await _userManager.FindByEmailAsync(email);
+                var user = await _userManager.FindByIdAsync(userId.ToString());
                 if (user == null)
                 {
                     return;
@@ -113,7 +111,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
-                if (IsBackgroundEmail)
+                if (IsBackgroundEmailEnabled)
                 {
                     await _emailSender.QueueAsync(
                         user.Email,
