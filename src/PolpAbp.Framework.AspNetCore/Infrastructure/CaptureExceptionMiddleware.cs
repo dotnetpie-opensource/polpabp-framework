@@ -27,15 +27,6 @@ namespace PolpAbp.Framework.Infrastructure
                 await HandleExceptionAsync(context, 499,
                     "Request cancelled.", ex);
             }
-            catch (BusinessException ex)
-            {
-                if (ex.Message.Contains("Tenant not found"))
-                {
-                    context.Response.Cookies.Delete("PolpAbpTenantId");
-                }
-                await HandleExceptionAsync(context, 499,
-                                 "Outdated client information.", ex);
-            }
         }
 
         private Task HandleExceptionAsync(HttpContext context, int statusCode, string message, Exception exception)
