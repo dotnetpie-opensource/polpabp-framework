@@ -64,14 +64,15 @@ namespace PolpAbp.Framework.IdentityServer
             } */
 
             var authority = _configuration["AuthServer:Authority"];
-            var clientId = _configuration["IdentityServer:Clients:FormPortal_App:ClientId"];
-            var clientSecret = _configuration["IdentityServer:Clients:FormPortal_App:ClientSecret"];
+            var clientId = _configuration["AuthServer:ClientId"];
+            var clientSecret = _configuration["AuthServer:ClientSecret"];
+            var scopes = _configuration["AuthServer:Scopes"];
             // TODO: Read from database to get the client information ????
             var input = new IdentityClientConfiguration(
                 authority,
-                "openid email phone profile role address FormPortal", // TODO: Fix scopes
-                clientId, // TODO: Read from settings 
-                clientSecret, // TODO: Read from database
+                scopes,
+                clientId, 
+                clientSecret,
                 OidcConstants.GrantTypes.Password,
                 username,
                 password
