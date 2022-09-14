@@ -12,6 +12,8 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
+using PolpAbp.Framework.Extensions;
+using System.Security.Cryptography.Xml;
 
 namespace PolpAbp.Framework.Emailing.Account
 {
@@ -51,7 +53,15 @@ namespace PolpAbp.Framework.Emailing.Account
         {
             get
             {
-                return _configuration.GetValue<bool>("PolpAbp:Framework:BackgroundEmailEnabled");
+                return _configuration.GetValue<bool>("PolpAbp:Framework:BackgroundEmailEnabled", false);
+            }
+        }
+
+        protected string DefaultEmailSignature
+        {
+            get
+            {
+                return _configuration.GetValue<string>("PolpAbp:Framework:DefaultEmailSignature", string.Empty);
             }
         }
 
@@ -61,6 +71,8 @@ namespace PolpAbp.Framework.Emailing.Account
             {
 
                 var user = await _userManager.FindByIdAsync(userId.ToString());
+                // Sends out an email regardless the email is confirmed or not.
+                // Therefore, this is a tryout attempt.
                 if (user == null)
                 {
                     return;
@@ -77,6 +89,8 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.EmailActivationtLink,
                     new
                     {
+                        name = user.GetFullName(),
+                        signature = DefaultEmailSignature,
                         link = link,
                         tenancy = tenant.Name
                     }
@@ -98,7 +112,7 @@ namespace PolpAbp.Framework.Emailing.Account
             {
 
                 var user = await _userManager.FindByIdAsync(userId.ToString());
-                if (user == null)
+                if (user == null || !user.EmailConfirmed)
                 {
                     return;
                 }
@@ -107,7 +121,8 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.NotyPasswordChange,
                     new
                     {
-                        name = user.Name
+                        name = user.GetFullName(),
+                        signature = DefaultEmailSignature
                     }
                 );
 
@@ -129,5 +144,35 @@ namespace PolpAbp.Framework.Emailing.Account
                 }
             }
         }
+
+        public async Task SendTwoFactorCodeAsync(Guid userId, string code)
+        {
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+
+                var user = await _userManager.FindByIdAsync(userId.ToString());
+                if (user == null || !user.EmailConfirmed)
+                {
+                    return;
+                }
+
+                var emailContent = await _templateRenderer.RenderAsync(
+                    Templates.AccountEmailTemplates.TwoFactorCode,
+                    new
+                    {
+                        receiver = user.GetFullName(),
+                        signature = DefaultEmailSignature,
+                        code = code
+                    }
+                );
+
+                await _emailSender.SendAsync(
+                    user.Email,
+                    StringLocalizer["TwoFactorCode_Subject"],
+                    emailContent
+                );
+            }
+        }
+
     }
 }

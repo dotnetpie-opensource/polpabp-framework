@@ -9,7 +9,9 @@ namespace PolpAbp.Framework.Emailing.Account
         /// Sends out an activation message to the given account, 
         /// in order for the account owner to confirm the existence of the email
         /// or to activate the account depending on the usage of the host.
+        /// 
         /// This method is run regardless the current tenant.
+        /// 
         /// </summary>
         /// <param name="userId">User Identifier</param>
         /// <returns>Task</returns>
@@ -17,12 +19,25 @@ namespace PolpAbp.Framework.Emailing.Account
 
         /// <summary>
         /// Sends out a security message when the password of an account is changed. 
+        ///
         /// This method is run regardless the current tenant.
+        /// 
         /// This method may put the message into a queue in the background, depending 
         /// on the host configurations.
         /// </summary>
         /// <param name="userId">User Identifier</param>
         /// <returns>Task</returns>
         Task SendPasswordChangeNotyAsync(Guid userId);
+
+        /// <summary>
+        /// Sends out a two factor code.
+        ///
+        /// This method is run regardless the current tenant.
+        /// 
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="code">Two factor code</param>
+        /// <returns>Task</returns>
+        Task SendTwoFactorCodeAsync(Guid userId, string code);
     }
 }

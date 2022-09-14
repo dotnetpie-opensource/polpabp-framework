@@ -1,6 +1,10 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
+    "GeneralEmailGrettingFirstLine": "{0},",
+    "GeneralEmailGrettingSecondLine": "您好！",
+    "GeneralEmailClosing": "谢谢，祝好，",
+    "GeneralEmailSignature": "{0}",
     "EmailActivation_Subject": "激活您的用户账号",
     "EmailActivation_Title": "欢迎使用系统.",
     "EmailActivation_SubTitle": "您的邮箱地址是系统和您之间的重要通信渠道。",
@@ -10,6 +14,10 @@
     "NotyPasswordChange_Body": "您的账户密码已经变化。如果您没有进行这样的操作，请立即检查您的账户。",
     "ResendActivationLink": "重发邮件激活码",
     "ResendActivationLink_Information": "请输入您的账户信息，系统会再次发送邮件激活码到您的注册信息。",
-    "ResendActivationLink_Success": "系统已经成功的发送了一封激活邮件到您的注册信息，请查收！"
+    "ResendActivationLink_Success": "系统已经成功的发送了一封激活邮件到您的注册信息，请查收！",
+    "TwoFactorCode_Subject": "二次验证码",
+    "TwoFactorCode_Title": "Here is your two factor code",
+    "TwoFactorCode_Body": "You requested a two factor code. Please use copy and paste the following code to continue your login.",
+    "TwoFactorCode_SentSuccess": "The two factor code has been sent out. Please check ..."
   }
 }

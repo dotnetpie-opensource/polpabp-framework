@@ -1,6 +1,10 @@
 ﻿{
   "culture": "en",
   "texts": {
+    "GeneralEmailGrettingFirstLine": "Hello {0},",
+    "GeneralEmailGrettingSecondLine": "",
+    "GeneralEmailClosing": "Thanks, and best wishes,",
+    "GeneralEmailSignature": "{0}",
     "EmailActivation_Subject": "Verify your email",
     "EmailActivation_Title": "Please verify your email",
     "EmailActivation_SubTitle": "Your email is the commuication channel between you and the service.",
@@ -10,6 +14,10 @@
     "NotyPasswordChange_Body": "Your passowrd has changed. If you do not recognize this operation, your account may be compromized. Please take action right now.",
     "ResendActivationLink": "Resend activation link",
     "ResendActivationLink_Information": "Please provide your account information as required below. Then the system will send you a new activation email to your registered email box.",
-    "ResendActivationLink_Success": "An account activation email has been sent to your e-mail address. If you don't see this email in your inbox within 15 minutes, look for it in your junk mail folder. If you find it there, please mark it as -Not Junk-."
+    "ResendActivationLink_Success": "An account activation email has been sent to your e-mail address. If you don't see this email in your inbox within 15 minutes, look for it in your junk mail folder. If you find it there, please mark it as -Not Junk-.",
+    "TwoFactorCode_Subject": "Two factor code",
+    "TwoFactorCode_Title": "Here is your two factor code",
+    "TwoFactorCode_Body": "You requested a two factor code. Please use copy and paste the following code to continue your login.",
+    "TwoFactorCode_SentSuccess": "The two factor code has been sent out. Please check ..."
   }
 }

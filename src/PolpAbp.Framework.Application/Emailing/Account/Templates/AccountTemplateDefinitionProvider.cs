@@ -10,8 +10,7 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
     {
         public override void Define(ITemplateDefinitionContext context)
         {
-            context.Add(
-                           new TemplateDefinition(
+            context.Add(new TemplateDefinition(
                                AccountEmailTemplates.EmailActivationtLink,
                                displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.EmailActivationtLink}"),
                                layout: StandardEmailTemplates.Layout,
@@ -20,13 +19,20 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                            .WithScribanEngine()
                        );
 
-            context.Add(
-                                   new TemplateDefinition(
+            context.Add(new TemplateDefinition(
                                        AccountEmailTemplates.NotyPasswordChange,
                                        displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.NotyPasswordChange}"),
                                        layout: StandardEmailTemplates.Layout,
                                        localizationResource: typeof(AccountResource)
                                    ).WithVirtualFilePath("/Emailing/Account/Templates/NotyPasswordChange.tpl", true)
+                                   .WithScribanEngine()
+                               );
+            context.Add(new TemplateDefinition(
+                                       AccountEmailTemplates.TwoFactorCode,
+                                       displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.TwoFactorCode}"),
+                                       layout: StandardEmailTemplates.Layout,
+                                       localizationResource: typeof(AccountResource)
+                                   ).WithVirtualFilePath("/Emailing/Account/Templates/TwoFactorCode.tpl", true)
                                    .WithScribanEngine()
                                );
         }

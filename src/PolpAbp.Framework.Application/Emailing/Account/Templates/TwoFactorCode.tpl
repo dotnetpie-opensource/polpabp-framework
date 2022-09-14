@@ -1,4 +1,4 @@
-﻿﻿<h3>{{L "NotyPasswordChange_Title"}}</h3>
+﻿﻿<h3>{{L "TwoFactorCode_Title"}}</h3>
 
 <p>
     {{L "GeneralEmailGreetingFirstLine" model.name}}
@@ -7,9 +7,14 @@
     {{L "GeneralEmailGreetingSecondLine"}},
 </p>
 
-<p>
-    {{L "NotyPasswordChange_Body"}}
-</p>
+<div>
+    <p>
+        {{L "TwoFactorCode_Body"}}
+    </p>
+    <p>
+        <span>{{model.code}}</span>,
+    </p>
+</div>
 
 <p>
     {{L "GeneralEmailClosing"}}
