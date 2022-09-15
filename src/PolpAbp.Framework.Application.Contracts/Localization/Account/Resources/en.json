@@ -18,6 +18,7 @@
     "TwoFactorCode_Subject": "Two factor code",
     "TwoFactorCode_Title": "Here is your two factor code",
     "TwoFactorCode_Body": "You requested a two factor code. Please use copy and paste the following code to continue your login.",
-    "TwoFactorCode_SentSuccess": "The two factor code has been sent out. Please check ..."
+    "TwoFactorCode_SentSuccess": "The two factor code has been sent out. Please check ...",
+    "TwoFactorCode_Sms": "Your two factor code for {0} is {1}."
   }
 }
