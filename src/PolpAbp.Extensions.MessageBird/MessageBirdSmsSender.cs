@@ -25,18 +25,15 @@ namespace PolpAbp.Extensions.MessageBird
 
         public Task SendAsync(SmsMessage smsMessage)
         {
-            var codeStr = smsMessage.Properties.GetOrDefault("CountryCode") as string;
-            if (!string.IsNullOrEmpty(codeStr))
+            var codeStr = smsMessage.Properties.GetOrDefault("CountryCode");
+            if (codeStr != null)
             {
-                if (int.TryParse(codeStr, out int countryCode))
+                var orginator = ProviderConfiguration.GetOrginatorByCountry((CountryCodeEnum)codeStr);
+                if (orginator != null)
                 {
-                    var orginator = ProviderConfiguration.GetOrginatorByCountry((CountryCodeEnum)countryCode);
-                    if (orginator != null)
+                    if (long.TryParse(smsMessage.PhoneNumber, out var targetNumber))
                     {
-                        if (long.TryParse(smsMessage.PhoneNumber, out var targetNumber))
-                        {
-                            ProviderConfiguration.Client.SendMessage(orginator, smsMessage.Text, new long[] { targetNumber });
-                        }
+                        ProviderConfiguration.Client.SendMessage(orginator, smsMessage.Text, new long[] { targetNumber });
                     }
                 }
             }
