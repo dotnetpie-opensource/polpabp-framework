@@ -1,8 +1,8 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
-    "GeneralEmailGrettingFirstLine": "{0},",
-    "GeneralEmailGrettingSecondLine": "您好！",
+    "GeneralEmailGreetingFirstLine": "{0},",
+    "GeneralEmailGreetingSecondLine": "您好！",
     "GeneralEmailClosing": "谢谢，祝好，",
     "GeneralEmailSignature": "{0}",
     "EmailActivation_Subject": "激活您的用户账号",

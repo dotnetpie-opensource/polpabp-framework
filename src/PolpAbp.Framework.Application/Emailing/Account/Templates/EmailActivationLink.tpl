@@ -22,5 +22,5 @@
 <p>
     {{L "GeneralEmailClosing"}}
     <br />
-    {{L "GeneralEmailSignature" model.sigature}}
+    {{L "GeneralEmailSignature" model.signature}}
 </p>

@@ -1,8 +1,8 @@
 ﻿{
   "culture": "en",
   "texts": {
-    "GeneralEmailGrettingFirstLine": "Hello {0},",
-    "GeneralEmailGrettingSecondLine": "",
+    "GeneralEmailGreetingFirstLine": "Hello {0},",
+    "GeneralEmailGreetingSecondLine": "",
     "GeneralEmailClosing": "Thanks, and best wishes,",
     "GeneralEmailSignature": "{0}",
     "EmailActivation_Subject": "Verify your email",
