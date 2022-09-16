@@ -1,5 +1,27 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
+    "DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled": "Enable the use of the user name",
+    "Description:PolpAbp.Framework.Account.IsUserNameEnabled": "Decides if a member can use his/her user name to login or not (Email is still ok).",
+    "DisplayName:PolpAbp.Framework.Account.RegistrationDisabled": "Disable member registration",
+    "Description:PolpAbp.Framework.Account.RegistrationDisabled": "Decides if a user can register to be a member",
+    "DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType": "Member registration type",
+    "Description:PolpAbp.Framework.Account.RegistrationApprovalType": "Decides how a user becomes an active member of your organization.",
+
+    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Disable Recaptcha on registration",
+    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
+    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Disable Recaptcha on login",
+    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
+
+    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit": "Requires digit(s)",
+    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit": "Decides if the password contains at least one digit or not.",
+    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase": "Requires lower case letters(s)",
+    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase": "Decides if the password contains at least one lowe case letter or not.",
+    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase": "Requires upper case letters(s)",
+    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase": "Decides if the password contains at least one upper case letter or not.",
+    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric": "Requires special symbol(s)",
+    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric": "Decides if the password contains at least one symbol or not.",
+    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength": "Minimum length",
+    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength": "Decides the minimum length of the password."
   }
 }

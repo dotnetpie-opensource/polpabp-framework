@@ -1,4 +1,6 @@
 ﻿using System;
+using PolpAbp.Framework.Localization;
+using Volo.Abp.Localization;
 using Volo.Abp.Settings;
 
 namespace PolpAbp.Framework.Settings
@@ -8,25 +10,102 @@ namespace PolpAbp.Framework.Settings
         // todo: 
         public override void Define(ISettingDefinitionContext context)
         {
-            // Tenant Account 
             context.Add(
-                // Registration
-                new SettingDefinition(FrameworkSettings.TenantAccountRegistrationApprovalType, "0")
+                // Account
+                new SettingDefinition(
+                    FrameworkSettings.RegistrationApprovalType,
+                    "0",
+                    L("DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType"),
+                    L("Description:PolpAbp.Framework.Account.RegistrationApprovalType"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(FrameworkSettings.TenantAccountRegistrationDisabled, "false")
+
+                new SettingDefinition(
+                    FrameworkSettings.IsRegistrationDisabled,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Account.IsRegistrationDisabled"),
+                    L("Description:PolpAbp.Framework.Account.IsRegistrationDisabled"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                new SettingDefinition(
+                    FrameworkSettings.IsUserNameEnabled,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled"),
+                    L("Description:PolpAbp.Framework.Account.IsUserNameEnabled"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                // Security
+                new SettingDefinition(
+                    FrameworkSettings.IsRecaptchaDisabledOnRegistration,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
+                    L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                new SettingDefinition(
+                    FrameworkSettings.IsRecaptchaDisabledOnLogin,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
+                    L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
                 // Password complexity
-                new SettingDefinition(FrameworkSettings.TenantAccountPassComplexityRequireDigit, "true")
+                new SettingDefinition(
+                    FrameworkSettings.AccountPassComplexityRequireDigit,
+                    "true",
+                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit"),
+                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(FrameworkSettings.TenantAccountPassComplexityRequireLowercase, "true")
+                new SettingDefinition(
+                    FrameworkSettings.AccountPassComplexityRequireLowercase,
+                    "true",
+                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase"),
+                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(FrameworkSettings.TenantAccountPassComplexityRequireUppercase, "true")
+                new SettingDefinition(
+                    FrameworkSettings.AccountPassComplexityRequireUppercase,
+                    "true",
+                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase"),
+                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(FrameworkSettings.TenantAccountPassComplexityRequireNonAlphanumeric, "true")
+                new SettingDefinition(
+                    FrameworkSettings.AccountPassComplexityRequireNonAlphanumeric,
+                    "true",
+                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric"),
+                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(FrameworkSettings.TenantAccountPassComplexityRequiredLength, "8")
+                new SettingDefinition(
+                    FrameworkSettings.AccountPassComplexityRequireDigit,
+                    "8",
+                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
+                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
+                    isVisibleToClients: true
+                    )
                 .WithProviders(TenantSettingValueProvider.ProviderName)
+
                 );
+        }
+
+        private static LocalizableString L(string name)
+        {
+            return LocalizableString.Create<PolpAbpFrameworkResource>(name);
         }
     }
 }
