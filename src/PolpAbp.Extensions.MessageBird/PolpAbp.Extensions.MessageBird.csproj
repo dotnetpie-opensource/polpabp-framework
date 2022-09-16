@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Sms" Version="5.3.2" />
+		<PackageReference Include="Volo.Abp.Json" Version="5.3.2" />
 		<PackageReference Include="MessageBird" Version="3.1.0" />
 	</ItemGroup>
 

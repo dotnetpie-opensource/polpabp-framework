@@ -15,8 +15,7 @@ namespace PolpAbp.Framework.Extensions
     {
         public static string GetFullName(this IdentityUser user)
         {
-            return string.IsNullOrEmpty(user.Name) ? $"{user.Surname ?? "User"}"
-                : $"{user.Name} {user.Surname??""}";
+            return UtitlityExtensions.ComposeFullName(user.Name, user.Surname);
         }
     }
 }

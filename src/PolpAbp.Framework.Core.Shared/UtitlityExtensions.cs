@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
 namespace PolpAbp.Framework
 {
@@ -17,6 +16,12 @@ namespace PolpAbp.Framework
             var temp = Regex.Replace(str, "[0-9]", "*");
             str = temp + str.Substring(str.Length - 4, str.Length - (str.Length - 4));
             return str;
+        }
+
+        public static string ComposeFullName(string firstName, string lastName, string deaultValue = "User")
+        {
+            return string.IsNullOrEmpty(firstName) ? $"{lastName ?? deaultValue}"
+                : $"{firstName} {lastName ?? ""}";
         }
     }
 }
