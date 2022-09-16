@@ -39,5 +39,23 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="code">Two factor code</param>
         /// <returns>Task</returns>
         Task SendTwoFactorCodeAsync(Guid userId, string code);
+
+
+        /// <summary>
+        /// Sends out a new registration request to the admins of the organization
+        /// for the given user.
+        /// </summary>
+        /// <param name="userId">The new member</param>
+        /// <returns>Task</returns>
+        Task SendMemberRegistrationNotyAsync(Guid userId);
+
+        /// <summary>
+        /// Sends out an approvel request to the admins of the organization
+        /// for the given user.
+        /// </summary>
+        /// <param name="userId">The new member</param>
+        /// <returns>Task</returns>
+        Task SendMemberRegistrationApprovalAsync(Guid userId);
+
     }
 }

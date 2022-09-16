@@ -39,6 +39,15 @@ namespace PolpAbp.Framework.Settings
                     )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
 
+                new SettingDefinition(
+                    FrameworkSettings.IsNewRegistrationNotyEnabled,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
+                    L("Description:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
                 // Security
                 new SettingDefinition(
                     FrameworkSettings.IsRecaptchaDisabledOnRegistration,

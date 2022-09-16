@@ -18,6 +18,8 @@ namespace PolpAbp.Framework.Settings
         /// </summary>
         public const string IsUserNameEnabled = $"{AccountSubGroup}.IsUserNameEnabled";
 
+        public const string IsNewRegistrationNotyEnabled = $"{AccountSubGroup}.IsNewRegistrationNotyEnabled";
+
 
         // Security
         public const string SecuritySubGroup = $"{GroupName}.Security";

@@ -14,6 +14,7 @@ using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
 using PolpAbp.Framework.Extensions;
 using System.Security.Cryptography.Xml;
+using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace PolpAbp.Framework.Emailing.Account
 {
@@ -171,6 +172,104 @@ namespace PolpAbp.Framework.Emailing.Account
                     StringLocalizer["TwoFactorCode_Subject"],
                     emailContent
                 );
+            }
+        }
+
+        public async Task SendMemberRegistrationNotyAsync(Guid userId)
+        {
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+
+                var target = await _userManager.FindByIdAsync(userId.ToString());
+                if (target == null)
+                {
+                    return;
+                }
+
+                // Find out the admin of the tenant.
+                // todo: Is it ok to hardcode the admin.
+                var admins = await _userManager.GetUsersInRoleAsync("ADMIN");
+                foreach (var user in admins)
+                {
+                    var emailContent = await _templateRenderer.RenderAsync(
+                        Templates.AccountEmailTemplates.NotyMembereRegistration,
+                        new
+                        {
+                            name = user.GetFullName(),
+                            signature = DefaultEmailSignature,
+                            member = target.GetFullName()
+                        }
+                    );
+
+                    if (IsBackgroundEmailEnabled)
+                    {
+                        await _emailSender.QueueAsync(
+                            user.Email,
+                            StringLocalizer["NotyMemberRegistration_Subject"],
+                            emailContent
+                        );
+                    }
+                    else
+                    {
+                        await _emailSender.SendAsync(
+                            user.Email,
+                            StringLocalizer["NotyMemberRegistration_Subject"],
+                            emailContent
+                        );
+                    }
+                }
+            }
+        }
+
+        public async Task SendMemberRegistrationApprovalAsync(Guid userId)
+        {
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+
+                var target = await _userManager.FindByIdAsync(userId.ToString());
+                if (target == null)
+                {
+                    return;
+                }
+
+                // todo: A dedicated page for approve the user.
+                var url = await _appUrlProvider.GetUrlAsync("MVC", "main");
+
+                var link = $"{url}";
+
+                // Find out the admin of the tenant.
+                // todo: Is it ok to hardcode the admin.
+                var admins = await _userManager.GetUsersInRoleAsync("ADMIN");
+                foreach (var user in admins)
+                {
+                    var emailContent = await _templateRenderer.RenderAsync(
+                        Templates.AccountEmailTemplates.ApproveMembereRegistration,
+                        new
+                        {
+                            name = user.GetFullName(),
+                            signature = DefaultEmailSignature,
+                            member = target.GetFullName(),
+                            link = link
+                        }
+                    );
+
+                    if (IsBackgroundEmailEnabled)
+                    {
+                        await _emailSender.QueueAsync(
+                            user.Email,
+                            StringLocalizer["ApproveMemberRegistration_Subject"],
+                            emailContent
+                        );
+                    }
+                    else
+                    {
+                        await _emailSender.SendAsync(
+                            user.Email,
+                            StringLocalizer["ApproveMemberRegistration_Subject"],
+                            emailContent
+                        );
+                    }
+                }
             }
         }
 
