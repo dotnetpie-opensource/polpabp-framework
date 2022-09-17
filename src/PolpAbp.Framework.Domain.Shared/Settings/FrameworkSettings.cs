@@ -20,14 +20,19 @@ namespace PolpAbp.Framework.Settings
 
         public const string IsNewRegistrationNotyEnabled = $"{AccountSubGroup}.IsNewRegistrationNotyEnabled";
 
+        // SSO provider
+        public const string IsSsoEnabled = $"{AccountSubGroup}.Sso.Enabled";
+        public const string IsSsoEnforced = $"{AccountSubGroup}.Sso.Enforced";
+        public const string SsoProviders = $"{AccountSubGroup}.Sso.Providers";
 
         // Security
         public const string SecuritySubGroup = $"{GroupName}.Security";
 
         // Decides if Recaptcha is enabled for the registraion.
         public const string IsRecaptchaDisabledOnRegistration = $"{SecuritySubGroup}.IsRecaptchaDisabledOnRegistration";
+
         // Decides if Recaptcha is enabled for the login.
-        public const string IsRecaptchaDisabledOnLogin = $"{SecuritySubGroup}.Login.IsRecaptchaDisabledOnLogin";
+        public const string IsRecaptchaDisabledOnLogin = $"{SecuritySubGroup}.IsRecaptchaDisabledOnLogin";
 
         // Password complexity settings (security)
         public const string AccountPassComplexityRequireDigit = $"{SecuritySubGroup}.PasswordComplexity.RequireDigit";
@@ -36,6 +41,9 @@ namespace PolpAbp.Framework.Settings
         public const string AccountPassComplexityRequiredLength = $"{SecuritySubGroup}.PasswordComplexity.RequiredLength";
         public const string AccountPassComplexityRequireUppercase = $"{SecuritySubGroup}.PasswordComplexity.RequireUppercase";
 
+        // Two factor code
+        public const string IsTwoFactorEnabled = $"{SecuritySubGroup}.TwoFactor.Enabled";
+        public const string IsTwoFactorEnforced = $"{SecuritySubGroup}.TwoFactor.Enforced";
 
         // Session timeout
         public const string SecuritySessionSubGroup = $"{SecuritySubGroup}.SessionTimeout";

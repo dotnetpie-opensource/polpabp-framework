@@ -48,6 +48,33 @@ namespace PolpAbp.Framework.Settings
                     )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
 
+                new SettingDefinition(
+                    FrameworkSettings.IsSsoEnabled,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Account.Sso.Enabled"),
+                    L("Description:PolpAbp.Framework.Account.Sso.Enabled"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                new SettingDefinition(
+                    FrameworkSettings.IsSsoEnforced,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Account.Sso.Enforced"),
+                    L("Description:PolpAbp.Framework.Account.Sso.Enforced"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                new SettingDefinition(
+                    FrameworkSettings.SsoProviders,
+                    "",
+                    L("DisplayName:PolpAbp.Framework.Account.Sso.Providers"),
+                    L("Description:PolpAbp.Framework.Account.Sso.Providers"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
                 // Security
                 new SettingDefinition(
                     FrameworkSettings.IsRecaptchaDisabledOnRegistration,
@@ -105,6 +132,24 @@ namespace PolpAbp.Framework.Settings
                     "8",
                     L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
                     L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+
+                // Two factor 
+                new SettingDefinition(
+                    FrameworkSettings.IsTwoFactorEnabled,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled"),
+                    L("Description:PolpAbp.Framework.Security.TwoFactor.Enabled"),
+                    isVisibleToClients: true
+                    )
+                .WithProviders(TenantSettingValueProvider.ProviderName),
+                new SettingDefinition(
+                    FrameworkSettings.IsTwoFactorEnforced,
+                    "false",
+                    L("DisplayName:PolpAbp.Framework.Security.TwoFactor.Enforced"),
+                    L("Description:PolpAbp.Framework.Security.TwoFactor.Enforced"),
                     isVisibleToClients: true
                     )
                 .WithProviders(TenantSettingValueProvider.ProviderName)
