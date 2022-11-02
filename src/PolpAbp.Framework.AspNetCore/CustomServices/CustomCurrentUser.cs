@@ -6,6 +6,10 @@ using Volo.Abp.Users;
 
 namespace PolpAbp.Framework.CustomServices
 {
+    /// <summary>
+    /// This service may be obsolete.
+    /// Please use it cautionously.
+    /// </summary>
     public class CustomCurrentUser : CurrentUser, ICurrentUser
     {
         private readonly ICurrentPrincipalAccessor _principalAccessor;
