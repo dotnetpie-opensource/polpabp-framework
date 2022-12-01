@@ -5,7 +5,7 @@ using Volo.Abp.EntityFrameworkCore;
 
 namespace Volo.Abp.Domain.Repositories.EntityFrameworkCore;
 
-public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDbContext, TEntity>
+public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDbContext, TEntity, Guid>
     where TDbContext : IEfCoreDbContext
     where TEntity : class, IEntity<Guid>
 {
