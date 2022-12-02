@@ -73,5 +73,39 @@ public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDb
             await context.SaveChangesAsync(GetCancellationToken(cancellationToken));
         }
     }
+
+    /// <summary>
+    /// Performs an operation for updating the child item and the children of the child items.
+    /// </summary>
+    /// <typeparam name="TProperty">Typeof the the child item</typeparam>
+    /// <typeparam name="TNestedProperty"></typeparam>
+    /// <param name="id">Parent Id</param>
+    /// <param name="navPath">Expression for defining the child items</param>
+    /// <param name="childNavPath"></param>
+    /// <param name="func">A lambda function for adding or removing the child items</param>
+    /// <param name="autoSave">Auto save flag</param>
+    /// <param name="cancellationToken">Token</param>
+    /// <returns>Task</returns>
+    /// <exception cref="ArgumentNullException"></exception>
+    protected async Task UpdateChildItemExtAsync<TProperty, TNestedProperty>(Guid id,
+         Expression<Func<TEntity, List<TProperty>>> navPath,
+         Expression<Func<TProperty, List<TNestedProperty>>> childNavPath,
+         Action<TEntity> func,
+         bool autoSave = false,
+         CancellationToken cancellationToken = default)
+    {
+        var context = await GetDbContextAsync();
+        var entity = context.Set<TEntity>().Include(navPath).ThenInclude(childNavPath).First(b => b.Id == id);
+        if (entity == null)
+        {
+            throw new ArgumentNullException(nameof(entity));
+        }
+        func(entity);
+        context.Update(entity);
+        if (autoSave)
+        {
+            await context.SaveChangesAsync(GetCancellationToken(cancellationToken));
+        }
+    }
 }
 
