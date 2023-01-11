@@ -30,11 +30,11 @@ namespace PolpAbp.Framework
             {
                 options.Resources
                     .Get<AccountResource>()
-                    .AddVirtualJson("/Localization/Account/Resources");
+                    .AddVirtualJson("/Localization/Framework/Account");
 
                 options.Resources
                     .Get<IdentityResource>()
-                    .AddVirtualJson("/Localization/OrgUnits/Resources");
+                    .AddVirtualJson("/Localization/Framework/OrgUnits");
             });
         }
     }

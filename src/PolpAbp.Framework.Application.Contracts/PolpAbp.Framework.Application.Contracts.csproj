@@ -19,10 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Account\Resources\*.json" />
-		<Content Remove="Localization\Account\Resources\*.json" />
-		<EmbeddedResource Include="Localization\OrgUnits\Resources\*.json" />
-		<Content Remove="Localization\OrgUnits\Resources\*.json" />
+		<EmbeddedResource Include="Localization\Framework\OrgUnits\*.json" />
+		<Content Remove="Localization\Framework\OrgUnits\*.json" />
+		<Content Remove="Localization\Framework\Account\*.json" />
+		<EmbeddedResource Include="Localization\Framework\Account\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>
