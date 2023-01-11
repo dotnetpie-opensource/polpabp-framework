@@ -35,6 +35,22 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                                    ).WithVirtualFilePath("/Emailing/Account/Templates/TwoFactorCode.tpl", true)
                                    .WithScribanEngine()
                                );
+            context.Add(new TemplateDefinition(
+                                         AccountEmailTemplates.ApproveMembereRegistration,
+                                         displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.ApproveMembereRegistration}"),
+                                         layout: StandardEmailTemplates.Layout,
+                                         localizationResource: typeof(AccountResource)
+                                     ).WithVirtualFilePath("/Emailing/Account/Templates/ApproveMemberRegistration.tpl", true)
+                                     .WithScribanEngine()
+                                 );
+            context.Add(new TemplateDefinition(
+                                         AccountEmailTemplates.NotyMembereRegistration,
+                                         displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.NotyMembereRegistration}"),
+                                         layout: StandardEmailTemplates.Layout,
+                                         localizationResource: typeof(AccountResource)
+                                     ).WithVirtualFilePath("/Emailing/Account/Templates/NotyMemberRegistration.tpl", true)
+                                     .WithScribanEngine()
+                                 );
         }
     }
 }
