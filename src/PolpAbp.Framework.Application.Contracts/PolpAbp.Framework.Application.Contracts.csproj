@@ -19,10 +19,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Framework\OrgUnits\*.json" />
-		<Content Remove="Localization\Framework\OrgUnits\*.json" />
-		<Content Remove="Localization\Framework\Account\*.json" />
-		<EmbeddedResource Include="Localization\Framework\Account\*.json" />
+		<EmbeddedResource Include="Localization\PolpAbp\Framework\OrgUnits\*.json" />
+		<Content Remove="Localization\PolpAbp\Framework\OrgUnits\*.json" />
+		<Content Remove="Localization\PolpAbp\Framework\Account\*.json" />
+		<EmbeddedResource Include="Localization\PolpAbp\Framework\Account\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>
