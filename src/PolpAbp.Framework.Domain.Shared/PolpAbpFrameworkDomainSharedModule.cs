@@ -24,7 +24,7 @@ namespace PolpAbp.Framework
             {
                 options.Resources
                     .Add<PolpAbpFrameworkResource>("en")
-                    .AddVirtualJson("/Localization");
+                    .AddVirtualJson("/Localization/PolpAbp/Framework/Resources");
             });
 
             Configure<AbpExceptionLocalizationOptions>(options =>

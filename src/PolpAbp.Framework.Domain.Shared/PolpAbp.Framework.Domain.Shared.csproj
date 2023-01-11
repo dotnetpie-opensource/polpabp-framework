@@ -8,8 +8,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<EmbeddedResource Include="Localization\Resources\*.json" />
-		<Content Remove="Localization\Resources\*.json" />
+		<Content Remove="Localization\PolpAbp\Framework\Resources\*.json" />
+		<EmbeddedResource Include="Localization\PolpAbp\Framework\Resources\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>
