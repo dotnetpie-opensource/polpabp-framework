@@ -129,8 +129,9 @@ namespace PolpAbp.Framework.IdentityServer
             {
                 _logger.LogDebug($"Tenant Id is {CurrentTenant.Id.Value}");
 
+                var tenantKey = _configuration["PolpAbp:Framework:TenantKey"];
                 //TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
-                client.DefaultRequestHeaders.Add("PolpAbpTenantId", CurrentTenant.Id.Value.ToString());
+                client.DefaultRequestHeaders.Add(tenantKey, CurrentTenant.Id.Value.ToString());
 
             }
         }

@@ -17,9 +17,6 @@ namespace PolpAbp.Framework.CustomServices
 {
     public class CustomMultiTenancyMiddleware : IMiddleware, ITransientDependency
     {
-        public const string TenantCookieName = "PolpAbpTenantId";
-
-
         private readonly ITenantConfigurationProvider _tenantConfigurationProvider;
         private readonly ICurrentTenant _currentTenant;
         private readonly AbpAspNetCoreMultiTenancyOptions _options;
@@ -47,7 +44,7 @@ namespace PolpAbp.Framework.CustomServices
             catch (Exception e)
             {
                 // Clean up the cookie if possible.
-                context.Response.Cookies.Delete(TenantCookieName);
+                context.Response.Cookies.Delete(_options.TenantKey);
 
                 await _options.MultiTenancyMiddlewareErrorPageBuilder(context, e);
                 return;
