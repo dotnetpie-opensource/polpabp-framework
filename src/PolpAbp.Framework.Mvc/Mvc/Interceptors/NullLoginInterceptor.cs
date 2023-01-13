@@ -3,14 +3,14 @@ using Volo.Abp.DependencyInjection;
 
 namespace PolpAbp.Framework.Mvc.Interceptors
 {
-    public class NullLogoutInterceptor : ILogoutInterceptor, ITransientDependency
+    public class NullLoginInterceptor : ILoginInterceptor, ITransientDependency
     {
-        public Task AfterSignOutAsync(HttpContext httpContext)
+        public Task AfterLoginAsync(HttpContext httpContext)
         {
             return Task.CompletedTask;
         }
 
-        public Task BeforeSignOutAsync(HttpContext httpContext)
+        public Task BeforeLoginAsync(HttpContext httpContext)
         {
             return Task.CompletedTask;
         }

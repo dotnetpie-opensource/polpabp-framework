@@ -1,12 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 
 namespace PolpAbp.Framework.Mvc.Interceptors
 {
 	public interface ILogoutInterceptor
 	{
-		Task BeforeLogoutAsync();
-		Task AfterLogoutAsync();
+		Task BeforeSignOutAsync(HttpContext httpContext);
+		Task AfterSignOutAsync(HttpContext httpContext);
 	}
 }
 
