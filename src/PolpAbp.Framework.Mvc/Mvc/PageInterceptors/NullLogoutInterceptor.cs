@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Volo.Abp.DependencyInjection;
 
-namespace PolpAbp.Framework.PageInterceptors
+namespace PolpAbp.Framework.Mvc.PageInterceptors
 {
     public class NullLogoutInterceptor : ILogoutInterceptor, ITransientDependency
     {
