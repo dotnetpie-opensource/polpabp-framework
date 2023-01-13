@@ -12,7 +12,6 @@ namespace PolpAbp.Framework.Mvc.Cookies
         protected readonly AbpAspNetCoreMultiTenancyOptions TenancyOptions;
 
         protected string TenantCookieName => TenancyOptions.TenantKey;
-        protected string CrossDomainName => Configuration["App:CrossDomain"] ?? string.Empty;
 
         public DefaultAppCookieManager(IConfiguration configuration,
             IOptions<AbpAspNetCoreMultiTenancyOptions> options
@@ -35,12 +34,12 @@ namespace PolpAbp.Framework.Mvc.Cookies
 
         public void SetTenantCookieValue(HttpResponse response, string value, string? domain= null,TimeSpan? span = null)
         {
-            response.SetNamedCookie(TenantCookieName, value, domain ?? CrossDomainName, span);
+            response.SetNamedCookie(TenantCookieName, value, domain, span);
         }
 
         public void ClearTenantCookie(HttpResponse response, string? domain = null)
         {
-            response.ClearNamedCookie(TenantCookieName, domain ?? CrossDomainName);
+            response.ClearNamedCookie(TenantCookieName, domain);
         }
     }
 }
