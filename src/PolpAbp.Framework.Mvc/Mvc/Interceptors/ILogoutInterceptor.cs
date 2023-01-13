@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace PolpAbp.Framework.PageInterceptors
+namespace PolpAbp.Framework.Mvc.Interceptors
 {
 	public interface ILogoutInterceptor
 	{
