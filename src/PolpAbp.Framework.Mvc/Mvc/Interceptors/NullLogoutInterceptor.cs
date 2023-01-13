@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Volo.Abp.DependencyInjection;
+﻿using Volo.Abp.DependencyInjection;
 
 namespace PolpAbp.Framework.Mvc.Interceptors
 {
