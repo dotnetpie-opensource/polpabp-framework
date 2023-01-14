@@ -66,7 +66,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendEmailActivationLinkAsync(Guid userId)
+        public async Task SendEmailActivationLinkAsync(Guid userId, string cc)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -99,15 +99,16 @@ namespace PolpAbp.Framework.Emailing.Account
 
                 // todo: Should we use the background ??
                 // In that case, the email may not be sent instantly.
+                var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                 await _emailSender.SendAsync(
-                    user.Email,
+                    receipents,
                     StringLocalizer["EmailActivation_Subject"],
                     emailContent
                 );
             }
         }
 
-        public async Task SendPasswordChangeNotyAsync(Guid userId)
+        public async Task SendPasswordChangeNotyAsync(Guid userId, string cc)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -127,10 +128,11 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
+                var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                 if (IsBackgroundEmailEnabled)
                 {
                     await _emailSender.QueueAsync(
-                        user.Email,
+                        receipents,
                         StringLocalizer["NotyPasswordChange_Subject"],
                         emailContent
                     );
@@ -138,7 +140,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 else
                 {
                     await _emailSender.SendAsync(
-                        user.Email,
+                        receipents,
                         StringLocalizer["NotyPasswordChange_Subject"],
                         emailContent
                     );
@@ -146,7 +148,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendTwoFactorCodeAsync(Guid userId, string code)
+        public async Task SendTwoFactorCodeAsync(Guid userId, string code, string cc)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -167,15 +169,16 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                 );
 
+                var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                 await _emailSender.SendAsync(
-                    user.Email,
+                    receipents,
                     StringLocalizer["TwoFactorCode_Subject"],
                     emailContent
                 );
             }
         }
 
-        public async Task SendMemberRegistrationNotyAsync(Guid userId)
+        public async Task SendMemberRegistrationNotyAsync(Guid userId, string cc)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -201,10 +204,11 @@ namespace PolpAbp.Framework.Emailing.Account
                         }
                     );
 
+                    var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                     if (IsBackgroundEmailEnabled)
                     {
                         await _emailSender.QueueAsync(
-                            user.Email,
+                            receipents,
                             StringLocalizer["NotyMemberRegistration_Subject"],
                             emailContent
                         );
@@ -212,7 +216,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     else
                     {
                         await _emailSender.SendAsync(
-                            user.Email,
+                            receipents,
                             StringLocalizer["NotyMemberRegistration_Subject"],
                             emailContent
                         );
@@ -221,7 +225,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendMemberRegistrationApprovalAsync(Guid userId)
+        public async Task SendMemberRegistrationApprovalAsync(Guid userId, string cc)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -253,10 +257,11 @@ namespace PolpAbp.Framework.Emailing.Account
                         }
                     );
 
+                    var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                     if (IsBackgroundEmailEnabled)
                     {
                         await _emailSender.QueueAsync(
-                            user.Email,
+                            receipents,
                             StringLocalizer["ApproveMemberRegistration_Subject"],
                             emailContent
                         );
@@ -264,7 +269,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     else
                     {
                         await _emailSender.SendAsync(
-                            user.Email,
+                            receipents,
                             StringLocalizer["ApproveMemberRegistration_Subject"],
                             emailContent
                         );
