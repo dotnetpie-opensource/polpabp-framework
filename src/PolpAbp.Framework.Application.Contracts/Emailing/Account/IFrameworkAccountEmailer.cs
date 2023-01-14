@@ -16,7 +16,7 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="userId">User Identifier</param>
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
-        Task SendEmailActivationLinkAsync(Guid userId, string cc);
+        Task SendEmailActivationLinkAsync(Guid userId, string cc=null);
 
         /// <summary>
         /// Sends out a security message when the password of an account is changed. 
@@ -29,7 +29,7 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="userId">User Identifier</param>
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
-        Task SendPasswordChangeNotyAsync(Guid userId, string cc);
+        Task SendPasswordChangeNotyAsync(Guid userId, string cc=null);
 
         /// <summary>
         /// Sends out a two factor code.
@@ -41,7 +41,7 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="code">Two factor code</param>
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
-        Task SendTwoFactorCodeAsync(Guid userId, string code, string cc);
+        Task SendTwoFactorCodeAsync(Guid userId, string code, string cc=null);
 
 
         /// <summary>
@@ -51,7 +51,7 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="userId">The new member</param>
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
-        Task SendMemberRegistrationNotyAsync(Guid userId, string cc);
+        Task SendMemberRegistrationNotyAsync(Guid userId, string cc=null);
 
         /// <summary>
         /// Sends out an approvel request to the admins of the organization
@@ -60,7 +60,7 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="userId">The new member</param>
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
-        Task SendMemberRegistrationApprovalAsync(Guid userId, string cc);
+        Task SendMemberRegistrationApprovalAsync(Guid userId, string cc=null);
 
     }
 }

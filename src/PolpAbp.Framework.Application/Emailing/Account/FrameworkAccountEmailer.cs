@@ -66,7 +66,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendEmailActivationLinkAsync(Guid userId, string cc)
+        public async Task SendEmailActivationLinkAsync(Guid userId, string cc=null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -108,7 +108,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendPasswordChangeNotyAsync(Guid userId, string cc)
+        public async Task SendPasswordChangeNotyAsync(Guid userId, string cc=null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -148,7 +148,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendTwoFactorCodeAsync(Guid userId, string code, string cc)
+        public async Task SendTwoFactorCodeAsync(Guid userId, string code, string cc=null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -178,7 +178,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendMemberRegistrationNotyAsync(Guid userId, string cc)
+        public async Task SendMemberRegistrationNotyAsync(Guid userId, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -225,7 +225,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendMemberRegistrationApprovalAsync(Guid userId, string cc)
+        public async Task SendMemberRegistrationApprovalAsync(Guid userId, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
