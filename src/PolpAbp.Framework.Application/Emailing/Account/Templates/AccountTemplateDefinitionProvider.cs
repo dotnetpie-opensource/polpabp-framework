@@ -20,6 +20,15 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                        );
 
             context.Add(new TemplateDefinition(
+                               AccountEmailTemplates.EmailConfirmatiionLink,
+                               displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.EmailConfirmatiionLink}"),
+                               layout: StandardEmailTemplates.Layout,
+                               localizationResource: typeof(AccountResource)
+                           ).WithVirtualFilePath("/Emailing/Account/Templates/EmailConfirmationLink.tpl", true)
+                           .WithScribanEngine()
+                       );
+
+            context.Add(new TemplateDefinition(
                                        AccountEmailTemplates.NotyPasswordChange,
                                        displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.NotyPasswordChange}"),
                                        layout: StandardEmailTemplates.Layout,
@@ -49,6 +58,14 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                                          layout: StandardEmailTemplates.Layout,
                                          localizationResource: typeof(AccountResource)
                                      ).WithVirtualFilePath("/Emailing/Account/Templates/NotyMemberRegistration.tpl", true)
+                                     .WithScribanEngine()
+                                 );
+            context.Add(new TemplateDefinition(
+                                         AccountEmailTemplates.NewOrResetPassword,
+                                         displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.NewOrResetPassword}"),
+                                         layout: StandardEmailTemplates.Layout,
+                                         localizationResource: typeof(AccountResource)
+                                     ).WithVirtualFilePath("/Emailing/Account/Templates/NewOrResetPassword.tpl", true)
                                      .WithScribanEngine()
                                  );
         }
