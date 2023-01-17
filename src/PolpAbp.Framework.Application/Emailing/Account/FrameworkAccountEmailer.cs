@@ -87,7 +87,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var link = $"{url}?userId={user.Id}&tenantId={user.TenantId}&confirmationCode={UrlEncoder.Default.Encode(token)}";
 
                 var emailContent = await _templateRenderer.RenderAsync(
-                    Templates.AccountEmailTemplates.EmailActivationtLink,
+                    user.IsActive ? Templates.AccountEmailTemplates.EmailConfirmatiionLink : Templates.AccountEmailTemplates.EmailActivationtLink,
                     new
                     {
                         name = user.GetFullName(),
@@ -102,7 +102,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                 await _emailSender.SendAsync(
                     receipents,
-                    StringLocalizer["EmailActivation_Subject"],
+                    StringLocalizer[user.IsActive ? "EmailConfirmation_Subject" : "EmailActivation_Subject"],
                     emailContent
                 );
             }
@@ -275,6 +275,37 @@ namespace PolpAbp.Framework.Emailing.Account
                         );
                     }
                 }
+            }
+        }
+
+
+        public async Task SendNewOrResetPasswordAsync(Guid userId, string password, string cc = null)
+        {
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+
+                var user = await _userManager.FindByIdAsync(userId.ToString());
+                if (user == null)
+                {
+                    return;
+                }
+
+                var emailContent = await _templateRenderer.RenderAsync(
+                    Templates.AccountEmailTemplates.NewOrResetPassword,
+                    new
+                    {
+                        receiver = user.GetFullName(),
+                        signature = DefaultEmailSignature,
+                        password = password
+                    }
+                );
+
+                var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
+                await _emailSender.SendAsync(
+                    receipents,
+                    StringLocalizer["NewOrResetPassword_Subject"],
+                    emailContent
+                );
             }
         }
 

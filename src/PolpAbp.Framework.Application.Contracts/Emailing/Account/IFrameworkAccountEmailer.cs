@@ -6,9 +6,12 @@ namespace PolpAbp.Framework.Emailing.Account
     public interface IFrameworkAccountEmailer
     {
         /// <summary>
-        /// Sends out an activation message to the given account, 
+        /// Sends out an activation message or a email confirmation message to the given account,
+        /// depending on the user active state,
         /// in order for the account owner to confirm the existence of the email
         /// or to activate the account depending on the usage of the host.
+        /// If the user is active, an email template for confirming the email is used;
+        /// otherwise, an email template for activating the account is used.
         /// 
         /// This method is run regardless the current tenant.
         /// 
@@ -62,5 +65,16 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <returns>Task</returns>
         Task SendMemberRegistrationApprovalAsync(Guid userId, string cc=null);
 
+        /// <summary>
+        /// Sends out the new password, as the result of the admin operation.
+        ///
+        /// This method is run regardless the current tenant.
+        /// 
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="password">Password</param>
+        /// <param name="cc">Extra email receipents, separated by ,</param>
+        /// <returns>Task</returns>
+        Task SendNewOrResetPasswordAsync(Guid userId, string password, string cc = null);
     }
 }
