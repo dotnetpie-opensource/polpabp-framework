@@ -1,5 +1,6 @@
 ﻿using MessageBird;
 using Microsoft.Extensions.Options;
+using PolpAbp.Framework.Globalization;
 using PolpAbp.Framework.Net;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace PolpAbp.Extensions.MessageBird
     public class MessageBirdClient : ISingletonDependency
     {
         private readonly MessageBirdConfiguration _messageBirdCfg;
-        private readonly List<Tuple<CountryCodeEnum, string>> _phoneNumbers;
+        private readonly List<Tuple<CountryAlphaEnum, string>> _phoneNumbers;
         private readonly Client _client;
 
         public Client Client => _client;
@@ -21,7 +22,7 @@ namespace PolpAbp.Extensions.MessageBird
         public MessageBirdClient(IOptions<MessageBirdConfiguration> configurationProvider)
         {
             _messageBirdCfg = configurationProvider.Value;
-            _phoneNumbers = new List<Tuple<CountryCodeEnum, string>>();
+            _phoneNumbers = new List<Tuple<CountryAlphaEnum, string>>();
 
             var originators = _messageBirdCfg.Originators;
 
@@ -35,7 +36,7 @@ namespace PolpAbp.Extensions.MessageBird
                     int.TryParse(pieces[0], out int code);
                     if (code > 0)
                     {
-                        _phoneNumbers.Add(new Tuple<CountryCodeEnum, string>((CountryCodeEnum)code, pieces[1].Trim()));
+                        _phoneNumbers.Add(new Tuple<CountryAlphaEnum, string>((CountryAlphaEnum)code, pieces[1].Trim()));
                     }
                 }
             }
@@ -43,7 +44,7 @@ namespace PolpAbp.Extensions.MessageBird
             _client = Client.CreateDefault(Accesskey);
         }
 
-        public string GetOrginatorByCountry(CountryCodeEnum code)
+        public string GetOrginatorByCountry(CountryAlphaEnum code)
         {
             var entry = _phoneNumbers.Find(a => a.Item1 == code);
             return entry?.Item2;

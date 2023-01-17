@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using PolpAbp.Framework.Globalization;
 using PolpAbp.Framework.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,7 +29,7 @@ namespace PolpAbp.Extensions.MessageBird
             var codeStr = smsMessage.Properties.GetOrDefault("CountryCode");
             if (codeStr != null)
             {
-                var orginator = ProviderConfiguration.GetOrginatorByCountry((CountryCodeEnum)codeStr);
+                var orginator = ProviderConfiguration.GetOrginatorByCountry((CountryAlphaEnum)codeStr);
                 if (orginator != null)
                 {
                     if (long.TryParse(smsMessage.PhoneNumber, out var targetNumber))
