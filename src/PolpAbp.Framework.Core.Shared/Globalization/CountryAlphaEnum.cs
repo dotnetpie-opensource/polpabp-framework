@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace PolpAbp.Framework.Net
+namespace PolpAbp.Framework.Globalization
 {
     /// <summary>
-    /// States and Territories of the US
+    /// The list of countries in alphabetic order.
     /// </summary>
-    public enum CountryCodeEnum
+    public enum CountryAlphaEnum
     {
         [Description("Afghanistan")] AF = 1,
         [Description("Åland Islands")] AX = 2,

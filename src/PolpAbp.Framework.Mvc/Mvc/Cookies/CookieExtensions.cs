@@ -21,7 +21,7 @@ namespace PolpAbp.Framework.Mvc.Cookies
             response.Cookies.Append(name, value, options);
         }
 
-        public static void ClearNamedCookie(this HttpResponse response, string name, string? domain)
+        public static void ClearNamedCookie(this HttpResponse response, string name, string? domain = null)
         {
             var options = new CookieOptions();
             if (!string.IsNullOrWhiteSpace(domain))

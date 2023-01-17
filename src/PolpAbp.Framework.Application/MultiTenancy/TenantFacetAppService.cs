@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
+using Volo.Abp;
 using Volo.Abp.TenantManagement;
 
 namespace PolpAbp.Framework.MultiTenancy
 {
+    [RemoteService(false)]
     public class TenantFacetAppService : FrameworkAppService, ITenantFacetAppService
     {
         protected readonly IConfiguration Configuration;
