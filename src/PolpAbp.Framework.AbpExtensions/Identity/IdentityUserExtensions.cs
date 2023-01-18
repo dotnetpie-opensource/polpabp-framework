@@ -27,7 +27,7 @@ namespace Volo.Abp.Identity
         /// <param name="user">User</param>
         public static void SetShouldChangePasswordOnNextLogin(this IdentityUser user)
         {
-            user.SetProperty(ShouldChangePasswordOnNextLoginPropKey, false);
+            user.SetProperty(ShouldChangePasswordOnNextLoginPropKey, true);
         }
 
         /// <summary>
