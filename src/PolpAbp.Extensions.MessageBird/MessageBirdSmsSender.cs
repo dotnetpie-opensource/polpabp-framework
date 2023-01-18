@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
 using PolpAbp.Framework.Globalization;
-using PolpAbp.Framework.Net;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp;
@@ -14,29 +13,42 @@ namespace PolpAbp.Extensions.MessageBird
     [ExposeServices(typeof(ISmsSender))]
     public class MessageBirdSmsSender : ISmsSender, ITransientDependency
     {
-        protected readonly MessageBirdClient ProviderConfiguration;
+        protected readonly MessageBirdClientWrapper ClientWrapper;
         protected readonly ILogger Logger;
 
-        public MessageBirdSmsSender(MessageBirdClient configuration, 
+        public MessageBirdSmsSender(MessageBirdClientWrapper client, 
             ILogger<MessageBirdSmsSender> logger)
         {
-            ProviderConfiguration = configuration;
+            ClientWrapper = client;
             Logger = logger;
         }
 
         public Task SendAsync(SmsMessage smsMessage)
         {
-            var codeStr = smsMessage.Properties.GetOrDefault("CountryCode");
-            if (codeStr != null)
+            var alpha = smsMessage.Properties.GetOrDefault("CountryCode");
+            if (alpha != null)
             {
-                var orginator = ProviderConfiguration.GetOrginatorByCountry((CountryAlphaEnum)codeStr);
+                var orginator = ClientWrapper.GetOrginatorByCountry(alpha.ToString());
                 if (orginator != null)
                 {
                     if (long.TryParse(smsMessage.PhoneNumber, out var targetNumber))
                     {
-                        ProviderConfiguration.Client.SendMessage(orginator, smsMessage.Text, new long[] { targetNumber });
+                        ClientWrapper.Client.SendMessage(orginator, smsMessage.Text, new long[] { targetNumber });
+                        smsMessage.Properties.Add("ErrorCode", SmsErrorCodeEnum.None);
+                    }
+                    else
+                    {
+                        smsMessage.Properties.Add("ErrorCode", SmsErrorCodeEnum.PhoneNumberInvalid);
                     }
                 }
+                else
+                {
+                    smsMessage.Properties.Add("ErrorCode", SmsErrorCodeEnum.OriginatorNotConfigured);
+                }
+            } 
+            else
+            {
+                smsMessage.Properties.Add("ErrorCode", SmsErrorCodeEnum.CountryCodeMissing);
             }
 
             return Task.CompletedTask;
