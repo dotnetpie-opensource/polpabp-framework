@@ -66,7 +66,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendEmailActivationLinkAsync(Guid userId, string cc=null)
+        public async Task SendEmailActivationLinkAsync(Guid userId, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -108,7 +108,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendPasswordChangeNotyAsync(Guid userId, string cc=null)
+        public async Task SendPasswordChangeNotyAsync(Guid userId, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -148,7 +148,7 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
-        public async Task SendTwoFactorCodeAsync(Guid userId, string code, string cc=null)
+        public async Task SendTwoFactorCodeAsync(Guid userId, string code, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
             {
@@ -309,5 +309,36 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
+
+        public async Task SendFarewellToDeletedUserAsync(string email, string name, string cc = null)
+        {
+            var emailContent = await _templateRenderer.RenderAsync(
+                Templates.AccountEmailTemplates.FarewellDeletedUser,
+                new
+                {
+                    name = name,
+                    signature = DefaultEmailSignature
+                }
+            );
+
+            var receipents = string.IsNullOrEmpty(cc) ? email : $@"{email},{cc}";
+
+            if (IsBackgroundEmailEnabled)
+            {
+                await _emailSender.QueueAsync(
+                    receipents,
+                    StringLocalizer["FarewellDeletedUser_Subject"],
+                    emailContent
+                );
+            }
+            else
+            {
+                await _emailSender.SendAsync(
+                    receipents,
+                    StringLocalizer["FarewellDeletedUser_Subject"],
+                    emailContent
+                );
+            }
+        }
     }
 }

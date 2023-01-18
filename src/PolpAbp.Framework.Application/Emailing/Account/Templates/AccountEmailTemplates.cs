@@ -9,6 +9,7 @@
         public const string NotyMembereRegistration = "PolpAbp.Account.NotyMembereRegistration";
         public const string ApproveMembereRegistration = "PolpAbp.Account.ApproveMembereRegistration";
         public const string NewOrResetPassword = "PolpAbp.Account.NewOrResetPassword";
+        public const string FarewellDeletedUser = "PolpAbp.Account.FarewellDeletedUser";
 
     }
 }

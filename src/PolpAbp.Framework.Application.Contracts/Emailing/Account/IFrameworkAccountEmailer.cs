@@ -76,5 +76,6 @@ namespace PolpAbp.Framework.Emailing.Account
         /// <param name="cc">Extra email receipents, separated by ,</param>
         /// <returns>Task</returns>
         Task SendNewOrResetPasswordAsync(Guid userId, string password, string cc = null);
+        Task SendFarewellToDeletedUserAsync(string email, string name, string cc = null);
     }
 }
