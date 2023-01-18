@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Volo.Abp.AutoMapper;
+using Volo.Abp.Identity;
 using Volo.Abp.Modularity;
-using Volo.Abp.AutoMapper;
 
 namespace PolpAbp.Framework
 {
     [DependsOn(
-        typeof(AbpAutoMapperModule)
+        typeof(AbpAutoMapperModule),
+        typeof(AbpIdentityDomainModule)
         )]
     public class PolpAbpFrameworkAbpExtensionsModule : AbpModule
     {
