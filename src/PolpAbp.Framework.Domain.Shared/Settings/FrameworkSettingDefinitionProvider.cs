@@ -128,7 +128,7 @@ namespace PolpAbp.Framework.Settings
                     )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
                 new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequireDigit,
+                    FrameworkSettings.AccountPassComplexityRequiredLength,
                     "8",
                     L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
                     L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),

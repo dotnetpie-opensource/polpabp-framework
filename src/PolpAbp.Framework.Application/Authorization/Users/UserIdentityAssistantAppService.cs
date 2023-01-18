@@ -1,80 +1,86 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
 using PolpAbp.Framework.Security;
+using PolpAbp.Framework.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Settings;
 
 namespace PolpAbp.Framework.Authorization.Users
 {
     [RemoteService(false)]
     public class UserIdentityAssistantAppService : FrameworkAppService, IUserIdentityAssistantAppService
     {
-        public Task<IdentityResult> ValidatePasswordAsync(string password)
+        protected readonly IConfiguration Configuration;
+
+        public UserIdentityAssistantAppService(
+            IConfiguration configuration)
         {
-            return Task.Run(() =>
-            {
-                if (string.IsNullOrEmpty(password))
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.PasswordRequired
-                    });
-                }
-
-                // todo: Load the tenant-specific settings form db.
-                var settings = PasswordComplexitySetting.DefaultSettings;
-
-                if (password.Length < settings.RequiredLength)
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.InvalidMinLength
-                    });
-                }
-
-                if (settings.RequireUppercase && !password.Any(char.IsUpper))
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.UppercaseRequired
-                    });
-                }
-
-                if (settings.RequireLowercase && !password.Any(char.IsLower))
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.LowercaseRequired
-                    });
-                }
-
-                if (settings.RequireDigit && !password.Any(char.IsNumber))
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.DigitRequired
-                    });
-                }
-
-                if (settings.RequireNonAlphanumeric && password.All(char.IsLetterOrDigit))
-                {
-                    return IdentityResult.Failed(new IdentityError
-                    {
-                        Code = PasswordValidationErrors.NonAlphaRequired
-                    });
-                }
-
-                return IdentityResult.Success;
-
-            });
+            Configuration = configuration;
         }
 
-        public Task<string> CreateRandomPasswordAsync()
+        public async Task<IdentityResult> ValidatePasswordAsync(string password)
+        {
+            if (string.IsNullOrEmpty(password))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.PasswordRequired
+                });
+            }
+
+            var settings = await ReadInPasswordComplexityAsync();
+
+            if (password.Length < settings.RequiredLength)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.InvalidMinLength
+                });
+            }
+
+            if (settings.RequireUppercase && !password.Any(char.IsUpper))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.UppercaseRequired
+                });
+            }
+
+            if (settings.RequireLowercase && !password.Any(char.IsLower))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.LowercaseRequired
+                });
+            }
+
+            if (settings.RequireDigit && !password.Any(char.IsNumber))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.DigitRequired
+                });
+            }
+
+            if (settings.RequireNonAlphanumeric && password.All(char.IsLetterOrDigit))
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.NonAlphaRequired
+                });
+            }
+
+            return IdentityResult.Success;
+        }
+
+        public async Task<string> CreateRandomPasswordAsync()
         {
             // todo: Read from settings
-            var passwordComplexitySetting =  PasswordComplexitySetting.DefaultSettings;
+            var passwordComplexitySetting = await ReadInPasswordComplexityAsync();
 
             var upperCaseLetters = "ABCDEFGHJKLMNOPQRSTUVWXYZ";
             var lowerCaseLetters = "abcdefghijkmnopqrstuvwxyz";
@@ -124,8 +130,21 @@ namespace PolpAbp.Framework.Authorization.Users
 
             var ret = new string(chars.ToArray());
 
-            return Task.FromResult(ret);
+            return ret;
         }
 
+        private async Task<PasswordComplexitySetting> ReadInPasswordComplexityAsync()
+        {
+            var complexity = new PasswordComplexitySetting();
+            Configuration.GetSection("PolpAbp:Account:PasswordComplexity").Bind(complexity);
+
+            complexity.RequireDigit = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireDigit, complexity.RequireDigit);
+            complexity.RequireLowercase = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireLowercase, complexity.RequireLowercase);
+            complexity.RequireUppercase = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireUppercase, complexity.RequireUppercase);
+            complexity.RequireNonAlphanumeric = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireNonAlphanumeric, complexity.RequireNonAlphanumeric);
+            complexity.RequiredLength = await SettingProvider.GetAsync<int>(FrameworkSettings.AccountPassComplexityRequiredLength, complexity.RequiredLength);
+
+            return complexity;
+        }
     }
 }
