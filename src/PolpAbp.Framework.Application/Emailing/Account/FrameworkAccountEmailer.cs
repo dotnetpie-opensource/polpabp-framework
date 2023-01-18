@@ -294,7 +294,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.NewOrResetPassword,
                     new
                     {
-                        receiver = user.GetFullName(),
+                        name = user.GetFullName(),
                         signature = DefaultEmailSignature,
                         password = password
                     }
