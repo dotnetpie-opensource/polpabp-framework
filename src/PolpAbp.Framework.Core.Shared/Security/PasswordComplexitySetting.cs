@@ -2,14 +2,17 @@
 {
     public class PasswordComplexitySetting
     {
-        public static PasswordComplexitySetting DefaultSettings = new PasswordComplexitySetting()
+        public PasswordComplexitySetting(bool withDefaults) 
         {
-            RequireDigit = true,
-            RequireLowercase = true,
-            RequiredLength = 8,
-            RequireNonAlphanumeric = true,
-            RequireUppercase = true
-        };
+            if (withDefaults)
+            {
+                RequireDigit = true;
+                RequireLowercase = true;
+                RequiredLength = 8;
+                RequireNonAlphanumeric = true;
+                RequireUppercase = true;
+            }
+        }
 
         public bool Equals(PasswordComplexitySetting other)
         {

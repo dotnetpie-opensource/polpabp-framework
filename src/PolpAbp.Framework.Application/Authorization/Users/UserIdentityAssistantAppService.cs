@@ -133,9 +133,9 @@ namespace PolpAbp.Framework.Authorization.Users
             return ret;
         }
 
-        private async Task<PasswordComplexitySetting> ReadInPasswordComplexityAsync()
+        public async Task<PasswordComplexitySetting> ReadInPasswordComplexityAsync()
         {
-            var complexity = new PasswordComplexitySetting();
+            var complexity = new PasswordComplexitySetting(true);
             Configuration.GetSection("PolpAbp:Account:PasswordComplexity").Bind(complexity);
 
             complexity.RequireDigit = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireDigit, complexity.RequireDigit);
