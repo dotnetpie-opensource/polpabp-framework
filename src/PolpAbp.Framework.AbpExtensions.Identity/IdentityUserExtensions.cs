@@ -3,6 +3,9 @@ using Volo.Abp.Identity;
 
 namespace Volo.Abp.Identity
 {
+    // We cannot have the identity extensions in the general abp extensions.
+    // Otherwise, we will have trouble with the unit tests. 
+    // The identity module contains the data seeder for roles, ....
     public static class IdentityUserExtensions
     {
         public const string ShouldChangePasswordOnNextLoginPropKey = "ShouldChangePasswordOnNextLogin";
