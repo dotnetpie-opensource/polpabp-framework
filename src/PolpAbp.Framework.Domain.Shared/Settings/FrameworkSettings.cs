@@ -34,13 +34,6 @@ namespace PolpAbp.Framework.Settings
         // Decides if Recaptcha is enabled for the login.
         public const string IsRecaptchaDisabledOnLogin = $"{SecuritySubGroup}.IsRecaptchaDisabledOnLogin";
 
-        // Password complexity settings (security)
-        public const string AccountPassComplexityRequireDigit = $"{SecuritySubGroup}.PasswordComplexity.RequireDigit";
-        public const string AccountPassComplexityRequireLowercase = $"{SecuritySubGroup}.PasswordComplexity.RequireLowercase";
-        public const string AccountPassComplexityRequireNonAlphanumeric = $"{SecuritySubGroup}.PasswordComplexity.RequireNonAlphanumeric";
-        public const string AccountPassComplexityRequiredLength = $"{SecuritySubGroup}.PasswordComplexity.RequiredLength";
-        public const string AccountPassComplexityRequireUppercase = $"{SecuritySubGroup}.PasswordComplexity.RequireUppercase";
-
         // Two factor code
         public const string IsTwoFactorEnabled = $"{SecuritySubGroup}.TwoFactor.Enabled";
         public const string IsTwoFactorEnforced = $"{SecuritySubGroup}.TwoFactor.Enforced";

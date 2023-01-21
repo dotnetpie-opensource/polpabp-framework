@@ -1,18 +1,13 @@
 ﻿namespace PolpAbp.Framework.Security
 {
+    /// <summary>
+    /// Password complexity settings. 
+    /// Note that we do not need any default value. 
+    /// Because the abp identity has the default value 
+    /// for each setting.
+    /// </summary>
     public class PasswordComplexitySetting
     {
-        public PasswordComplexitySetting(bool withDefaults) 
-        {
-            if (withDefaults)
-            {
-                RequireDigit = true;
-                RequireLowercase = true;
-                RequiredLength = 8;
-                RequireNonAlphanumeric = true;
-                RequireUppercase = true;
-            }
-        }
 
         public bool Equals(PasswordComplexitySetting other)
         {
@@ -26,7 +21,8 @@
                 RequireLowercase == other.RequireLowercase &&
                 RequireNonAlphanumeric == other.RequireNonAlphanumeric &&
                 RequireUppercase == other.RequireUppercase &&
-                RequiredLength == other.RequiredLength;
+                RequiredLength == other.RequiredLength &&
+                RequiredUniqueChars == other.RequiredUniqueChars;
         }
 
         public bool RequireDigit { get; set; }
@@ -38,5 +34,7 @@
         public bool RequireUppercase { get; set; }
 
         public int RequiredLength { get; set; }
+
+        public int RequiredUniqueChars { get; set; }
     }
 }

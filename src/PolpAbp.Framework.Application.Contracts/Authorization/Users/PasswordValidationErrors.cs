@@ -8,5 +8,6 @@
         public const string LowercaseRequired = nameof(LowercaseRequired);
         public const string DigitRequired = nameof(DigitRequired);
         public const string NonAlphaRequired = nameof(NonAlphaRequired);
+        public const string UniqueCharsNotEnough = nameof(UniqueCharsNotEnough);
     }
 }

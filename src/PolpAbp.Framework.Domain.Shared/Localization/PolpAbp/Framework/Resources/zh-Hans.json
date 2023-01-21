@@ -22,17 +22,6 @@
     "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Disable Recaptcha on login",
     "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
 
-    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit": "Requires digit(s)",
-    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit": "Decides if the password contains at least one digit or not.",
-    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase": "Requires lower case letters(s)",
-    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase": "Decides if the password contains at least one lowe case letter or not.",
-    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase": "Requires upper case letters(s)",
-    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase": "Decides if the password contains at least one upper case letter or not.",
-    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric": "Requires special symbol(s)",
-    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric": "Decides if the password contains at least one symbol or not.",
-    "DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength": "Minimum length",
-    "Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength": "Decides the minimum length of the password.",
-
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled": "Is Two Factor Code enabled?",
     "Description:PolpAbp.Framework.Security.TwoFactor.Enabled": "Decides if the use of two factor code is required on login?",
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enforced": "Is Two Factor Code enforced?",

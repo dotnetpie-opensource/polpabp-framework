@@ -94,48 +94,6 @@ namespace PolpAbp.Framework.Settings
                     )
                 .WithProviders(TenantSettingValueProvider.ProviderName),
 
-                // Password complexity
-                new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequireDigit,
-                    "true",
-                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit"),
-                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireDigit"),
-                    isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequireLowercase,
-                    "true",
-                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase"),
-                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireLowercase"),
-                    isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequireUppercase,
-                    "true",
-                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase"),
-                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireUppercase"),
-                    isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequireNonAlphanumeric,
-                    "true",
-                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric"),
-                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequireNonAlphanumeric"),
-                    isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
-                new SettingDefinition(
-                    FrameworkSettings.AccountPassComplexityRequiredLength,
-                    "8",
-                    L("DisplayName:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
-                    L("Description:PolpAbp.Framework.Security.PasswordComplexity.RequiredLength"),
-                    isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
-
                 // Two factor 
                 new SettingDefinition(
                     FrameworkSettings.IsTwoFactorEnabled,

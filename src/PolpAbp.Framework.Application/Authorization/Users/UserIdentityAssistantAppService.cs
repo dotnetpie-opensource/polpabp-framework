@@ -1,12 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using PolpAbp.Framework.Security;
-using PolpAbp.Framework.Settings;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp;
+using Volo.Abp.Identity.Settings;
 using Volo.Abp.Settings;
 
 namespace PolpAbp.Framework.Authorization.Users
@@ -39,6 +39,14 @@ namespace PolpAbp.Framework.Authorization.Users
                 return IdentityResult.Failed(new IdentityError
                 {
                     Code = PasswordValidationErrors.InvalidMinLength
+                });
+            }
+
+            if (password.Distinct().Count() < settings.RequiredUniqueChars)
+            {
+                return IdentityResult.Failed(new IdentityError
+                {
+                    Code = PasswordValidationErrors.UniqueCharsNotEnough
                 });
             }
 
@@ -77,6 +85,12 @@ namespace PolpAbp.Framework.Authorization.Users
             return IdentityResult.Success;
         }
 
+        /// <summary>
+        /// Note that we dot not ensure that the generated password 
+        /// meets up with the requirements for the unique chars.
+        /// todo: Add such a check
+        /// </summary>
+        /// <returns>Password</returns>
         public async Task<string> CreateRandomPasswordAsync()
         {
             // todo: Read from settings
@@ -135,14 +149,14 @@ namespace PolpAbp.Framework.Authorization.Users
 
         public async Task<PasswordComplexitySetting> ReadInPasswordComplexityAsync()
         {
-            var complexity = new PasswordComplexitySetting(true);
-            Configuration.GetSection("PolpAbp:Account:PasswordComplexity").Bind(complexity);
+            var complexity = new PasswordComplexitySetting();
 
-            complexity.RequireDigit = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireDigit, complexity.RequireDigit);
-            complexity.RequireLowercase = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireLowercase, complexity.RequireLowercase);
-            complexity.RequireUppercase = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireUppercase, complexity.RequireUppercase);
-            complexity.RequireNonAlphanumeric = await SettingProvider.GetAsync<bool>(FrameworkSettings.AccountPassComplexityRequireNonAlphanumeric, complexity.RequireNonAlphanumeric);
-            complexity.RequiredLength = await SettingProvider.GetAsync<int>(FrameworkSettings.AccountPassComplexityRequiredLength, complexity.RequiredLength);
+            complexity.RequireDigit = await SettingProvider.GetAsync<bool>(IdentitySettingNames.Password.RequireDigit);
+            complexity.RequireLowercase = await SettingProvider.GetAsync<bool>(IdentitySettingNames.Password.RequireLowercase);
+            complexity.RequireUppercase = await SettingProvider.GetAsync<bool>(IdentitySettingNames.Password.RequireUppercase);
+            complexity.RequireNonAlphanumeric = await SettingProvider.GetAsync<bool>(IdentitySettingNames.Password.RequireNonAlphanumeric);
+            complexity.RequiredLength = await SettingProvider.GetAsync<int>(IdentitySettingNames.Password.RequiredLength);
+            complexity.RequiredUniqueChars = await SettingProvider.GetAsync<int>(IdentitySettingNames.Password.RequiredUniqueChars);
 
             return complexity;
         }
