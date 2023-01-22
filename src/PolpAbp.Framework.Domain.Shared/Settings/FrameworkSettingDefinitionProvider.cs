@@ -18,8 +18,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType"),
                     L("Description:PolpAbp.Framework.Account.RegistrationApprovalType"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsRegistrationDisabled,
@@ -27,8 +26,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.IsRegistrationDisabled"),
                     L("Description:PolpAbp.Framework.Account.IsRegistrationDisabled"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsUserNameEnabled,
@@ -36,8 +34,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled"),
                     L("Description:PolpAbp.Framework.Account.IsUserNameEnabled"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsNewRegistrationNotyEnabled,
@@ -45,8 +42,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
                     L("Description:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsSsoEnabled,
@@ -54,8 +50,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.Sso.Enabled"),
                     L("Description:PolpAbp.Framework.Account.Sso.Enabled"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsSsoEnforced,
@@ -63,8 +58,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.Sso.Enforced"),
                     L("Description:PolpAbp.Framework.Account.Sso.Enforced"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.SsoProviders,
@@ -72,8 +66,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Account.Sso.Providers"),
                     L("Description:PolpAbp.Framework.Account.Sso.Providers"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 // Security
                 new SettingDefinition(
@@ -82,8 +75,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
                     L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 new SettingDefinition(
                     FrameworkSettings.IsRecaptchaDisabledOnLogin,
@@ -91,8 +83,7 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
                     L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
 
                 // Two factor 
                 new SettingDefinition(
@@ -101,8 +92,8 @@ namespace PolpAbp.Framework.Settings
                     L("DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled"),
                     L("Description:PolpAbp.Framework.Security.TwoFactor.Enabled"),
                     isVisibleToClients: true
-                    )
-                .WithProviders(TenantSettingValueProvider.ProviderName),
+                    ),
+
                 new SettingDefinition(
                     FrameworkSettings.IsTwoFactorEnforced,
                     "false",
@@ -110,7 +101,6 @@ namespace PolpAbp.Framework.Settings
                     L("Description:PolpAbp.Framework.Security.TwoFactor.Enforced"),
                     isVisibleToClients: true
                     )
-                .WithProviders(TenantSettingValueProvider.ProviderName)
 
                 );
         }
