@@ -1,51 +1,69 @@
-﻿using System;
-namespace PolpAbp.Framework.Settings
+﻿namespace PolpAbp.Framework.Settings
 {
     public static class FrameworkSettings
     {
         public const string GroupName = "PolpAbp.Framework";
 
-        // Account (user management)
-        public const string AccountSubGroup = $"{GroupName}.Account";
+        public static class Account
+        {
+            // Account (user management)
+            public const string AccountSubGroup = $"{GroupName}.Account";
 
-        public const string IsRegistrationDisabled = $"{AccountSubGroup}.RegistrationDisabled";
-        // Email (0), Admin (1), Auto (2) ...
-        public const string RegistrationApprovalType = $"{AccountSubGroup}.RegistrationApprovalType";
-        /// <summary>
-        /// Decides if the user name is enabled
-        ///   - For login
-        ///   - For registraion (maybe)
-        /// </summary>
-        public const string IsUserNameEnabled = $"{AccountSubGroup}.IsUserNameEnabled";
+            public const string IsRegistrationDisabled = $"{AccountSubGroup}.{nameof(IsRegistrationDisabled)}";
+            // Email (0), Admin (1), Auto (2) ...
+            public const string RegistrationApprovalType = $"{AccountSubGroup}.{nameof(RegistrationApprovalType)}";
+            /// <summary>
+            /// Decides if the user name is enabled
+            ///   - For login
+            ///   - For registraion (maybe)
+            /// </summary>
+            public const string IsUserNameEnabled = $"{AccountSubGroup}.{nameof(IsUserNameEnabled)}";
 
-        public const string IsNewRegistrationNotyEnabled = $"{AccountSubGroup}.IsNewRegistrationNotyEnabled";
+            public const string IsNewRegistrationNotyEnabled = $"{AccountSubGroup}.{nameof(IsNewRegistrationNotyEnabled)}";
 
-        // SSO provider
-        public const string IsSsoEnabled = $"{AccountSubGroup}.Sso.Enabled";
-        public const string IsSsoEnforced = $"{AccountSubGroup}.Sso.Enforced";
-        public const string SsoProviders = $"{AccountSubGroup}.Sso.Providers";
+            public static class Sso
+            {
+                // SSO provider
+                public const string IsEnabled = $"{AccountSubGroup}.Sso.{nameof(IsEnabled)}";
+                public const string IsEnforced = $"{AccountSubGroup}.Sso.{nameof(IsEnforced)}";
+                public const string Providers = $"{AccountSubGroup}.Sso.{nameof(Providers)}";
+            }
+        }
 
-        // Security
-        public const string SecuritySubGroup = $"{GroupName}.Security";
+        public static class Security
+        {
 
-        // Decides if Recaptcha is enabled for the registraion.
-        public const string IsRecaptchaDisabledOnRegistration = $"{SecuritySubGroup}.IsRecaptchaDisabledOnRegistration";
+            // Security
+            public const string SecuritySubGroup = $"{GroupName}.Security";
 
-        // Decides if Recaptcha is enabled for the login.
-        public const string IsRecaptchaDisabledOnLogin = $"{SecuritySubGroup}.IsRecaptchaDisabledOnLogin";
+            // Decides if Recaptcha is enabled for the registraion.
+            public const string UseCaptchaOnRegistration = $"{SecuritySubGroup}.{nameof(UseCaptchaOnRegistration)}";
 
-        // Two factor code
-        public const string IsTwoFactorEnabled = $"{SecuritySubGroup}.TwoFactor.Enabled";
-        public const string IsTwoFactorEnforced = $"{SecuritySubGroup}.TwoFactor.Enforced";
+            // Decides if Recaptcha is enabled for the login.
+            public const string UseCaptchaOnLogin = $"{SecuritySubGroup}.{nameof(UseCaptchaOnLogin)}";
 
-        // Session timeout
-        public const string SecuritySessionSubGroup = $"{SecuritySubGroup}.SessionTimeout";
+            // Two factor code
+            public static class TwoFactor
+            {
+                public const string IsEnabled = $"{SecuritySubGroup}.TwoFactor.{nameof(IsEnabled)}";
+                public const string IsEnforced = $"{SecuritySubGroup}.TwoFactor.{nameof(IsEnforced)}";
+            }
 
-        // Date privacy
-        public const string DataPrivacySubGroup = $"{GroupName}.DataPrivacy";
+            // Session timeout
+            public static class SessionTimeOut
+            {
+                public const string SecuritySessionSubGroup = $"{SecuritySubGroup}.SessionTimeout";
+            }
+        }
 
-        // Cookie consent
-        public const string IsCookieConsentRequired = $"{DataPrivacySubGroup}.IsCookieConsentRequired"; 
+        public static class DataPrivacy
+        {
+            // Date privacy
+            public const string DataPrivacySubGroup = $"{GroupName}.DataPrivacy";
+
+            // Cookie consent
+            public const string IsCookieConsentRequired = $"{DataPrivacySubGroup}.{nameof(IsCookieConsentRequired)}";
+        }
 
     }
 }

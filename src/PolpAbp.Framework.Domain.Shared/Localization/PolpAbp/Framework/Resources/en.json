@@ -10,22 +10,22 @@
     "DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Is new registraion notification enabled?",
     "Description:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Decides if the admins will be notified of the new registrations or not.",
 
-    "DisplayName:PolpAbp.Framework.Account.Sso.Enabled": "Is SSO enabled?",
-    "Description:PolpAbp.Framework.Account.Sso.Enabled": "Decides if your member can log into your organization with some SSOs.",
-    "DisplayName:PolpAbp.Framework.Account.Sso.Enforced": "Is SSO enforced?",
-    "Description:PolpAbp.Framework.Account.Sso.Enforced": "Decides if the system will remind your remembers of using SSOs if they are not.",
+    "DisplayName:PolpAbp.Framework.Account.Sso.IsEnabled": "Is SSO enabled?",
+    "Description:PolpAbp.Framework.Account.Sso.IsEnabled": "Decides if your member can log into your organization with some SSOs.",
+    "DisplayName:PolpAbp.Framework.Account.Sso.IsEnforced": "Is SSO enforced?",
+    "Description:PolpAbp.Framework.Account.Sso.IsEnforced": "Decides if the system will remind your remembers of using SSOs if they are not.",
     "DisplayName:PolpAbp.Framework.Account.Sso.Providers": "SSO providers",
     "Description:PolpAbp.Framework.Account.Sso.Providers": "Decides if your member can log into your organization with some SSOs.",
 
-    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Is the Recaptcha on registration disabled",
-    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
-    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Is the Recaptcha on login disabled",
-    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Is the Recaptcha on registration disabled",
+    "Description:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Is the Recaptcha on login disabled",
+    "Description:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
 
-    "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled": "Is Two Factor Code enabled?",
-    "Description:PolpAbp.Framework.Security.TwoFactor.Enabled": "Decides if the use of two factor code is required on login?",
-    "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enforced": "Is Two Factor Code enforced?",
-    "Description:PolpAbp.Framework.Security.TwoFactor.Enforced": "Decides if the system will remind the members of using two factor codes if they are not?"
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Is Two Factor Code enabled?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Decides if the use of two factor code is required on login?",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Is Two Factor Code enforced?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Decides if the system will remind the members of using two factor codes if they are not?"
 
   }
 }

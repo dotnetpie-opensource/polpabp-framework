@@ -1,30 +1,30 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
-    "DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled": "Enable the use of the user name",
+    "DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled": "Is the use of user name enabled?",
     "Description:PolpAbp.Framework.Account.IsUserNameEnabled": "Decides if a member can use his/her user name to login or not (Email is still ok).",
-    "DisplayName:PolpAbp.Framework.Account.RegistrationDisabled": "Disable member registration",
-    "Description:PolpAbp.Framework.Account.RegistrationDisabled": "Decides if a user can register to be a member",
+    "DisplayName:PolpAbp.Framework.Account.IsRegistrationDisabled": "Is the member registration disabled?",
+    "Description:PolpAbp.Framework.Account.IsRegistrationDisabled": "Decides if a user can register to be a member",
     "DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType": "Member registration type",
     "Description:PolpAbp.Framework.Account.RegistrationApprovalType": "Decides how a user becomes an active member of your organization.",
-    "DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Notify the admins of new registrations",
+    "DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Is new registraion notification enabled?",
     "Description:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Decides if the admins will be notified of the new registrations or not.",
 
-    "DisplayName:PolpAbp.Framework.Account.Sso.Enabled": "Is SSO enabled?",
-    "Description:PolpAbp.Framework.Account.Sso.Enabled": "Decides if your member can log into your organization with some SSOs.",
-    "DisplayName:PolpAbp.Framework.Account.Sso.Enforced": "Is SSO enforced?",
-    "Description:PolpAbp.Framework.Account.Sso.Enforced": "Decides if the system will remind your remembers of using SSOs if they are not.",
+    "DisplayName:PolpAbp.Framework.Account.Sso.IsEnabled": "Is SSO enabled?",
+    "Description:PolpAbp.Framework.Account.Sso.IsEnabled": "Decides if your member can log into your organization with some SSOs.",
+    "DisplayName:PolpAbp.Framework.Account.Sso.IsEnforced": "Is SSO enforced?",
+    "Description:PolpAbp.Framework.Account.Sso.IsEnforced": "Decides if the system will remind your remembers of using SSOs if they are not.",
     "DisplayName:PolpAbp.Framework.Account.Sso.Providers": "SSO providers",
     "Description:PolpAbp.Framework.Account.Sso.Providers": "Decides if your member can log into your organization with some SSOs.",
 
-    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Disable Recaptcha on registration",
-    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
-    "DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Disable Recaptcha on login",
-    "Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Is the Recaptcha on registration disabled",
+    "Description:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Is the Recaptcha on login disabled",
+    "Description:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
 
-    "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled": "Is Two Factor Code enabled?",
-    "Description:PolpAbp.Framework.Security.TwoFactor.Enabled": "Decides if the use of two factor code is required on login?",
-    "DisplayName:PolpAbp.Framework.Security.TwoFactor.Enforced": "Is Two Factor Code enforced?",
-    "Description:PolpAbp.Framework.Security.TwoFactor.Enforced": "Decides if the system will remind the members of using two factor codes if they are not?"
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Is Two Factor Code enabled?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Decides if the use of two factor code is required on login?",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Is Two Factor Code enforced?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Decides if the system will remind the members of using two factor codes if they are not?"
   }
 }

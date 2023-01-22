@@ -1,5 +1,4 @@
-﻿using System;
-using PolpAbp.Framework.Localization;
+﻿using PolpAbp.Framework.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Settings;
 
@@ -7,98 +6,91 @@ namespace PolpAbp.Framework.Settings
 {
     public class FrameworkSettingDefinitionProvider : SettingDefinitionProvider
     {
-        // todo: 
         public override void Define(ISettingDefinitionContext context)
         {
             context.Add(
                 // Account
                 new SettingDefinition(
-                    FrameworkSettings.RegistrationApprovalType,
+                    FrameworkSettings.Account.RegistrationApprovalType,
                     "0",
-                    L("DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType"),
-                    L("Description:PolpAbp.Framework.Account.RegistrationApprovalType"),
+                    L($"DisplayName:{FrameworkSettings.Account.RegistrationApprovalType}"),
+                    L($"Description:{FrameworkSettings.Account.RegistrationApprovalType}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsRegistrationDisabled,
+                    FrameworkSettings.Account.IsRegistrationDisabled,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Account.IsRegistrationDisabled"),
-                    L("Description:PolpAbp.Framework.Account.IsRegistrationDisabled"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsRegistrationDisabled}"),
+                    L($"Description:{FrameworkSettings.Account.IsRegistrationDisabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsUserNameEnabled,
+                    FrameworkSettings.Account.IsUserNameEnabled,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled"),
-                    L("Description:PolpAbp.Framework.Account.IsUserNameEnabled"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsUserNameEnabled}"), L($"Description:{FrameworkSettings.Account.IsUserNameEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsNewRegistrationNotyEnabled,
+                    FrameworkSettings.Account.IsNewRegistrationNotyEnabled,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
-                    L("Description:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"), L($"Description:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsSsoEnabled,
+                    FrameworkSettings.Account.Sso.IsEnabled,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Account.Sso.Enabled"),
-                    L("Description:PolpAbp.Framework.Account.Sso.Enabled"),
+                    L($"DisplayName:{FrameworkSettings.Account.Sso.IsEnabled}"),
+                    L($"Description:{FrameworkSettings.Account.Sso.IsEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsSsoEnforced,
+                    FrameworkSettings.Account.Sso.IsEnforced,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Account.Sso.Enforced"),
-                    L("Description:PolpAbp.Framework.Account.Sso.Enforced"),
+                    L($"DisplayName:{FrameworkSettings.Account.Sso.IsEnforced}"), L($"Description:{FrameworkSettings.Account.Sso.IsEnforced}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.SsoProviders,
+                    FrameworkSettings.Account.Sso.Providers,
                     "",
-                    L("DisplayName:PolpAbp.Framework.Account.Sso.Providers"),
-                    L("Description:PolpAbp.Framework.Account.Sso.Providers"),
+                    L($"DisplayName:{FrameworkSettings.Account.Sso.Providers}"),
+                    L($"Description:{FrameworkSettings.Account.Sso.Providers}"),
                     isVisibleToClients: true
                     ),
 
                 // Security
                 new SettingDefinition(
-                    FrameworkSettings.IsRecaptchaDisabledOnRegistration,
+                    FrameworkSettings.Security.UseCaptchaOnRegistration,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
-                    L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnRegistration"),
+                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnRegistration}"), L($"Description:{FrameworkSettings.Security.UseCaptchaOnRegistration}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsRecaptchaDisabledOnLogin,
+                    FrameworkSettings.Security.UseCaptchaOnLogin,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
-                    L("Description:PolpAbp.Framework.Security.IsRecaptchaDisabledOnLogin"),
+                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnLogin}"), L($"Description:{FrameworkSettings.Security.UseCaptchaOnLogin}"),
                     isVisibleToClients: true
                     ),
 
                 // Two factor 
                 new SettingDefinition(
-                    FrameworkSettings.IsTwoFactorEnabled,
+                    FrameworkSettings.Security.TwoFactor.IsEnabled,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Security.TwoFactor.Enabled"),
-                    L("Description:PolpAbp.Framework.Security.TwoFactor.Enabled"),
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEnabled}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.IsTwoFactorEnforced,
+                    FrameworkSettings.Security.TwoFactor.IsEnforced,
                     "false",
-                    L("DisplayName:PolpAbp.Framework.Security.TwoFactor.Enforced"),
-                    L("Description:PolpAbp.Framework.Security.TwoFactor.Enforced"),
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEnforced}"), L($"Description:{FrameworkSettings.Security.TwoFactor.IsEnforced}"),
                     isVisibleToClients: true
                     )
 
