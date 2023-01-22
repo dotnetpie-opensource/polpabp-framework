@@ -9,7 +9,7 @@
             // Account (user management)
             public const string AccountSubGroup = $"{GroupName}.Account";
 
-            public const string IsRegistrationDisabled = $"{AccountSubGroup}.{nameof(IsRegistrationDisabled)}";
+            public const string IsTenantRegistrationEnabled = $"{AccountSubGroup}.{nameof(IsTenantRegistrationEnabled)}";
             // Email (0), Admin (1), Auto (2) ...
             public const string RegistrationApprovalType = $"{AccountSubGroup}.{nameof(RegistrationApprovalType)}";
             /// <summary>
@@ -18,6 +18,8 @@
             ///   - For registraion (maybe)
             /// </summary>
             public const string IsUserNameEnabled = $"{AccountSubGroup}.{nameof(IsUserNameEnabled)}";
+
+            public const string IsPhoneNumberEnabled = $"{AccountSubGroup}.{nameof(IsPhoneNumberEnabled)}";
 
             public const string IsNewRegistrationNotyEnabled = $"{AccountSubGroup}.{nameof(IsNewRegistrationNotyEnabled)}";
 

@@ -3,8 +3,10 @@
   "texts": {
     "DisplayName:PolpAbp.Framework.Account.IsUserNameEnabled": "Is the use of user name enabled?",
     "Description:PolpAbp.Framework.Account.IsUserNameEnabled": "Decides if a member can use his/her user name to login or not (Email is still ok).",
-    "DisplayName:PolpAbp.Framework.Account.IsRegistrationDisabled": "Is the member registration disabled?",
-    "Description:PolpAbp.Framework.Account.IsRegistrationDisabled": "Decides if a user can register to be a member",
+    "DisplayName:PolpAbp.Framework.Account.IsPhoneNumberEnabled": "Is the phone number required?",
+    "Description:PolpAbp.Framework.Account.IsPhoneNumberEnabled": "Decides if a user needs to provide the phone number.",
+    "DisplayName:PolpAbp.Framework.Account.IsTenantRegistrationEnabled": "Is the tenant registration enabled?",
+    "Description:PolpAbp.Framework.Account.IsTenantRegistrationEnabled": "Decides if a user can register to be a member",
     "DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType": "Member registration type",
     "Description:PolpAbp.Framework.Account.RegistrationApprovalType": "Decides how a user becomes an active member of your organization.",
     "DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Is new registraion notification enabled?",

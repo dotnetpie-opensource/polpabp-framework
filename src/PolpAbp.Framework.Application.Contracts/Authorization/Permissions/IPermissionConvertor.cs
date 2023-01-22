@@ -6,7 +6,7 @@
     /// By defining an applicaiton specific implementation, 
     /// the application may have its own expected permission 
     /// names.
-    /// The packages include a identity mappping function 
+    /// The packages include an identity mappping function 
     /// as the default implementation.
     /// </summary>
     public interface IPermissionConvertor

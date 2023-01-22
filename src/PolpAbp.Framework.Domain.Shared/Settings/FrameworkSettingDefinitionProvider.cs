@@ -19,10 +19,10 @@ namespace PolpAbp.Framework.Settings
                     ),
 
                 new SettingDefinition(
-                    FrameworkSettings.Account.IsRegistrationDisabled,
-                    "false",
-                    L($"DisplayName:{FrameworkSettings.Account.IsRegistrationDisabled}"),
-                    L($"Description:{FrameworkSettings.Account.IsRegistrationDisabled}"),
+                    FrameworkSettings.Account.IsTenantRegistrationEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Account.IsTenantRegistrationEnabled}"),
+                    L($"Description:{FrameworkSettings.Account.IsTenantRegistrationEnabled}"),
                     isVisibleToClients: true
                     ),
 
@@ -30,6 +30,13 @@ namespace PolpAbp.Framework.Settings
                     FrameworkSettings.Account.IsUserNameEnabled,
                     "false",
                     L($"DisplayName:{FrameworkSettings.Account.IsUserNameEnabled}"), L($"Description:{FrameworkSettings.Account.IsUserNameEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Account.IsPhoneNumberEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Account.IsPhoneNumberEnabled}"), L($"Description:{FrameworkSettings.Account.IsPhoneNumberEnabled}"),
                     isVisibleToClients: true
                     ),
 
