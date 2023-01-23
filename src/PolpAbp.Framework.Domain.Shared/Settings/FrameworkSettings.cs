@@ -47,14 +47,21 @@
             // Two factor code
             public static class TwoFactor
             {
-                public const string IsEnabled = $"{SecuritySubGroup}.TwoFactor.{nameof(IsEnabled)}";
-                public const string IsEnforced = $"{SecuritySubGroup}.TwoFactor.{nameof(IsEnforced)}";
+                public const string Prefix = $"{SecuritySubGroup}.TwoFactor";
+
+                public const string IsEnabled = $"${Prefix}.{nameof(IsEnabled)}";
+                public const string IsEnforced = $"{Prefix}.{nameof(IsEnforced)}";
             }
 
             // Session timeout
             public static class SessionTimeOut
             {
-                public const string SecuritySessionSubGroup = $"{SecuritySubGroup}.SessionTimeout";
+                public const string Prefix = $"{SecuritySubGroup}.SessionTimeOut";
+
+                public const string IsEnabled = $"{Prefix}.{nameof(IsEnabled)}";
+                public const string TimeOutSecond = $"{Prefix}.{nameof(TimeOutSecond)}";
+                public const string ShowTimeOutNotificationSecond = $"{Prefix}.{nameof(ShowTimeOutNotificationSecond)}";
+                public const string ShowLockScreenWhenTimedOut = $"{Prefix}.{nameof(ShowLockScreenWhenTimedOut)}";
             }
         }
 
@@ -65,6 +72,7 @@
 
             // Cookie consent
             public const string IsCookieConsentRequired = $"{DataPrivacySubGroup}.{nameof(IsCookieConsentRequired)}";
+
         }
 
     }

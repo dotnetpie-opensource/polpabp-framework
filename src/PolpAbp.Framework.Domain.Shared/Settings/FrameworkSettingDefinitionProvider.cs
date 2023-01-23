@@ -99,7 +99,41 @@ namespace PolpAbp.Framework.Settings
                     "false",
                     L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEnforced}"), L($"Description:{FrameworkSettings.Security.TwoFactor.IsEnforced}"),
                     isVisibleToClients: true
+                    ),
+
+                // Session timeout
+                new SettingDefinition(
+                    FrameworkSettings.Security.SessionTimeOut.IsEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.SessionTimeOut.IsEnabled}"), 
+                    L($"Description:{FrameworkSettings.Security.SessionTimeOut.IsEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.SessionTimeOut.TimeOutSecond,
+                    "120",
+                    L($"DisplayName:{FrameworkSettings.Security.SessionTimeOut.TimeOutSecond}"),
+                    L($"Description:{FrameworkSettings.Security.SessionTimeOut.TimeOutSecond}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.SessionTimeOut.ShowTimeOutNotificationSecond,
+                    "60",
+                    L($"DisplayName:{FrameworkSettings.Security.SessionTimeOut.ShowTimeOutNotificationSecond}"),
+                    L($"Description:{FrameworkSettings.Security.SessionTimeOut.ShowTimeOutNotificationSecond}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.SessionTimeOut.ShowLockScreenWhenTimedOut,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.SessionTimeOut.ShowLockScreenWhenTimedOut}"),
+                    L($"Description:{FrameworkSettings.Security.SessionTimeOut.ShowLockScreenWhenTimedOut}"),
+                    isVisibleToClients: true
                     )
+
 
                 );
         }

@@ -27,6 +27,15 @@
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Is Two Factor Code enabled?",
     "Description:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Decides if the use of two factor code is required on login?",
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Is Two Factor Code enforced?",
-    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Decides if the system will remind the members of using two factor codes if they are not?"
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Decides if the system will remind the members of using two factor codes if they are not?",
+
+    "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.IsEnabled": "Enable time out for the session?",
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.IsEnabled": "Decides if the session can be time out or not?",
+    "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.TimeOutSecond": "Time out seconds",
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.TimeOutSecond": "How long will the session get timeout?",
+    "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "Show timeout secons?",
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "The timeout seconds will be shown",
+    "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Lock out the screen after timeout?",
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Shows the lockout screen after timeout"
   }
 }
