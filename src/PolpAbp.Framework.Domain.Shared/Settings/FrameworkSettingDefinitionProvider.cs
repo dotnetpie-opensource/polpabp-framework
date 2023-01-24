@@ -97,9 +97,43 @@ namespace PolpAbp.Framework.Settings
                 new SettingDefinition(
                     FrameworkSettings.Security.TwoFactor.IsEnforced,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEnforced}"), L($"Description:{FrameworkSettings.Security.TwoFactor.IsEnforced}"),
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEnforced}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsEnforced}"),
                     isVisibleToClients: true
                     ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.TwoFactor.IsEmailProviderEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsEmailProviderEnabled}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsEmailProviderEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.TwoFactor.IsSmsProviderEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsSmsProviderEnabled}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsSmsProviderEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.TwoFactor.IsRememberBrowserEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsRememberBrowserEnabled}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsRememberBrowserEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.TwoFactor.IsGoogleAuthenticatorEnabled,
+                    "false",
+                    L($"DisplayName:{FrameworkSettings.Security.TwoFactor.IsGoogleAuthenticatorEnabled}"),
+                    L($"Description:{FrameworkSettings.Security.TwoFactor.IsGoogleAuthenticatorEnabled}"),
+                    isVisibleToClients: true
+                    ),
+
 
                 // Session timeout
                 new SettingDefinition(
@@ -134,13 +168,25 @@ namespace PolpAbp.Framework.Settings
                     isVisibleToClients: true
                     ),
 
+                // tenant management
+                // email settings
                 new SettingDefinition(
                     FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault,
                     "true",
                     L($"DisplayName:{FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault}"),
                     L($"Description:{FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault}"),
                     isVisibleToClients: true
+                    ),
+
+                // Data privacy
+                new SettingDefinition(
+                    FrameworkSettings.DataPrivacy.IsCookieConsentEnabled,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.DataPrivacy.IsCookieConsentEnabled}"),
+                    L($"Description:{FrameworkSettings.DataPrivacy.IsCookieConsentEnabled}"),
+                    isVisibleToClients: true
                     )
+
                 );
         }
 

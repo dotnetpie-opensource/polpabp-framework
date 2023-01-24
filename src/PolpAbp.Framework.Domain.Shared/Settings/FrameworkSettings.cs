@@ -51,6 +51,10 @@
 
                 public const string IsEnabled = $"{Prefix}.{nameof(IsEnabled)}";
                 public const string IsEnforced = $"{Prefix}.{nameof(IsEnforced)}";
+                public const string IsEmailProviderEnabled = $"{Prefix}.{nameof(IsEmailProviderEnabled)}";
+                public const string IsSmsProviderEnabled = $"{Prefix}.{nameof(IsSmsProviderEnabled)}";
+                public const string IsRememberBrowserEnabled = $"{Prefix}.{nameof(IsRememberBrowserEnabled)}";
+                public const string IsGoogleAuthenticatorEnabled = $"{Prefix}.{nameof(IsGoogleAuthenticatorEnabled)}";
             }
 
             // Session timeout
@@ -71,7 +75,7 @@
             public const string DataPrivacySubGroup = $"{GroupName}.DataPrivacy";
 
             // Cookie consent
-            public const string IsCookieConsentRequired = $"{DataPrivacySubGroup}.{nameof(IsCookieConsentRequired)}";
+            public const string IsCookieConsentEnabled = $"{DataPrivacySubGroup}.{nameof(IsCookieConsentEnabled)}";
 
         }
 
