@@ -132,9 +132,15 @@ namespace PolpAbp.Framework.Settings
                     L($"DisplayName:{FrameworkSettings.Security.SessionTimeOut.ShowLockScreenWhenTimedOut}"),
                     L($"Description:{FrameworkSettings.Security.SessionTimeOut.ShowLockScreenWhenTimedOut}"),
                     isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault}"),
+                    L($"Description:{FrameworkSettings.TenantManagement.EmailSettings.UseHostDefault}"),
+                    isVisibleToClients: true
                     )
-
-
                 );
         }
 

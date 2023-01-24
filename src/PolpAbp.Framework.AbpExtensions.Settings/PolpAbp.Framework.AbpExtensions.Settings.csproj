@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\..\common.props" />
+	
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+	<RootNamespace>PolpAbp.Framework</RootNamespace>
+  </PropertyGroup>
+	
+  <ItemGroup>
+	<PackageReference Include="Volo.Abp.SettingManagement.Domain" Version="5.3.2" />
+  </ItemGroup>
+</Project>

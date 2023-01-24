@@ -49,7 +49,7 @@
             {
                 public const string Prefix = $"{SecuritySubGroup}.TwoFactor";
 
-                public const string IsEnabled = $"${Prefix}.{nameof(IsEnabled)}";
+                public const string IsEnabled = $"{Prefix}.{nameof(IsEnabled)}";
                 public const string IsEnforced = $"{Prefix}.{nameof(IsEnforced)}";
             }
 
@@ -73,6 +73,16 @@
             // Cookie consent
             public const string IsCookieConsentRequired = $"{DataPrivacySubGroup}.{nameof(IsCookieConsentRequired)}";
 
+        }
+
+        public static class TenantManagement
+        {
+            public const string TenantManagementSubGroup = $"{GroupName}.TenantManagement";
+
+            public static class EmailSettings
+            {
+                public const string UseHostDefault = $"{TenantManagementSubGroup}.Email.{nameof(UseHostDefault)}";
+            }
         }
 
     }

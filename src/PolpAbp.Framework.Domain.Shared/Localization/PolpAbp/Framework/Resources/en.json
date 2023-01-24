@@ -36,7 +36,10 @@
     "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "Show timeout secons?",
     "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "The timeout seconds will be shown",
     "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Lock out the screen after timeout?",
-    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Shows the lockout screen after timeout"
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Shows the lockout screen after timeout",
+
+    "DisplayName:PolpAbp.Framework.TenantManagement.Email.UseHostDefault": "Use the default email settings?",
+    "Description:PolpAbp.Framework.TenantManagement.Email.UseHostDefault": "Allows to configure the email server settings."
 
   }
 }
