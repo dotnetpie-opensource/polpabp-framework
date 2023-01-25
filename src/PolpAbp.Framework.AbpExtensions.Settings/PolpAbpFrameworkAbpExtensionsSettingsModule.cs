@@ -6,7 +6,7 @@ namespace PolpAbp.Framework
     [DependsOn(
       typeof(AbpSettingManagementDomainModule)
       )]
-    public class PolpAbpFrameworkAbpExtensionsSettingsModule
+    public class PolpAbpFrameworkAbpExtensionsSettingsModule : AbpModule
     {
     }
 }
