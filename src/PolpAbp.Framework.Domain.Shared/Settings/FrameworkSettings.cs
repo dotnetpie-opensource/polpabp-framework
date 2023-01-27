@@ -44,6 +44,9 @@
             // Decides if Recaptcha is enabled for the login.
             public const string UseCaptchaOnLogin = $"{SecuritySubGroup}.{nameof(UseCaptchaOnLogin)}";
 
+            // Decides if the tenant use the default settings.
+            public const string UseDefaultPasswordComplexitySettings = $"{SecuritySubGroup}.{nameof(UseDefaultPasswordComplexitySettings)}";
+
             // Two factor code
             public static class TwoFactor
             {

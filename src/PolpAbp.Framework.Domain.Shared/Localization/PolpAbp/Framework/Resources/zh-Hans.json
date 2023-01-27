@@ -6,7 +6,7 @@
     "DisplayName:PolpAbp.Framework.Account.IsPhoneNumberEnabled": "Is the phone number required?",
     "Description:PolpAbp.Framework.Account.IsPhoneNumberEnabled": "Decides if a user needs to provide the phone number.",
     "DisplayName:PolpAbp.Framework.Account.IsTenantRegistrationEnabled": "Is the tenant registration enabled?",
-    "Description:PolpAbp.Framework.Account.IsTenantRegistrationEnabled": "Decides if a user can register to be a member",
+    "Description:PolpAbp.Framework.Account.IsTenantRegistrationEnabled": "Decides if a user can register to be a tenant",
     "DisplayName:PolpAbp.Framework.Account.RegistrationApprovalType": "Member registration type",
     "Description:PolpAbp.Framework.Account.RegistrationApprovalType": "Decides how a user becomes an active member of your organization.",
     "DisplayName:PolpAbp.Framework.Account.IsNewRegistrationNotyEnabled": "Is new registraion notification enabled?",
@@ -23,11 +23,21 @@
     "Description:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
     "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Is the Recaptcha on login disabled",
     "Description:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseDefaultPasswordComplexitySettings": "Use the system-defined password complexity settings?",
+    "Description:PolpAbp.Framework.Security.UseDefaultPasswordComplexitySettings": "Allows the tenant to use their own password complexity settings.",
 
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Is Two Factor Code enabled?",
     "Description:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Decides if the use of two factor code is required on login?",
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Is Two Factor Code enforced?",
     "Description:PolpAbp.Framework.Security.TwoFactor.IsEnforced": "Decides if the system will remind the members of using two factor codes if they are not?",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEmailProviderEnabled": "Allow to send the 2FA through the email?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsEmailProviderEnabled": "Decides if the email is one channel for the user to receive the 2FA.",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsSmsProviderEnabled": "Allow to send the 2FA through the phone ?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsSmsProviderEnabled": "Decides if the phone is one channel for the user to receive the 2FA.",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsRememberBrowserEnabled": "Allow to memorize the device to skip the 2FA?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsRememberBrowserEnabled": "Decides if the device will be memorized for the system to skip the 2FA.",
+    "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsGoogleAuthenticatorEnabled": "Is Google Authenticator enabled for the 2FA?",
+    "Description:PolpAbp.Framework.Security.TwoFactor.IsGoogleAuthenticatorEnabled": "Decides if Google Authenticator is used for the 2FA.",
 
     "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.IsEnabled": "Enable time out for the session?",
     "Description:PolpAbp.Framework.Security.SessionTimeOut.IsEnabled": "Decides if the session can be time out or not?",
@@ -36,6 +46,12 @@
     "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "Show timeout secons?",
     "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowTimeOutNotificationSecond": "The timeout seconds will be shown",
     "DisplayName:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Lock out the screen after timeout?",
-    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Shows the lockout screen after timeout"
+    "Description:PolpAbp.Framework.Security.SessionTimeOut.ShowLockScreenWhenTimedOut": "Shows the lockout screen after timeout",
+
+    "DisplayName:PolpAbp.Framework.TenantManagement.Email.UseHostDefault": "Use the default email settings?",
+    "Description:PolpAbp.Framework.TenantManagement.Email.UseHostDefault": "Allows to configure the email server settings.",
+
+    "DisplayName:PolpAbp.Framework.DataPrivacy.IsCookieConsentEnabled": "Is cookie consent required?",
+    "Description:PolpAbp.Framework.DataPrivacy.IsCookieConsentEnabled": "Requires the user to agree with the terms and conditions of the use of cookie."
   }
 }

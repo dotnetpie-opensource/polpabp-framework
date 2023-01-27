@@ -29,21 +29,24 @@ namespace PolpAbp.Framework.Settings
                 new SettingDefinition(
                     FrameworkSettings.Account.IsUserNameEnabled,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Account.IsUserNameEnabled}"), L($"Description:{FrameworkSettings.Account.IsUserNameEnabled}"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsUserNameEnabled}"), 
+                    L($"Description:{FrameworkSettings.Account.IsUserNameEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
                     FrameworkSettings.Account.IsPhoneNumberEnabled,
                     "true",
-                    L($"DisplayName:{FrameworkSettings.Account.IsPhoneNumberEnabled}"), L($"Description:{FrameworkSettings.Account.IsPhoneNumberEnabled}"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsPhoneNumberEnabled}"), 
+                    L($"Description:{FrameworkSettings.Account.IsPhoneNumberEnabled}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
                     FrameworkSettings.Account.IsNewRegistrationNotyEnabled,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"), L($"Description:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"),
+                    L($"DisplayName:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"), 
+                    L($"Description:{FrameworkSettings.Account.IsNewRegistrationNotyEnabled}"),
                     isVisibleToClients: true
                     ),
 
@@ -58,7 +61,8 @@ namespace PolpAbp.Framework.Settings
                 new SettingDefinition(
                     FrameworkSettings.Account.Sso.IsEnforced,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Account.Sso.IsEnforced}"), L($"Description:{FrameworkSettings.Account.Sso.IsEnforced}"),
+                    L($"DisplayName:{FrameworkSettings.Account.Sso.IsEnforced}"), 
+                    L($"Description:{FrameworkSettings.Account.Sso.IsEnforced}"),
                     isVisibleToClients: true
                     ),
 
@@ -74,14 +78,24 @@ namespace PolpAbp.Framework.Settings
                 new SettingDefinition(
                     FrameworkSettings.Security.UseCaptchaOnRegistration,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnRegistration}"), L($"Description:{FrameworkSettings.Security.UseCaptchaOnRegistration}"),
+                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnRegistration}"), 
+                    L($"Description:{FrameworkSettings.Security.UseCaptchaOnRegistration}"),
                     isVisibleToClients: true
                     ),
 
                 new SettingDefinition(
                     FrameworkSettings.Security.UseCaptchaOnLogin,
                     "false",
-                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnLogin}"), L($"Description:{FrameworkSettings.Security.UseCaptchaOnLogin}"),
+                    L($"DisplayName:{FrameworkSettings.Security.UseCaptchaOnLogin}"), 
+                    L($"Description:{FrameworkSettings.Security.UseCaptchaOnLogin}"),
+                    isVisibleToClients: true
+                    ),
+
+                new SettingDefinition(
+                    FrameworkSettings.Security.UseDefaultPasswordComplexitySettings,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Security.UseDefaultPasswordComplexitySettings}"), 
+                    L($"Description:{FrameworkSettings.Security.UseDefaultPasswordComplexitySettings}"),
                     isVisibleToClients: true
                     ),
 

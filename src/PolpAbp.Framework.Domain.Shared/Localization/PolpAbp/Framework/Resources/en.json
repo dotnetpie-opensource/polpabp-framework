@@ -23,6 +23,8 @@
     "Description:PolpAbp.Framework.Security.UseCaptchaOnRegistration": "Decides if the Recaptcha is disabled when a user registers for your organization.",
     "DisplayName:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Is the Recaptcha on login disabled",
     "Description:PolpAbp.Framework.Security.UseCaptchaOnLogin": "Decides if the Recaptcha is disabled when a user logs into your organization.",
+    "DisplayName:PolpAbp.Framework.Security.UseDefaultPasswordComplexitySettings": "Use the system-defined password complexity settings?",
+    "Description:PolpAbp.Framework.Security.UseDefaultPasswordComplexitySettings": "Allows the tenant to use their own password complexity settings.",
 
     "DisplayName:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Is Two Factor Code enabled?",
     "Description:PolpAbp.Framework.Security.TwoFactor.IsEnabled": "Decides if the use of two factor code is required on login?",
