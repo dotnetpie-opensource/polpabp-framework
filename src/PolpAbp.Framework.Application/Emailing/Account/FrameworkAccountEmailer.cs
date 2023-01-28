@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Localization;
+using PolpAbp.Framework.Extensions;
 using System;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
@@ -12,9 +13,6 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
-using PolpAbp.Framework.Extensions;
-using System.Security.Cryptography.Xml;
-using static Volo.Abp.Identity.Settings.IdentitySettingNames;
 
 namespace PolpAbp.Framework.Emailing.Account
 {
@@ -34,7 +32,6 @@ namespace PolpAbp.Framework.Emailing.Account
             ITemplateRenderer templateRenderer,
             IStringLocalizer<AccountResource> stringLocalizer,
             IAppUrlProvider appUrlProvider,
-            ICurrentTenant currentTenant,
             IdentityUserManager userManager,
             IDataFilter dataFilter,
             ITenantRepository tenantRepository,
@@ -90,7 +87,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     user.IsActive ? Templates.AccountEmailTemplates.EmailConfirmatiionLink : Templates.AccountEmailTemplates.EmailActivationtLink,
                     new
                     {
-                        name = user.GetFullName(),
+                        name = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature,
                         link = link,
                         tenancy = tenant.Name
@@ -123,7 +120,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.NotyPasswordChange,
                     new
                     {
-                        name = user.GetFullName(),
+                        name = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature
                     }
                 );
@@ -163,7 +160,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.TwoFactorCode,
                     new
                     {
-                        receiver = user.GetFullName(),
+                        receiver = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature,
                         code = code
                     }
@@ -198,7 +195,7 @@ namespace PolpAbp.Framework.Emailing.Account
                         Templates.AccountEmailTemplates.NotyMembereRegistration,
                         new
                         {
-                            name = user.GetFullName(),
+                            name = user.GetFirstOrLastName(),
                             signature = DefaultEmailSignature,
                             member = target.GetFullName()
                         }
@@ -250,7 +247,7 @@ namespace PolpAbp.Framework.Emailing.Account
                         Templates.AccountEmailTemplates.ApproveMembereRegistration,
                         new
                         {
-                            name = user.GetFullName(),
+                            name = user.GetFirstOrLastName(),
                             signature = DefaultEmailSignature,
                             member = target.GetFullName(),
                             link = link
@@ -294,7 +291,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.NewOrResetPassword,
                     new
                     {
-                        name = user.GetFullName(),
+                        name = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature,
                         password = password
                     }

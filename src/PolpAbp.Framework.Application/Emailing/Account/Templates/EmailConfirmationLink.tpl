@@ -5,7 +5,7 @@
     {{L "GeneralEmailGreetingFirstLine" model.name}}
     <br />
 
-    {{L "GeneralEmailGreetingSecondLine"}},
+    {{L "GeneralEmailGreetingSecondLine"}}
 </p>
 
 <p>
