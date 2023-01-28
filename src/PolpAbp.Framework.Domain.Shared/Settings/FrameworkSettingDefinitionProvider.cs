@@ -199,6 +199,15 @@ namespace PolpAbp.Framework.Settings
                     L($"DisplayName:{FrameworkSettings.DataPrivacy.IsCookieConsentEnabled}"),
                     L($"Description:{FrameworkSettings.DataPrivacy.IsCookieConsentEnabled}"),
                     isVisibleToClients: true
+                    ),
+
+                // Features 
+                new SettingDefinition(
+                    FrameworkSettings.Features.IsTwoFactorOn,
+                    "true",
+                    L($"DisplayName:{FrameworkSettings.Features.IsTwoFactorOn}"),
+                    L($"Description:{FrameworkSettings.Features.IsTwoFactorOn}"),
+                    isVisibleToClients: true
                     )
 
                 );

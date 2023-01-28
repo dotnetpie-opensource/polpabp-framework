@@ -52,7 +52,10 @@
     "Description:PolpAbp.Framework.TenantManagement.Email.UseHostDefault": "Allows to configure the email server settings.",
 
     "DisplayName:PolpAbp.Framework.DataPrivacy.IsCookieConsentEnabled": "Is cookie consent required?",
-    "Description:PolpAbp.Framework.DataPrivacy.IsCookieConsentEnabled": "Requires the user to agree with the terms and conditions of the use of cookie."
+    "Description:PolpAbp.Framework.DataPrivacy.IsCookieConsentEnabled": "Requires the user to agree with the terms and conditions of the use of cookie.",
+
+    "DisplayName:PolpAbp.Framework.Features.IsTwoFactorOn": "Is two factor feature on?",
+    "Description:PolpAbp.Framework.Features.IsTwoFactorOn": "Describes if the two factor feature is enabled for the tenant or not."
 
   }
 }

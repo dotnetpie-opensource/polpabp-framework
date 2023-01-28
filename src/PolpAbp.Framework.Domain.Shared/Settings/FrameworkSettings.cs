@@ -92,5 +92,12 @@
             }
         }
 
+        public static class Features
+        {
+            public const string FeaturesSubGroup = $"{GroupName}.Features";
+
+            public const string IsTwoFactorOn = $"{FeaturesSubGroup}.{nameof(IsTwoFactorOn)}";
+        }
+
     }
 }
