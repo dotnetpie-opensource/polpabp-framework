@@ -1,0 +1,10 @@
+﻿{
+  "culture": "zh-Hans",
+  "texts": {
+    "Permission:Emailing": "Email server settings",
+    "Permission:SettingManagement_Invoice": "Invoice settings",
+    "Permission:SettingManagement_Security": "Organization wide security settings",
+    "Permission:SettingManagement_UserManagement": "Organization wide user settings",
+    "Permission:SettingManagement_Appearance": "Application UI settings"
+  }
+}

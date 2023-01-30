@@ -4,6 +4,8 @@ using Volo.Abp.Identity;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
+using Volo.Abp.SettingManagement;
+using Volo.Abp.SettingManagement.Localization;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.VirtualFileSystem;
 
@@ -11,6 +13,7 @@ namespace PolpAbp.Framework
 {
     [DependsOn(
         typeof(AbpTenantManagementApplicationContractsModule), // Tenant management
+        typeof(AbpSettingManagementApplicationContractsModule), // setting management
         typeof(AbpIdentityApplicationContractsModule), // identity
         typeof(AbpLocalizationModule), // localization
         typeof(AbpAccountApplicationContractsModule), // account
@@ -35,6 +38,10 @@ namespace PolpAbp.Framework
                 options.Resources
                     .Get<IdentityResource>()
                     .AddVirtualJson("/Localization/PolpAbp/Framework/OrgUnits");
+
+                options.Resources
+                    .Get<AbpSettingManagementResource>()
+                    .AddVirtualJson("/Localization/PolpAbp/Framework/SettingManagement");
             });
         }
     }

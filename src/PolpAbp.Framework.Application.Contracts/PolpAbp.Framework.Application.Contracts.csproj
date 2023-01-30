@@ -13,6 +13,7 @@
 		<PackageReference Include="Volo.Abp.Ddd.Application.Contracts" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.Localization" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.TenantManagement.Application.Contracts" Version="5.3.2" />
+		<PackageReference Include="Volo.Abp.SettingManagement.Application.Contracts" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.Identity.Application.Contracts" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.Account.Application.Contracts" Version="5.3.2" />
 		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="6.0.0" />
@@ -23,6 +24,8 @@
 		<Content Remove="Localization\PolpAbp\Framework\OrgUnits\*.json" />
 		<Content Remove="Localization\PolpAbp\Framework\Account\*.json" />
 		<EmbeddedResource Include="Localization\PolpAbp\Framework\Account\*.json" />
+		<EmbeddedResource Include="Localization\PolpAbp\Framework\SettingManagement\*.json" />
+	    <Content Remove="Localization\PolpAbp\Framework\SettingManagement\*.json" />
 	</ItemGroup>
 
 	<ItemGroup>
