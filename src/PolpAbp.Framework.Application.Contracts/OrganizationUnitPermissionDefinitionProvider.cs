@@ -25,8 +25,8 @@ namespace PolpAbp.Framework
                 L("Permission:SettingManagement_UserManagement"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Security,
                 L("Permission:SettingManagement_Security"));
-            tenantSettingGroup.AddPermission(TenantManagementPermissions.Invoice,
-                L("Permission:SettingManagement_Invoice"));
+            tenantSettingGroup.AddPermission(TenantManagementPermissions.Billing,
+                L("Permission:SettingManagement_Billing"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Appearance,
                 L("Permission:SettingManagement_Appearance"));
         }
