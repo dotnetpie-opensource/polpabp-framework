@@ -3,6 +3,7 @@ using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.SettingManagement;
+using Volo.Abp.SettingManagement.Localization;
 
 namespace PolpAbp.Framework
 {
@@ -22,18 +23,24 @@ namespace PolpAbp.Framework
             var tenantSettingGroup = context.GetGroup(SettingManagementPermissions.GroupName);
             // Add other ...
             tenantSettingGroup.AddPermission(TenantManagementPermissions.UserManagement, 
-                L("Permission:SettingManagement_UserManagement"));
+                LL("Permission:SettingManagement_UserManagement"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Security,
-                L("Permission:SettingManagement_Security"));
+                LL("Permission:SettingManagement_Security"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Billing,
-                L("Permission:SettingManagement_Billing"));
+                LL("Permission:SettingManagement_Billing"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Appearance,
-                L("Permission:SettingManagement_Appearance"));
+                LL("Permission:SettingManagement_Appearance"));
         }
 
         private static LocalizableString L(string name)
         {
             return LocalizableString.Create<IdentityResource>(name);
         }
+
+        private static LocalizableString LL(string name)
+        {
+            return LocalizableString.Create<AbpSettingManagementResource>(name);
+        }
+
     }
 }
