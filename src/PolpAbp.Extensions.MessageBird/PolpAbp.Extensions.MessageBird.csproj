@@ -14,6 +14,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\PolpAbp.Framework.Application.Contracts\PolpAbp.Framework.Application.Contracts.csproj" />
 	  <ProjectReference Include="..\PolpAbp.Framework.Core.Shared\PolpAbp.Framework.Core.Shared.csproj" />
 	</ItemGroup>
 

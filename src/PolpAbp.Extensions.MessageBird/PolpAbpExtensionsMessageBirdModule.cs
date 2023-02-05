@@ -11,7 +11,12 @@ namespace PolpAbp.Extensions.MessageBird
     [DependsOn(
         typeof(AbpSmsModule),
         typeof(AbpJsonModule),
-        typeof(PolpAbpFrameworkCoreSharedModule)
+        typeof(PolpAbpFrameworkCoreSharedModule),
+        // We on purpose do not refer to the application module, 
+        // in order to reduce the dependency. 
+        // Though doing so can impact the test modularity, 
+        // the test host module has to import the application module.
+        typeof(PolpAbpFrameworkApplicationContractsModule) 
         )]
     public class PolpAbpExtensionsMessageBirdModule : AbpModule
     {
