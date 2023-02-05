@@ -1,4 +1,3 @@
-using System;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -6,10 +5,11 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore.Sqlite;
-using Volo.Abp.Modularity;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
 using Volo.Abp.Uow;
 
 namespace PolpAbp.Framework.EntityFrameworkCore
@@ -20,6 +20,7 @@ namespace PolpAbp.Framework.EntityFrameworkCore
            typeof(AbpEntityFrameworkCoreSqliteModule),
            typeof(AbpTenantManagementEntityFrameworkCoreModule),
            typeof(AbpPermissionManagementEntityFrameworkCoreModule),
+           typeof(AbpSettingManagementEntityFrameworkCoreModule),
            typeof(AbpIdentityEntityFrameworkCoreModule)
            )]
     public class PolpAbpFrameworkEntityFrameworkCoreTestsModule : AbpModule
@@ -57,6 +58,10 @@ namespace PolpAbp.Framework.EntityFrameworkCore
 
             new PermissionManagementDbContext(
                 new DbContextOptionsBuilder<PermissionManagementDbContext>().UseSqlite(connection).Options
+            ).GetService<IRelationalDatabaseCreator>().CreateTables();
+
+            new SettingManagementDbContext(
+                new DbContextOptionsBuilder<SettingManagementDbContext>().UseSqlite(connection).Options
             ).GetService<IRelationalDatabaseCreator>().CreateTables();
 
 
