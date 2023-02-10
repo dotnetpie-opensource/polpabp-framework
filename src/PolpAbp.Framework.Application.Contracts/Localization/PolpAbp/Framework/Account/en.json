@@ -29,7 +29,7 @@
     "TwoFactorCode_Title": "Here is your two factor code",
     "TwoFactorCode_Body": "You requested a two factor code. Please copy and paste the following code to continue your login.",
     "TwoFactorCode_SentSuccess": "The two factor code has been sent out. Please check ...",
-    "TwoFactorCode_Sms": "The two factor code for {0} is {1}.",
+    "TwoFactorCode_Sms": "{0}: Your two factor code is {1}.",
     "NotyMemberRegistration_Subject": "New member approval request",
     "NotyMemberRegistration_Title": "New registration waiting for your approval",
     "NotyMemberRegistration_Body": "{0} just registered for your organization and is waiting for your approval. Please follow the link between to approve this request.",
