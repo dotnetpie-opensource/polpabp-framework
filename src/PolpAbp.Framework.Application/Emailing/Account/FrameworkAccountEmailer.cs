@@ -4,6 +4,8 @@ using PolpAbp.Framework.Extensions;
 using System;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
+using Volo.Abp.Account;
+using Volo.Abp.Account.Emailing;
 using Volo.Abp.Account.Localization;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -13,34 +15,28 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
+using AbpAccountEmailTemplates = Volo.Abp.Account.Emailing.Templates.AccountEmailTemplates;
 
 namespace PolpAbp.Framework.Emailing.Account
 {
-    public class FrameworkAccountEmailer : IFrameworkAccountEmailer, ITransientDependency
+    public class FrameworkAccountEmailer : AccountEmailer, IFrameworkAccountEmailer, ITransientDependency
     {
-        private readonly ITemplateRenderer _templateRenderer;
-        private readonly IEmailSender _emailSender;
-        protected IStringLocalizer<AccountResource> StringLocalizer { get; }
-        private readonly IAppUrlProvider _appUrlProvider;
         private readonly IdentityUserManager _userManager;
         private readonly IDataFilter _dataFilter;
         private readonly ITenantRepository _tenantRepository;
         private readonly IConfiguration _configuration;
 
-        public FrameworkAccountEmailer(
-            IEmailSender emailSender,
+        public FrameworkAccountEmailer(IEmailSender emailSender,
             ITemplateRenderer templateRenderer,
             IStringLocalizer<AccountResource> stringLocalizer,
             IAppUrlProvider appUrlProvider,
+            ICurrentTenant currentTenant,
             IdentityUserManager userManager,
             IDataFilter dataFilter,
             ITenantRepository tenantRepository,
-            IConfiguration configuration)
+            IConfiguration configuration
+            ) : base(emailSender, templateRenderer, stringLocalizer, appUrlProvider, currentTenant)
         {
-            _emailSender = emailSender;
-            StringLocalizer = stringLocalizer;
-            _appUrlProvider = appUrlProvider;
-            _templateRenderer = templateRenderer;
             _userManager = userManager;
             _dataFilter = dataFilter;
             _tenantRepository = tenantRepository;
@@ -63,6 +59,8 @@ namespace PolpAbp.Framework.Emailing.Account
             }
         }
 
+
+
         public async Task SendEmailActivationLinkAsync(Guid userId, string cc = null)
         {
             using (_dataFilter.Disable<IMultiTenant>())
@@ -79,11 +77,11 @@ namespace PolpAbp.Framework.Emailing.Account
                 var tenant = await _tenantRepository.FindAsync(user.TenantId.Value);
                 var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
 
-                var url = await _appUrlProvider.GetUrlAsync("MVC", FrameworkUrlNames.EmailActivation);
+                var url = await AppUrlProvider.GetUrlAsync("MVC", FrameworkUrlNames.EmailActivation);
 
                 var link = $"{url}?userId={user.Id}&tenantId={user.TenantId}&confirmationCode={UrlEncoder.Default.Encode(token)}";
 
-                var emailContent = await _templateRenderer.RenderAsync(
+                var emailContent = await TemplateRenderer.RenderAsync(
                     user.IsActive ? Templates.AccountEmailTemplates.EmailConfirmatiionLink : Templates.AccountEmailTemplates.EmailActivationtLink,
                     new
                     {
@@ -97,7 +95,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 // todo: Should we use the background ??
                 // In that case, the email may not be sent instantly.
                 var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
-                await _emailSender.SendAsync(
+                await EmailSender.SendAsync(
                     receipents,
                     StringLocalizer[user.IsActive ? "EmailConfirmation_Subject" : "EmailActivation_Subject"],
                     emailContent
@@ -116,7 +114,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     return;
                 }
 
-                var emailContent = await _templateRenderer.RenderAsync(
+                var emailContent = await TemplateRenderer.RenderAsync(
                     Templates.AccountEmailTemplates.NotyPasswordChange,
                     new
                     {
@@ -128,7 +126,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                 if (IsBackgroundEmailEnabled)
                 {
-                    await _emailSender.QueueAsync(
+                    await EmailSender.QueueAsync(
                         receipents,
                         StringLocalizer["NotyPasswordChange_Subject"],
                         emailContent
@@ -136,7 +134,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 }
                 else
                 {
-                    await _emailSender.SendAsync(
+                    await EmailSender.SendAsync(
                         receipents,
                         StringLocalizer["NotyPasswordChange_Subject"],
                         emailContent
@@ -156,7 +154,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     return;
                 }
 
-                var emailContent = await _templateRenderer.RenderAsync(
+                var emailContent = await TemplateRenderer.RenderAsync(
                     Templates.AccountEmailTemplates.TwoFactorCode,
                     new
                     {
@@ -167,7 +165,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 );
 
                 var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
-                await _emailSender.SendAsync(
+                await EmailSender.SendAsync(
                     receipents,
                     StringLocalizer["TwoFactorCode_Subject"],
                     emailContent
@@ -191,7 +189,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var admins = await _userManager.GetUsersInRoleAsync("ADMIN");
                 foreach (var user in admins)
                 {
-                    var emailContent = await _templateRenderer.RenderAsync(
+                    var emailContent = await TemplateRenderer.RenderAsync(
                         Templates.AccountEmailTemplates.NotyMembereRegistration,
                         new
                         {
@@ -204,7 +202,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                     if (IsBackgroundEmailEnabled)
                     {
-                        await _emailSender.QueueAsync(
+                        await EmailSender.QueueAsync(
                             receipents,
                             StringLocalizer["NotyMemberRegistration_Subject"],
                             emailContent
@@ -212,7 +210,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                     else
                     {
-                        await _emailSender.SendAsync(
+                        await EmailSender.SendAsync(
                             receipents,
                             StringLocalizer["NotyMemberRegistration_Subject"],
                             emailContent
@@ -234,7 +232,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 }
 
                 // todo: A dedicated page for approve the user.
-                var url = await _appUrlProvider.GetUrlAsync("MVC", "main");
+                var url = await AppUrlProvider.GetUrlAsync("MVC", "main");
 
                 var link = $"{url}";
 
@@ -243,7 +241,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var admins = await _userManager.GetUsersInRoleAsync("ADMIN");
                 foreach (var user in admins)
                 {
-                    var emailContent = await _templateRenderer.RenderAsync(
+                    var emailContent = await TemplateRenderer.RenderAsync(
                         Templates.AccountEmailTemplates.ApproveMembereRegistration,
                         new
                         {
@@ -257,7 +255,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
                     if (IsBackgroundEmailEnabled)
                     {
-                        await _emailSender.QueueAsync(
+                        await EmailSender.QueueAsync(
                             receipents,
                             StringLocalizer["ApproveMemberRegistration_Subject"],
                             emailContent
@@ -265,7 +263,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     }
                     else
                     {
-                        await _emailSender.SendAsync(
+                        await EmailSender.SendAsync(
                             receipents,
                             StringLocalizer["ApproveMemberRegistration_Subject"],
                             emailContent
@@ -287,7 +285,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     return;
                 }
 
-                var emailContent = await _templateRenderer.RenderAsync(
+                var emailContent = await TemplateRenderer.RenderAsync(
                     Templates.AccountEmailTemplates.NewOrResetPassword,
                     new
                     {
@@ -298,7 +296,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 );
 
                 var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
-                await _emailSender.SendAsync(
+                await EmailSender.SendAsync(
                     receipents,
                     StringLocalizer["NewOrResetPassword_Subject"],
                     emailContent
@@ -309,7 +307,7 @@ namespace PolpAbp.Framework.Emailing.Account
 
         public async Task SendFarewellToDeletedUserAsync(string email, string name, string cc = null)
         {
-            var emailContent = await _templateRenderer.RenderAsync(
+            var emailContent = await TemplateRenderer.RenderAsync(
                 Templates.AccountEmailTemplates.FarewellDeletedUser,
                 new
                 {
@@ -322,7 +320,7 @@ namespace PolpAbp.Framework.Emailing.Account
 
             if (IsBackgroundEmailEnabled)
             {
-                await _emailSender.QueueAsync(
+                await EmailSender.QueueAsync(
                     receipents,
                     StringLocalizer["FarewellDeletedUser_Subject"],
                     emailContent
@@ -330,12 +328,52 @@ namespace PolpAbp.Framework.Emailing.Account
             }
             else
             {
-                await _emailSender.SendAsync(
+                await EmailSender.SendAsync(
                     receipents,
                     StringLocalizer["FarewellDeletedUser_Subject"],
                     emailContent
                 );
             }
         }
+
+        public async Task SendPasswordResetLinkWithCcAsync(
+                Guid tenantId,
+                Guid userId,
+                string userEmail,
+               string resetToken,
+               string appName,
+               string cc = null,
+               string returnUrl = null,
+               string returnUrlHash = null)
+        {
+            var url = await AppUrlProvider.GetUrlAsync(appName, AccountUrlNames.PasswordReset);
+
+            //TODO: Use AbpAspNetCoreMultiTenancyOptions to get the key
+            var link = $"{url}?userId={userId}&{TenantResolverConsts.DefaultTenantKey}={tenantId}&resetToken={UrlEncoder.Default.Encode(resetToken)}";
+
+            if (!returnUrl.IsNullOrEmpty())
+            {
+                link += "&returnUrl=" + NormalizeReturnUrl(returnUrl);
+            }
+
+            if (!returnUrlHash.IsNullOrEmpty())
+            {
+                link += "&returnUrlHash=" + returnUrlHash;
+            }
+
+            var emailContent = await TemplateRenderer.RenderAsync(
+                AbpAccountEmailTemplates.PasswordResetLink,
+            new { link = link }
+            );
+
+            var receipents = string.IsNullOrEmpty(cc) ? userEmail : $@"{userEmail},{cc}";
+
+            await EmailSender.SendAsync(
+                receipents,
+                StringLocalizer["PasswordReset"],
+                emailContent
+            );
+        }
+
     }
 }
