@@ -160,7 +160,7 @@ namespace PolpAbp.Framework.Emailing.Account
                     Templates.AccountEmailTemplates.TwoFactorCode,
                     new
                     {
-                        receiver = user.GetFirstOrLastName(),
+                        name = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature,
                         code = code
                     }
