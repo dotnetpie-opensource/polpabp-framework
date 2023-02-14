@@ -5,6 +5,7 @@
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<RootNamespace>PolpAbp.Framework</RootNamespace>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -32,6 +33,7 @@
 		<PackageReference Include="Volo.Abp.TextTemplating.Scriban" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.UI.Navigation" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.PermissionManagement.Domain" Version="5.3.2" />
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="6.0.5" />
 	</ItemGroup>
 
 </Project>

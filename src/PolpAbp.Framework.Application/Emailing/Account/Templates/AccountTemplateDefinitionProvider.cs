@@ -20,8 +20,8 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                        );
 
             context.Add(new TemplateDefinition(
-                               AccountEmailTemplates.EmailConfirmatiionLink,
-                               displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.EmailConfirmatiionLink}"),
+                               AccountEmailTemplates.EmailConfirmationLink,
+                               displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.EmailConfirmationLink}"),
                                layout: StandardEmailTemplates.Layout,
                                localizationResource: typeof(AccountResource)
                            ).WithVirtualFilePath("/Emailing/Account/Templates/EmailConfirmationLink.tpl", true)

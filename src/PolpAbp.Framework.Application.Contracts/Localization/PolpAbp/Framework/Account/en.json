@@ -9,6 +9,7 @@
     "EmailActivation_Title": "Please activate your account",
     "EmailActivation_SubTitle": "Your account is almost ready. One more step is activating your account.",
     "EmailActivation_ClickTheLinkBelowToVerifyYourEmail": "To activate your account, please click the link below:",
+    "EmailMessage_CopyTheLinkBelowToYourBrowser": "If the above link does not work, please copy and paste the link into your browser:",
     "EmailConfirmation_Subject": "Verify your email",
     "EmailConfirmation_Title": "Please verify your email",
     "EmailConfirmation_SubTitle": "Your email is the commuication channel between you and the service.",

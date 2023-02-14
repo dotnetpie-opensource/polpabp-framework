@@ -82,7 +82,7 @@ namespace PolpAbp.Framework.Emailing.Account
                 var link = $"{url}?userId={user.Id}&tenantId={user.TenantId}&confirmationCode={UrlEncoder.Default.Encode(token)}";
 
                 var emailContent = await TemplateRenderer.RenderAsync(
-                    user.IsActive ? Templates.AccountEmailTemplates.EmailConfirmatiionLink : Templates.AccountEmailTemplates.EmailActivationtLink,
+                    user.IsActive ? Templates.AccountEmailTemplates.EmailConfirmationLink : Templates.AccountEmailTemplates.EmailActivationtLink,
                     new
                     {
                         name = user.GetFirstOrLastName(),
