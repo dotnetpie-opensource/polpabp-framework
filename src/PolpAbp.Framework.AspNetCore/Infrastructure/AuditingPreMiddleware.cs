@@ -24,7 +24,7 @@ namespace PolpAbp.Framework.Infrastructure
             if (!string.IsNullOrEmpty(urlPath))
             {
                 urlPath = urlPath.ToLower();
-                if (urlPath.Contains("csp-report"))
+                if (urlPath.Contains("csp-report") || urlPath.Contains("hangfire"))
                 {
                     _auditOptions.IsEnabled = false;
                 }
