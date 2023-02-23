@@ -88,7 +88,7 @@ namespace PolpAbp.Framework.Emailing.Account
                         name = user.GetFirstOrLastName(),
                         signature = DefaultEmailSignature,
                         link = link,
-                        tenancy = tenant.Name
+                        tenancy = tenant.Name.Trim()
                     }
                 );
 
