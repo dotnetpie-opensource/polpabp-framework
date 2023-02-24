@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Account;
+using Volo.Abp.AuditLogging;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Emailing;
 using Volo.Abp.Identity;
@@ -23,6 +24,7 @@ namespace PolpAbp.Framework
         typeof(AbpIdentityModelModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpIdentityDomainModule),
+        typeof(AbpAuditLoggingDomainModule),
         typeof(AbpVirtualFileSystemModule),
         typeof(AbpTextTemplatingScribanModule),
         typeof(AbpEmailingModule),

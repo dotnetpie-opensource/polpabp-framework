@@ -10,6 +10,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Uow;
 
 namespace PolpAbp.Framework.EntityFrameworkCore
@@ -21,6 +22,7 @@ namespace PolpAbp.Framework.EntityFrameworkCore
            typeof(AbpTenantManagementEntityFrameworkCoreModule),
            typeof(AbpPermissionManagementEntityFrameworkCoreModule),
            typeof(AbpSettingManagementEntityFrameworkCoreModule),
+           typeof(AbpAuditLoggingEntityFrameworkCoreModule),
            typeof(AbpIdentityEntityFrameworkCoreModule)
            )]
     public class PolpAbpFrameworkEntityFrameworkCoreTestsModule : AbpModule
@@ -64,6 +66,9 @@ namespace PolpAbp.Framework.EntityFrameworkCore
                 new DbContextOptionsBuilder<SettingManagementDbContext>().UseSqlite(connection).Options
             ).GetService<IRelationalDatabaseCreator>().CreateTables();
 
+            new AbpAuditLoggingDbContext(
+                new DbContextOptionsBuilder<AbpAuditLoggingDbContext>().UseSqlite(connection).Options
+            ).GetService<IRelationalDatabaseCreator>().CreateTables();
 
             return connection;
         }

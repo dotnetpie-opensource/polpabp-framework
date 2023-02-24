@@ -44,7 +44,7 @@ namespace PolpAbp.Framework
         /// <returns>A pair of names</returns>
         public static Tuple<string, string> ParseFullName(this string fullName,
             string firstName = null, string lastName = null,
-            bool firstNameLeading = false, char separator=',')
+            bool firstNameLeading = false, char separator = ',')
         {
             // If first name or last name is provider, use them directly.
             if (!string.IsNullOrEmpty(firstName) || !string.IsNullOrEmpty(lastName))
@@ -154,6 +154,17 @@ namespace PolpAbp.Framework
             }
 
             return username;
+        }
+
+        public static string ReplaceSorting(this string sorting, Func<string, string> replaceFunc)
+        {
+            var sortFields = sorting.Split(',');
+            for (var i = 0; i < sortFields.Length; i++)
+            {
+                sortFields[i] = replaceFunc(sortFields[i].Trim());
+            }
+
+            return string.Join(",", sortFields);
         }
     }
 }
