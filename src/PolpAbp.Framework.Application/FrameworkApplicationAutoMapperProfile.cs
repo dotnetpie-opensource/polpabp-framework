@@ -21,7 +21,8 @@ namespace PolpAbp.Framework
                 .ForMember(dst => dst.Parameters, o => o.Ignore())
                 .ForMember(dst => dst.ServiceName, o => o.Ignore())
                 .ForMember(dst => dst.CustomData, o => o.Ignore())
-                .ForMember(dst => dst.MethodName, o => o.Ignore());
+                .ForMember(dst => dst.MethodName, o => o.Ignore())
+                .ForMember(dst => dst.Exception, o => o.MapFrom(s => s.Exceptions));
 
             CreateMap<EntityChange, EntityChangeListDto>()
                 .ForMember(dst => dst.UserId, o => o.Ignore())
