@@ -47,7 +47,7 @@ namespace PolpAbp.Framework
                 var usersPermission = context.GetPermissionOrNull(IdentityPermissions.Users.Default);
                 if (usersPermission != null)
                 {
-                    usersPermission.AddChild("AbpIdentity.Users.Impersonation", LL("Permission:Users_Impersonation"));
+                    usersPermission.AddChild("AbpIdentity.Users.Impersonation", L("Permission:Users_Impersonation"));
                 }
             }
             var hasAuditLoggingFeature = _configuration.GetValue<bool>("PolpAbp:Framework:HasAuditLoggingFeature");
