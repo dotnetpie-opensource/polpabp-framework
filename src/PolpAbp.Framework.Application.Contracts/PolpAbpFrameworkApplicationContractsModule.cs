@@ -37,7 +37,7 @@ namespace PolpAbp.Framework
 
                 options.Resources
                     .Get<IdentityResource>()
-                    .AddVirtualJson("/Localization/PolpAbp/Framework/OrgUnits");
+                    .AddVirtualJson("/Localization/PolpAbp/Framework/Identity");
 
                 options.Resources
                     .Get<AbpSettingManagementResource>()

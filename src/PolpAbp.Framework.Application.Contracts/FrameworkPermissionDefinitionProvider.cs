@@ -1,5 +1,7 @@
-﻿using PolpAbp.Framework.Authorization;
+﻿using Microsoft.Extensions.Configuration;
+using PolpAbp.Framework.Authorization;
 using Volo.Abp.Authorization.Permissions;
+using Volo.Abp.Identity;
 using Volo.Abp.Identity.Localization;
 using Volo.Abp.Localization;
 using Volo.Abp.SettingManagement;
@@ -7,8 +9,16 @@ using Volo.Abp.SettingManagement.Localization;
 
 namespace PolpAbp.Framework
 {
-    public class OrganizationUnitPermissionDefinitionProvider : PermissionDefinitionProvider
+    public class FrameworkPermissionDefinitionProvider : PermissionDefinitionProvider
     {
+        private readonly IConfiguration _configuration;
+
+        public FrameworkPermissionDefinitionProvider(IConfiguration configuration)
+            :base()
+        { 
+            _configuration = configuration; 
+        }
+
         public override void Define(IPermissionDefinitionContext context)
         {
             var identityGroup = context.AddGroup(OrganizationUnitPermissions.GroupName, L("Permission:OrganizationUnits"));
@@ -30,6 +40,22 @@ namespace PolpAbp.Framework
                 LL("Permission:SettingManagement_Billing"));
             tenantSettingGroup.AddPermission(TenantManagementPermissions.Appearance,
                 LL("Permission:SettingManagement_Appearance"));
+
+            var hasImpersonationFeature = _configuration.GetValue<bool>("PolpAbp:Framework:HasImpersonationFeature");
+            if (hasImpersonationFeature)
+            {
+                var usersPermission = context.GetPermissionOrNull(IdentityPermissions.Users.Default);
+                if (usersPermission != null)
+                {
+                    usersPermission.AddChild("AbpIdentity.Users.Impersonation", LL("Permission:Users_Impersonation"));
+                }
+            }
+            var hasAuditLoggingFeature = _configuration.GetValue<bool>("PolpAbp:Framework:HasAuditLoggingFeature");
+            if (hasAuditLoggingFeature)
+            {
+                var group = context.AddGroup(AuditLoggingPermissions.GroupName, L("Permission:AuditLogging"));
+                group.AddPermission(AuditLoggingPermissions.Default, L("Permission:AuditLogging_Default"));
+            }
         }
 
         private static LocalizableString L(string name)

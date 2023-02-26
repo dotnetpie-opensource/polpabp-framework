@@ -7,6 +7,10 @@
     "Permission:OrganizationUnits_ManageOrganizationTree": "Manage orgnization structure",
     "Permission:OrganizationUnits_ManageMembers": "Manage Members",
     "Permission:OrganizationUnits_ManageRoles": "Manage Roles",
-    "Permission:OrganizationUnits_ManagePermissions": "Manage Permissions"
+    "Permission:OrganizationUnits_ManagePermissions": "Manage Permissions",
+
+    "Permission:Users_Impersonation": "Impersonation",
+    "Permission:AuditLogging": "Audit Logs",
+    "Permission:AuditLogging_Default": "View/Check Logs"
   }
 }
