@@ -3,16 +3,15 @@ using Volo.Abp.Application.Dtos;
 
 namespace PolpAbp.Framework.Auditing.Dto
 {
-    //### This class is mapped in CustomDtoMapper ###
     public class AuditLogListDto : EntityDto<Guid>
     {
-        public long? UserId { get; set; }
+        public Guid? UserId { get; set; }
 
         public string UserName { get; set; }
 
-        public int? ImpersonatorTenantId { get; set; }
+        public Guid? ImpersonatorTenantId { get; set; }
 
-        public long? ImpersonatorUserId { get; set; }
+        public Guid? ImpersonatorUserId { get; set; }
 
         public string ServiceName { get; set; }
 
