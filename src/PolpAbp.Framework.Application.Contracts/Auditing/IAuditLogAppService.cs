@@ -17,5 +17,7 @@ namespace PolpAbp.Framework.Auditing
         Task<PagedResultDto<EntityChangeListDto>> GetEntityTypeChangesAsync(GetEntityTypeChangeInput input, CancellationToken cancellationToken = default);
 
         Task<List<EntityPropertyChangeDto>> GetEntityPropertyChangesAsync(Guid entityChangeId, CancellationToken cancellationToken = default);
+
+        Task<List<NameValueDto<string>>> GetEntityHistoryObjectTypesAsync();
     }
 }

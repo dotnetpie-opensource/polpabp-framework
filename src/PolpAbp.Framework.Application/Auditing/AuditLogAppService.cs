@@ -100,6 +100,12 @@ namespace PolpAbp.Framework.Auditing
 
             return new PagedResultDto<EntityChangeListDto>(total, items);
         }
+
+        public Task<List<NameValueDto<string>>> GetEntityHistoryObjectTypesAsync()
+        {
+            return Task.FromResult(new List<NameValueDto<string>>());
+        }
+
     }
 }
 
