@@ -3,6 +3,7 @@ using IdentityModel.Client;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using PolpAbp.Framework.Exceptions.IdentityServer;
 using PolpAbp.Framework.IdentityServer.Dto;
 using System;
 using System.Collections.Generic;
@@ -83,13 +84,13 @@ namespace PolpAbp.Framework.IdentityServer
             {
                 if (tokenResponse.ErrorDescription != null)
                 {
-                    throw new AbpException($"Could not get token from the OpenId Connect server! ErrorType: {tokenResponse.ErrorType}. " +
+                    throw new PolpAbpTokenAuthException($"Could not get token from the OpenId Connect server! ErrorType: {tokenResponse.ErrorType}. " +
                                            $"Error: {tokenResponse.Error}. ErrorDescription: {tokenResponse.ErrorDescription}. HttpStatusCode: {tokenResponse.HttpStatusCode}");
                 }
 
                 var rawError = tokenResponse.Raw;
                 var withoutInnerException = rawError.Split(new string[] { "<eof/>" }, StringSplitOptions.RemoveEmptyEntries);
-                throw new AbpException(withoutInnerException[0]);
+                throw new PolpAbpTokenAuthException(withoutInnerException[0]);
             }
 
             return ToDto(tokenResponse);
