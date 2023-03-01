@@ -10,7 +10,8 @@ namespace PolpAbp.Framework
         typeof(AbpAspNetCoreModule),
         typeof(AbpIdentityAspNetCoreModule), 
         typeof(AbpIdentityServerDomainModule),
-        typeof(AbpAspNetCoreMultiTenancyModule)
+        typeof(AbpAspNetCoreMultiTenancyModule),
+        typeof(FrameworkImpersonationModule)
         )]
     public class FrameworkAspNetCoreModule : AbpModule
     {
