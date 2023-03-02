@@ -7,7 +7,6 @@ using Volo.Abp.Guids;
 using Volo.Abp.IdentityServer.ApiResources;
 using Volo.Abp.IdentityServer.Clients;
 using Volo.Abp.IdentityServer.IdentityResources;
-using Volo.Abp.Settings;
 using Volo.Abp.Uow;
 using Client = Volo.Abp.IdentityServer.Clients.Client;
 
@@ -20,7 +19,6 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
     private readonly IIdentityResourceDataSeeder _identityResourceDataSeeder;
     private readonly IGuidGenerator _guidGenerator;
     private readonly IConfiguration _configuration;
-    private readonly ISettingEncryptionService _settingEncryptionService;
 
     string[] CommonScopes = new[]
           {
@@ -39,15 +37,13 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
         IApiResourceRepository apiResourceRepository,
         IIdentityResourceDataSeeder identityResourceDataSeeder,
         IGuidGenerator guidGenerator,
-        IConfiguration configuration,
-        ISettingEncryptionService settingEncryptionService)
+        IConfiguration configuration)
     {
         _clientRepository = clientRepository;
         _apiResourceRepository = apiResourceRepository;
         _identityResourceDataSeeder = identityResourceDataSeeder;
         _guidGenerator = guidGenerator;
         _configuration = configuration;
-        _settingEncryptionService = settingEncryptionService;
     }
 
     [UnitOfWork]
@@ -109,7 +105,8 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
                 AuthorizationCodeLifetime = clientModel.AuthorizationCodeLifetime,
                 IdentityTokenLifetime = clientModel.IdentityTokenLifetime,
                 SlidingRefreshTokenLifetime = clientModel.SlidingRefreshTokenLifetime,
-                RequireConsent = clientModel.RequireConsent
+                RequireConsent = clientModel.RequireConsent,
+                RequireClientSecret = clientModel.RequireClientSecret
             },
             autoSave: true
         );
@@ -174,6 +171,7 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
         public List<string> PostLogoutRedirectUris { get; set; }
         public List<string> RedirectUris { get; set; }
         public bool RequireConsent { get; set; }
+        public bool RequireClientSecret { get; set; }
 
         public int IdentityTokenLifetime {get; set; }
         public int AccessTokenLifetime { get; set; }
@@ -188,6 +186,7 @@ public class IdentityServerDataSeedContributor : IDataSeedContributor, ITransien
             PostLogoutRedirectUris = new List<string>();
             RedirectUris = new List<string>();
             RequireConsent = false;
+            RequireClientSecret = false;
             IdentityTokenLifetime = 300; // 5 min
             AccessTokenLifetime = 3600; // 1 hour
             AuthorizationCodeLifetime = 300; // 5 min
