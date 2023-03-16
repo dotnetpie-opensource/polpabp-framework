@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>PolpAbp.Framework</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.BlobStoring" Version="5.3.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="BlobStoring\" />
+    <None Remove="BlobStoring\Containers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BlobStoring\" />
+    <Folder Include="BlobStoring\Containers\" />
+  </ItemGroup>
+</Project>
