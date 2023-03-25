@@ -18,29 +18,28 @@ using Volo.Abp.VirtualFileSystem;
 namespace PolpAbp.Framework
 {
     [DependsOn(
-        // Domain modules 
+        // Abp domain modules
         typeof(AbpPermissionManagementDomainModule),
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpIdentityModelModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpIdentityDomainModule),
         typeof(AbpAuditLoggingDomainModule),
-        // Framework domain
-        typeof(PolpAbpFrameworkDomainModule),
-        // Features  
+        // Abp application modules
+        typeof(AbpTenantManagementApplicationModule),
+        typeof(AbpAccountApplicationModule),
+        typeof(AbpIdentityApplicationModule), // required for automapper
+        // Abp features
         typeof(AbpVirtualFileSystemModule),
         typeof(AbpTextTemplatingScribanModule),
         typeof(AbpEmailingModule),
         typeof(AbpUiNavigationModule),
-        // Overriden features 
+        // Framework overriden features
         typeof(PolpAbpFrameworkAbpExtensionsEmalingModule),
         typeof(PolpAbpFrameworkAbpExtensionsSmsModule),
         // Contracts 
-        typeof(PolpAbpFrameworkApplicationContractsModule),
-        // Application modules 
-        typeof(AbpTenantManagementApplicationModule),
-        typeof(AbpAccountApplicationModule),
-        typeof(AbpIdentityApplicationModule) // required for automapper
+        typeof(PolpAbpFrameworkDomainModule),
+        typeof(PolpAbpFrameworkApplicationContractsModule)
     )]
     public class PolpAbpFrameworkApplicationModule : AbpModule
     {
