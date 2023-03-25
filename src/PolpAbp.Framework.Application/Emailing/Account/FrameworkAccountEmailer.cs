@@ -26,7 +26,7 @@ namespace PolpAbp.Framework.Emailing.Account
         private readonly ITenantRepository _tenantRepository;
         private readonly IConfiguration _configuration;
 
-        public FrameworkAccountEmailer(IEmailSender emailSender,
+        public FrameworkAccountEmailer(IAmbientEmailSender emailSender,
             ITemplateRenderer templateRenderer,
             IStringLocalizer<AccountResource> stringLocalizer,
             IAppUrlProvider appUrlProvider,
