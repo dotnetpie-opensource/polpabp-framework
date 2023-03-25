@@ -2,10 +2,10 @@
 
 public interface IAmbientEmailSender : IEmailSender
 {
-    Task<bool> CanSendAsync();
+    public EmailSendingContext SendingContext { get; }
 
-    Task BeforeSendingAsync();
+    Task BeforeSendingAsync(EmailSendingContext context);
 
-    Task AfterSendingAsync();
+    Task AfterSendingAsync(EmailSendingContext context);
 }
 

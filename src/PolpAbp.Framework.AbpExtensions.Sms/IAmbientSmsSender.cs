@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Volo.Abp.Sms;
+﻿namespace Volo.Abp.Sms;
 
 public interface IAmbientSmsSender : ISmsSender
 {
-    Task<bool> CanSendAsync();
+    public SmsSendingContext SendingContext { get; }
 
-    Task BeforeSendingAsync();
+    Task BeforeSendingAsync(SmsSendingContext context);
 
-    Task AfterSendingAsync();
+    Task AfterSendingAsync(SmsSendingContext context);
 }
 

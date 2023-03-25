@@ -5,25 +5,23 @@ namespace Volo.Abp.Emailing;
 public abstract class AmbientEmailSenderBase : IAmbientEmailSender
 {
     protected readonly IEmailSender EmailSender;
+    
+    public EmailSendingContext SendingContext { get; }
 
     public AmbientEmailSenderBase(IEmailSender emailSender)
     {
         EmailSender = emailSender;
+        SendingContext = new EmailSendingContext();
     }
 
-    public virtual Task AfterSendingAsync()
+    public virtual Task AfterSendingAsync(EmailSendingContext context)
     {
         return Task.CompletedTask;
     }
 
-    public virtual Task BeforeSendingAsync()
+    public virtual Task BeforeSendingAsync(EmailSendingContext context)
     {
         return Task.CompletedTask;
-    }
-
-    public virtual Task<bool> CanSendAsync()
-    {
-        return Task.FromResult(true);
     }
 
     public virtual async Task QueueAsync(string to, string subject, string body, bool isBodyHtml = true)
@@ -38,41 +36,44 @@ public abstract class AmbientEmailSenderBase : IAmbientEmailSender
 
     public virtual async Task SendAsync(string to, string subject, string body, bool isBodyHtml = true)
     {
-        var shouldStop = await CanSendAsync();
-        if (shouldStop)
+        SendingContext.UpdateWith(to: to, subject: subject, body: body, isBodyHtml: isBodyHtml);
+
+        await BeforeSendingAsync(SendingContext);
+        if (SendingContext.ShouldStop)
         {
             return;
         }
 
-        await BeforeSendingAsync();
         await EmailSender.SendAsync(to, subject, body, isBodyHtml);
-        await AfterSendingAsync();
+        await AfterSendingAsync(SendingContext);
     }
 
     public virtual async Task SendAsync(string from, string to, string subject, string body, bool isBodyHtml = true)
     {
-        var shouldStop = await CanSendAsync();
-        if (shouldStop)
+        SendingContext.UpdateWith(from: from, to: to, subject: subject, body: body, isBodyHtml: isBodyHtml);
+
+        await BeforeSendingAsync(SendingContext);
+        if (SendingContext.ShouldStop)
         {
             return;
         }
 
-        await BeforeSendingAsync();
-        await EmailSender.SendAsync(from, to, subject, body, isBodyHtml);
-        await AfterSendingAsync();
+        await EmailSender.SendAsync(to, subject, body, isBodyHtml);
+        await AfterSendingAsync(SendingContext);
     }
 
     public virtual async Task SendAsync(MailMessage mail, bool normalize = true)
     {
-        var shouldStop = await CanSendAsync();
-        if (shouldStop)
+        SendingContext.UpdateWith(mail);
+
+        await BeforeSendingAsync(SendingContext);
+        if (SendingContext.ShouldStop)
         {
             return;
         }
-
-        await BeforeSendingAsync();
         await EmailSender.SendAsync(mail, normalize);
-        await AfterSendingAsync();
+        await AfterSendingAsync(SendingContext);
     }
+
 }
 

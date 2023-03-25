@@ -4,38 +4,37 @@ public abstract class AmbientSmsSenderBase : IAmbientSmsSender
 {
 
     protected readonly ISmsSender SmsSender;
+    
+    public SmsSendingContext SendingContext { get; } 
 
     public AmbientSmsSenderBase(ISmsSender smsSender)
     {
         SmsSender = smsSender;
+        SendingContext = new SmsSendingContext();
     }
 
-    public virtual Task AfterSendingAsync()
+    public virtual Task AfterSendingAsync(SmsSendingContext context)
     {
         return Task.CompletedTask;
     }
 
-    public virtual Task BeforeSendingAsync()
+    public virtual Task BeforeSendingAsync(SmsSendingContext context)
     {
         return Task.CompletedTask;
-    }
-
-    public virtual Task<bool> CanSendAsync()
-    {
-        return Task.FromResult(true);
     }
 
     public virtual async Task SendAsync(SmsMessage smsMessage)
     {
-        var shouldStop = await CanSendAsync();
-        if (shouldStop)
+        SendingContext.UpdateWith(smsMessage);
+
+        await BeforeSendingAsync(SendingContext);
+        if (SendingContext.ShouldStop)
         {
             return;
         }
 
-        await BeforeSendingAsync();
         await SmsSender.SendAsync(smsMessage);
-        await AfterSendingAsync();
+        await AfterSendingAsync(SendingContext);
     }
 
 }
