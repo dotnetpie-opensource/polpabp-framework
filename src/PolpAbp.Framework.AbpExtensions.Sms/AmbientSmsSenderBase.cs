@@ -13,12 +13,12 @@ public abstract class AmbientSmsSenderBase : IAmbientSmsSender
         SendingContext = new SmsSendingContext();
     }
 
-    public virtual Task AfterSendingAsync(SmsSendingContext context)
+    public virtual Task AfterSendingAsync()
     {
         return Task.CompletedTask;
     }
 
-    public virtual Task BeforeSendingAsync(SmsSendingContext context)
+    public virtual Task BeforeSendingAsync()
     {
         return Task.CompletedTask;
     }
@@ -27,14 +27,14 @@ public abstract class AmbientSmsSenderBase : IAmbientSmsSender
     {
         SendingContext.UpdateWith(smsMessage);
 
-        await BeforeSendingAsync(SendingContext);
+        await BeforeSendingAsync();
         if (SendingContext.ShouldStop)
         {
             return;
         }
 
         await SmsSender.SendAsync(smsMessage);
-        await AfterSendingAsync(SendingContext);
+        await AfterSendingAsync();
     }
 
 }

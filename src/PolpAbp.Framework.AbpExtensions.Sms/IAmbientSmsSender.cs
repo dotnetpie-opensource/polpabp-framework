@@ -4,8 +4,8 @@ public interface IAmbientSmsSender : ISmsSender
 {
     public SmsSendingContext SendingContext { get; }
 
-    Task BeforeSendingAsync(SmsSendingContext context);
+    Task BeforeSendingAsync();
 
-    Task AfterSendingAsync(SmsSendingContext context);
+    Task AfterSendingAsync();
 }
 

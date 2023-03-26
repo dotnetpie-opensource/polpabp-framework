@@ -14,12 +14,12 @@ public abstract class AmbientEmailSenderBase : IAmbientEmailSender
         SendingContext = new EmailSendingContext();
     }
 
-    public virtual Task AfterSendingAsync(EmailSendingContext context)
+    public virtual Task AfterSendingAsync()
     {
         return Task.CompletedTask;
     }
 
-    public virtual Task BeforeSendingAsync(EmailSendingContext context)
+    public virtual Task BeforeSendingAsync()
     {
         return Task.CompletedTask;
     }
@@ -38,41 +38,41 @@ public abstract class AmbientEmailSenderBase : IAmbientEmailSender
     {
         SendingContext.UpdateWith(to: to, subject: subject, body: body, isBodyHtml: isBodyHtml);
 
-        await BeforeSendingAsync(SendingContext);
+        await BeforeSendingAsync();
         if (SendingContext.ShouldStop)
         {
             return;
         }
 
         await EmailSender.SendAsync(to, subject, body, isBodyHtml);
-        await AfterSendingAsync(SendingContext);
+        await AfterSendingAsync();
     }
 
     public virtual async Task SendAsync(string from, string to, string subject, string body, bool isBodyHtml = true)
     {
         SendingContext.UpdateWith(from: from, to: to, subject: subject, body: body, isBodyHtml: isBodyHtml);
 
-        await BeforeSendingAsync(SendingContext);
+        await BeforeSendingAsync();
         if (SendingContext.ShouldStop)
         {
             return;
         }
 
         await EmailSender.SendAsync(to, subject, body, isBodyHtml);
-        await AfterSendingAsync(SendingContext);
+        await AfterSendingAsync();
     }
 
     public virtual async Task SendAsync(MailMessage mail, bool normalize = true)
     {
         SendingContext.UpdateWith(mail);
 
-        await BeforeSendingAsync(SendingContext);
+        await BeforeSendingAsync();
         if (SendingContext.ShouldStop)
         {
             return;
         }
         await EmailSender.SendAsync(mail, normalize);
-        await AfterSendingAsync(SendingContext);
+        await AfterSendingAsync();
     }
 
 }
