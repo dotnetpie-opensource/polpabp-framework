@@ -8,6 +8,10 @@ public class SmsSendingContext : IHasExtraProperties
 
     public SmsMessage? SmsMessage { get; protected set; }
 
+    public string? Intension { get; set; }
+    public bool IsExempt { get; set; }
+    public string? ExemptionReason { get; set; }
+
     public ExtraPropertyDictionary ExtraProperties { get; }
 
     public SmsSendingContext()

@@ -12,7 +12,11 @@ public class EmailSendingContext : IHasExtraProperties
     public string? Body { get; protected set; }
     public bool IsBodyHtml { get; protected set; }
 
-    public MailMessage? MailMessage { get; protected set; } 
+    public MailMessage? MailMessage { get; protected set; }
+
+    public string? Intension { get; set; }
+    public bool IsExempt { get; set; }
+    public string? ExemptionReason { get; set; }
 
     public ExtraPropertyDictionary ExtraProperties { get; }
 
