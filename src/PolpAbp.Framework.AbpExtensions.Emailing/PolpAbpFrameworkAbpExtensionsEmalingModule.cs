@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Emailing;
+﻿using Volo.Abp.BackgroundJobs;
+using Volo.Abp.Emailing;
 using Volo.Abp.Modularity;
 
 namespace PolpAbp.Framework
@@ -8,5 +9,12 @@ namespace PolpAbp.Framework
         )]
     public class PolpAbpFrameworkAbpExtensionsEmalingModule : AbpModule
     {
+        public override void ConfigureServices(ServiceConfigurationContext context)
+        {
+            Configure<AbpBackgroundJobOptions>(options =>
+            {
+                options.AddJob<BackgroundAmbientEmailingSendingJob>();
+            });
+        }
     }
 }
