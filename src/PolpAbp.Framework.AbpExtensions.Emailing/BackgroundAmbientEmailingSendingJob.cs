@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.BackgroundJobs;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Emailing;
+using Volo.Abp.Uow;
 
 namespace PolpAbp.Framework
 {
@@ -13,6 +14,7 @@ namespace PolpAbp.Framework
             EmailSender = emailSender;
         }
 
+        [UnitOfWork]
         public override async Task ExecuteAsync(BackgroundEmailSendingJobArgs args)
         {
             if (args.From.IsNullOrWhiteSpace())
