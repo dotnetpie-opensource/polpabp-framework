@@ -23,20 +23,28 @@ namespace PolpAbp.Framework
         public override async Task ExecuteAsync(BackgroundEmailSendingJobArgs args)
         {
             Guid? tenantId = CurrentTenant.Id;
-            if (args is EnhancedBackgroundEmailSendingJobArgs enhancedBackgroundEmailSendingJobArgs)
+
+            var toAddress = args.To;
+
+            var idx = toAddress.IndexOf("::::");
+            if (idx >= 0)
             {
-                tenantId = enhancedBackgroundEmailSendingJobArgs.TenantId;
+                var tennantStr = args.To.Substring(0, idx);
+                if (Guid.TryParse(tennantStr, out Guid t)) {
+                    tenantId = t;
+                }
+                toAddress = toAddress.Substring(idx + 4);
             }
 
             using (CurrentTenant.Change(tenantId))
             {
                 if (args.From.IsNullOrWhiteSpace())
                 {
-                    await EmailSender.SendAsync(args.To, args.Subject, args.Body, args.IsBodyHtml);
+                    await EmailSender.SendAsync(toAddress, args.Subject, args.Body, args.IsBodyHtml);
                 }
                 else
                 {
-                    await EmailSender.SendAsync(args.From, args.To, args.Subject, args.Body, args.IsBodyHtml);
+                    await EmailSender.SendAsync(args.From, toAddress, args.Subject, args.Body, args.IsBodyHtml);
                 }
             }
         }

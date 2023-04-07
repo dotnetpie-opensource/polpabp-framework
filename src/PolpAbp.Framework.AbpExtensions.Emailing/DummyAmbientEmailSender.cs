@@ -7,8 +7,8 @@ namespace Volo.Abp.Emailing;
 [ExposeServices(typeof(IAmbientEmailSender))]
 public class DummyAmbientEmailSender : AmbientEmailSenderBase, IAmbientEmailSender, ITransientDependency
 {
-    public DummyAmbientEmailSender(IEmailSender emailSender, IBackgroundJobManager backgroundJobManager, ICurrentTenant currentTenant) 
-        : base(emailSender, backgroundJobManager, currentTenant)
+    public DummyAmbientEmailSender(IEmailSender emailSender, ICurrentTenant currentTenant) 
+        : base(emailSender, currentTenant)
     {
     }
 }
