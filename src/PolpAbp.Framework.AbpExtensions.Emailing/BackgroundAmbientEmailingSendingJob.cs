@@ -1,6 +1,7 @@
 ﻿using Volo.Abp.BackgroundJobs;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Emailing;
+using Volo.Abp.MultiTenancy;
 using Volo.Abp.Uow;
 
 namespace PolpAbp.Framework
@@ -9,21 +10,34 @@ namespace PolpAbp.Framework
     {
         protected IEmailSender EmailSender { get; }
 
-        public BackgroundAmbientEmailingSendingJob(IAmbientEmailSender emailSender)
+        protected ICurrentTenant CurrentTenant { get; }
+
+        public BackgroundAmbientEmailingSendingJob(IAmbientEmailSender emailSender,
+            ICurrentTenant currentTenant)
         {
             EmailSender = emailSender;
+            CurrentTenant = currentTenant;
         }
 
         [UnitOfWork]
         public override async Task ExecuteAsync(BackgroundEmailSendingJobArgs args)
         {
-            if (args.From.IsNullOrWhiteSpace())
+            Guid? tenantId = CurrentTenant.Id;
+            if (args is EnhancedBackgroundEmailSendingJobArgs enhancedBackgroundEmailSendingJobArgs)
             {
-                await EmailSender.SendAsync(args.To, args.Subject, args.Body, args.IsBodyHtml);
+                tenantId = enhancedBackgroundEmailSendingJobArgs.TenantId;
             }
-            else
+
+            using (CurrentTenant.Change(tenantId))
             {
-                await EmailSender.SendAsync(args.From, args.To, args.Subject, args.Body, args.IsBodyHtml);
+                if (args.From.IsNullOrWhiteSpace())
+                {
+                    await EmailSender.SendAsync(args.To, args.Subject, args.Body, args.IsBodyHtml);
+                }
+                else
+                {
+                    await EmailSender.SendAsync(args.From, args.To, args.Subject, args.Body, args.IsBodyHtml);
+                }
             }
         }
     }
