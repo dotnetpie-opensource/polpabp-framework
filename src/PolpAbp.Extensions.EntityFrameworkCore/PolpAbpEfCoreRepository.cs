@@ -31,7 +31,7 @@ public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDb
         CancellationToken cancellationToken = default)
     {
         var context = await GetDbContextAsync();
-        var entity = context.Set<TEntity>().Include(navPath).First(b => b.Id == id);
+        var entity = context.Set<TEntity>().Include(navPath).FirstOrDefault(b => b.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException(nameof(entity));
@@ -61,7 +61,7 @@ public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDb
         CancellationToken cancellationToken = default)
     {
         var context = await GetDbContextAsync();
-        var entity = context.Set<TEntity>().Include(navPath).First(b => b.Id == id);
+        var entity = context.Set<TEntity>().Include(navPath).FirstOrDefault(b => b.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException(nameof(entity));
@@ -95,7 +95,7 @@ public class PolpAbpEfCoreRepository<TDbContext, TEntity> : EfCoreRepository<TDb
          CancellationToken cancellationToken = default)
     {
         var context = await GetDbContextAsync();
-        var entity = context.Set<TEntity>().Include(navPath).ThenInclude(childNavPath).First(b => b.Id == id);
+        var entity = context.Set<TEntity>().Include(navPath).ThenInclude(childNavPath).FirstOrDefault(b => b.Id == id);
         if (entity == null)
         {
             throw new ArgumentNullException(nameof(entity));
