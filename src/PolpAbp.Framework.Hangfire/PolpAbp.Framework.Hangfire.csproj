@@ -9,7 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Core" Version="5.3.2" />
-		<PackageReference Include="hangfire.Core" Version="1.7.11" />
+		<PackageReference Include="hangfire.Core" Version="1.7.29" />
 	</ItemGroup>
 
 </Project>
