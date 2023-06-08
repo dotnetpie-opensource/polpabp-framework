@@ -76,6 +76,14 @@ namespace PolpAbp.Framework.Emailing.Account.Templates
                                      ).WithVirtualFilePath("/Emailing/Account/Templates/FarewellDeletedUser.tpl", true)
                                      .WithScribanEngine()
                                  );
+            context.Add(new TemplateDefinition(
+                                         AccountEmailTemplates.WelcomeNewTenant,
+                                         displayName: LocalizableString.Create<AccountResource>($"TextTemplate:{AccountEmailTemplates.WelcomeNewTenant}"),
+                                         layout: StandardEmailTemplates.Layout,
+                                         localizationResource: typeof(AccountResource)
+                                     ).WithVirtualFilePath("/Emailing/Account/Templates/WelcomeNewTenant.tpl", true)
+                                     .WithScribanEngine()
+                                 );
         }
     }
 }

@@ -78,5 +78,13 @@ namespace PolpAbp.Framework.Emailing.Account
         Task SendNewOrResetPasswordAsync(Guid userId, string password, string cc = null);
         Task SendFarewellToDeletedUserAsync(string email, string name, string cc = null);
         Task SendPasswordResetLinkWithCcAsync(Guid tenantId, Guid userId, string userEmail, string resetToken, string appName, string cc = null, string returnUrl = null, string returnUrlHash = null);
+
+        /// <summary>
+        /// Sends out a welcome message to the admin of a tenant.
+        /// </summary>
+        /// <param name="userId">User Id</param>
+        /// <param name="cc">Extra email receipents, separated by ,</param>
+        /// <returns>Task</returns>
+        Task SendWelcomeNewTenantAsync(Guid userId, string cc = null);
     }
 }

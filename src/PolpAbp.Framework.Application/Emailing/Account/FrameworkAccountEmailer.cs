@@ -15,6 +15,7 @@ using Volo.Abp.MultiTenancy;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.TextTemplating;
 using Volo.Abp.UI.Navigation.Urls;
+using static Volo.Abp.TenantManagement.TenantManagementPermissions;
 using AbpAccountEmailTemplates = Volo.Abp.Account.Emailing.Templates.AccountEmailTemplates;
 
 namespace PolpAbp.Framework.Emailing.Account
@@ -375,5 +376,46 @@ namespace PolpAbp.Framework.Emailing.Account
             );
         }
 
+        public async Task SendWelcomeNewTenantAsync(Guid userId, string cc = null)
+        {
+            using (_dataFilter.Disable<IMultiTenant>())
+            {
+                var user = await _userManager.FindByIdAsync(userId.ToString());
+                if (user == null)
+                {
+                    return;
+                }
+                var tenant = await _tenantRepository.FindAsync(user.TenantId.Value);
+
+                var emailContent = await TemplateRenderer.RenderAsync(
+                Templates.AccountEmailTemplates.WelcomeNewTenant,
+                new
+                {
+                    name = user.GetFullName(),
+                    tenancy = tenant.Name.Trim(),
+                    signature = DefaultEmailSignature
+                }
+                );
+
+                var receipents = string.IsNullOrEmpty(cc) ? user.Email : $@"{user.Email},{cc}";
+
+                if (IsBackgroundEmailEnabled)
+                {
+                    await EmailSender.QueueAsync(
+                        receipents,
+                        StringLocalizer["WelcomeNewTenant_Subject"],
+                        emailContent
+                    );
+                }
+                else
+                {
+                    await EmailSender.SendAsync(
+                        receipents,
+                        StringLocalizer["WelcomeNewTenant_Subject"],
+                        emailContent
+                    );
+                }
+            }
+        }
     }
 }

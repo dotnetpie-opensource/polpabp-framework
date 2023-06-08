@@ -36,6 +36,13 @@
     "NotyMemberRegistration_Body": "{0} just registered for your organization and is waiting for your approval. Please follow the link between to approve this request.",
     "ApproveMemberRegistration_Subject": "New member registration",
     "ApproveMemberRegistration_Title": "New remember registered for your organization.",
-    "ApproveMemberRegistration_Body": "{0} just registered for your organization. There is no required action from you this moment."
+    "ApproveMemberRegistration_Body": "{0} just registered for your organization. There is no required action from you this moment.",
+    "WelcomeNewTenant_Subject": "Welcome to join us",
+    "WelcomeNewTenant_Title": "Tenant Administator of {0}",
+    "WelcomeNewTenant_Body_P1": "Your account has been activated.",
+    "WelcomeNewTenant_Body_P2": "",
+    "WelcomeNewTenant_Body_P3": "",
+    "WelcomeNewTenant_Body_P4": "",
+    "WelcomeNewTenant_Body_P5": ""
   }
 }
