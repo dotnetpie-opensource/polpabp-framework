@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Volo.Abp.Data;
 
-namespace PolpAbp.Framework
+namespace PolpAbp.Framework.Extensions
 {
-	public static class Extensions
+	public static class UtilityMethods
 	{
         public static T GetPropertyExt<T>(this IHasExtraProperties dataSource,
                 string key, Dictionary<string, object> defaultDataSource)
