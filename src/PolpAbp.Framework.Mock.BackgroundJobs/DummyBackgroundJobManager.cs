@@ -1,18 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.BackgroundJobs;
 
 namespace PolpAbp.Framework.Mock.BackgroundJobs
 {
     public class DummyBackgroundJobManager : IBackgroundJobManager
     {
+        public static Dictionary<System.Type, System.Type> Arg2HandlerMappings =
+            new Dictionary<Type, Type>();
 
-        public Task<string> EnqueueAsync<TArgs>(TArgs args, BackgroundJobPriority priority = BackgroundJobPriority.Normal, TimeSpan? delay = null)
+        public async Task<string> EnqueueAsync<TArgs>(TArgs args, BackgroundJobPriority priority = BackgroundJobPriority.Normal, TimeSpan? delay = null)
         {
-            SharedMemory.Data.BackgroundJobName = typeof(TArgs).ToString();
+            if (SharedMemory.Data.ServiceProvider != null) {
+                var k = typeof(TArgs);
+                if (Arg2HandlerMappings.ContainsKey(k))
+                {
+                    var instance = SharedMemory.Data.ServiceProvider.GetService(Arg2HandlerMappings[k])
+                        as AsyncBackgroundJob<TArgs>;
+                    await instance.ExecuteAsync(args);
+                }
+            }
 
-            var x = "dummy";
-            return Task.FromResult(x);
+            SharedMemory.Data.BackgroundJobName = typeof(TArgs).ToString();
+            return "dummy";
         }
     }
 }
