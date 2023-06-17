@@ -18,7 +18,7 @@ namespace PolpAbp.Framework.Mock.BackgroundJobs
  new ServiceDescriptor(
      typeof(IBackgroundJobManager),
      typeof(DummyBackgroundJobManager),
-     ServiceLifetime.Singleton);
+     ServiceLifetime.Transient);
 
             return descriptor;
         }
