@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Volo.Abp.Sms;
 
 namespace PolpAbp.Framework.Mock.Sms
@@ -15,7 +12,7 @@ namespace PolpAbp.Framework.Mock.Sms
         /// Microsoft.Extensions.DependencyInjection.Extensions to reduce the package dependency.
         /// </summary>
         /// <returns>Service descriptor</returns>
-        public static ServiceDescriptor BuildEmailSenderDescriptor()
+        public static ServiceDescriptor BuildSmsSenderDescriptor()
         {
             var descriptor =
               new ServiceDescriptor(
