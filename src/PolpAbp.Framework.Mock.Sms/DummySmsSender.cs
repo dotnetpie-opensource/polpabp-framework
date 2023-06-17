@@ -5,10 +5,17 @@ namespace PolpAbp.Framework.Mock.Sms
 {
     public class DummySmsSender : ISmsSender
     {
+        private readonly IMockScopeContext _scopeContext;
+
+        public DummySmsSender(IMockScopeContext scopeContext)
+        {
+            _scopeContext = scopeContext;
+        }
+
         public Task SendAsync(SmsMessage smsMessage)
         {
-            SharedMemory.Instance.AddProperty("sms.to", smsMessage.PhoneNumber);
-            SharedMemory.Instance.AddProperty("sms.body", smsMessage.Text);
+            _scopeContext.AddProperty("sms.to", smsMessage.PhoneNumber);
+            _scopeContext.AddProperty("sms.body", smsMessage.Text);
 
             return Task.CompletedTask;
         }

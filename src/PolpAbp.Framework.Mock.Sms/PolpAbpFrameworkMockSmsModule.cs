@@ -7,7 +7,8 @@ using Volo.Abp.Sms;
 namespace PolpAbp.Framework.Mock.Sms
 {
     [DependsOn(
-       typeof(AbpSmsModule)
+       typeof(AbpSmsModule),
+        typeof(PolpAbpFrameworkMockModule)
    )]
     public class PolpAbpFrameworkMockSmsModule : AbpModule
     {

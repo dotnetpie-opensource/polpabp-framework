@@ -18,7 +18,7 @@ namespace PolpAbp.Framework.Mock.Sms
               new ServiceDescriptor(
                   typeof(ISmsSender),
                   typeof(DummySmsSender),
-                  ServiceLifetime.Singleton);
+                  ServiceLifetime.Transient);
 
             return descriptor;
         }

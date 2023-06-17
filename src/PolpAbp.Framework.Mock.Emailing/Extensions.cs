@@ -18,7 +18,7 @@ namespace PolpAbp.Framework.Mock.Emailing
               new ServiceDescriptor(
                   typeof(IEmailSender),
                   typeof(DummyEmailSender),
-                  ServiceLifetime.Singleton);
+                  ServiceLifetime.Transient);
 
             return descriptor;
         }

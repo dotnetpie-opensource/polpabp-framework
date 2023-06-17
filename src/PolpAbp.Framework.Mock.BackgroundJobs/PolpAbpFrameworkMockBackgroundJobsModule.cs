@@ -4,7 +4,8 @@ using Volo.Abp.Modularity;
 namespace PolpAbp.Framework.Mock.BackgroundJobs
 {
     [DependsOn(
-           typeof(AbpBackgroundJobsModule)
+        typeof(AbpBackgroundJobsModule),
+        typeof(PolpAbpFrameworkMockModule)
        )]
     public class PolpAbpFrameworkMockBackgroundJobsModule : AbpModule
     {

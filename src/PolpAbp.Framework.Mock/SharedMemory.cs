@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 namespace PolpAbp.Framework.Mock
 {
+    [Obsolete]
     public class SharedMemory
     {
         public static SharedMemory Instance = new SharedMemory();
