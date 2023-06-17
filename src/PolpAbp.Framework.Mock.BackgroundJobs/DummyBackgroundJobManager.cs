@@ -13,17 +13,17 @@ namespace PolpAbp.Framework.Mock.BackgroundJobs
 
         public async Task<string> EnqueueAsync<TArgs>(TArgs args, BackgroundJobPriority priority = BackgroundJobPriority.Normal, TimeSpan? delay = null)
         {
-            if (SharedMemory.Data.ServiceProvider != null) {
+            if (SharedMemory.Instance.ServiceProvider != null) {
                 var k = typeof(TArgs);
                 if (Arg2HandlerMappings.ContainsKey(k))
                 {
-                    var instance = SharedMemory.Data.ServiceProvider.GetService(Arg2HandlerMappings[k])
+                    var instance = SharedMemory.Instance.ServiceProvider.GetService(Arg2HandlerMappings[k])
                         as AsyncBackgroundJob<TArgs>;
                     await instance.ExecuteAsync(args);
                 }
             }
 
-            SharedMemory.Data.BackgroundJobName = typeof(TArgs).ToString();
+            SharedMemory.Instance.BackgroundJobName = typeof(TArgs).ToString();
             return "dummy";
         }
     }

@@ -7,8 +7,8 @@ namespace PolpAbp.Framework.Mock.Sms
     {
         public Task SendAsync(SmsMessage smsMessage)
         {
-            SharedMemory.Data.ExtraProperties.Add("sms.to", smsMessage.PhoneNumber);
-            SharedMemory.Data.ExtraProperties.Add("sms.body", smsMessage.Text);
+            SharedMemory.Instance.AddProperty("sms.to", smsMessage.PhoneNumber);
+            SharedMemory.Instance.AddProperty("sms.body", smsMessage.Text);
 
             return Task.CompletedTask;
         }

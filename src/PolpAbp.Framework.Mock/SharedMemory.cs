@@ -5,14 +5,19 @@ namespace PolpAbp.Framework.Mock
 {
     public class SharedMemory
     {
-        public static SharedMemory Data = new SharedMemory();
+        public static SharedMemory Instance = new SharedMemory();
 
         public IServiceProvider ServiceProvider = null;
 
         public string BackgroundJobName = string.Empty;
 
-        public Dictionary<string, object> ExtraProperties = new Dictionary<string, object>();
+        public List<Tuple<string, object>> ExtraProperties = new List<Tuple<string, object>>();
 
         public List<object> DistributedEvents = new List<object>();
+
+        public void AddProperty(string key, object value)
+        {
+            ExtraProperties.Add(new Tuple<string, object>(key, value));
+        }
     }
 }

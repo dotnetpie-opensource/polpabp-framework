@@ -12,47 +12,48 @@ namespace PolpAbp.Framework.Mock.Emailing
 
         public Task QueueAsync(string to, string subject, string body, bool isBodyHtml = true)
         {
-            SharedMemory.Data.ExtraProperties.Add("email.to", to);
-            SharedMemory.Data.ExtraProperties.Add("email.subject", subject);
-            SharedMemory.Data.ExtraProperties.Add("email.body", body);
+            SharedMemory.Instance.AddProperty("email.to", to);
+            SharedMemory.Instance.AddProperty("email.subject", subject);
+            SharedMemory.Instance.AddProperty("email.body", body);
             return Task.CompletedTask;
         }
 
         public Task QueueAsync(string from, string to, string subject, string body, bool isBodyHtml = true)
         {
-            SharedMemory.Data.ExtraProperties.Add("email.from", from);
-            SharedMemory.Data.ExtraProperties.Add("email.to", to);
-            SharedMemory.Data.ExtraProperties.Add("email.subject", subject);
-            SharedMemory.Data.ExtraProperties.Add("email.body", body);
+            SharedMemory.Instance.AddProperty("email.from", from);
+            SharedMemory.Instance.AddProperty("email.to", to);
+            SharedMemory.Instance.AddProperty("email.subject", subject);
+            SharedMemory.Instance.AddProperty("email.body", body);
 
             return Task.CompletedTask;
         }
 
         public Task SendAsync(string to, string subject, string body, bool isBodyHtml = true)
         {
-            SharedMemory.Data.ExtraProperties.Add("email.to", to);
-            SharedMemory.Data.ExtraProperties.Add("email.subject", subject);
-            SharedMemory.Data.ExtraProperties.Add("email.body", body);
+            SharedMemory.Instance.AddProperty("email.to", to);
+            SharedMemory.Instance.AddProperty("email.subject", subject);
+            SharedMemory.Instance.AddProperty("email.body", body);
 
             return Task.CompletedTask;
         }
 
         public Task SendAsync(string from, string to, string subject, string body, bool isBodyHtml = true)
         {
-            SharedMemory.Data.ExtraProperties.Add("email.from", from);
-            SharedMemory.Data.ExtraProperties.Add("email.to", to);
-            SharedMemory.Data.ExtraProperties.Add("email.subject", subject);
-            SharedMemory.Data.ExtraProperties.Add("email.body", body);
+            SharedMemory.Instance.AddProperty("email.from", from);
+            SharedMemory.Instance.AddProperty("email.to", to);
+            SharedMemory.Instance.AddProperty("email.subject", subject);
+            SharedMemory.Instance.AddProperty("email.body", body);
 
             return Task.CompletedTask;
         }
 
         public Task SendAsync(MailMessage mail, bool normalize = true)
         {
-            SharedMemory.Data.ExtraProperties.Add("email.from", mail.From);
-            SharedMemory.Data.ExtraProperties.Add("email.to", mail.To);
-            SharedMemory.Data.ExtraProperties.Add("email.subject", mail.Subject);
-            SharedMemory.Data.ExtraProperties.Add("email.body", mail.Body);
+            SharedMemory.Instance.AddProperty("email.from", mail.From);
+            SharedMemory.Instance.AddProperty("email.to", mail.To);
+            SharedMemory.Instance.AddProperty("email.subject", mail.Subject);
+            SharedMemory.Instance.AddProperty("email.body", mail.Body);
+            SharedMemory.Instance.AddProperty("email.cc", mail.CC);
 
             return Task.CompletedTask;
         }
