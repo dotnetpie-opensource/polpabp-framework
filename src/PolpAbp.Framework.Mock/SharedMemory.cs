@@ -11,7 +11,7 @@ namespace PolpAbp.Framework.Mock
 
         public string BackgroundJobName = string.Empty;
 
-        public string EmailReceiver = string.Empty;
+        public Dictionary<string, object> ExtraProperties = new Dictionary<string, object>();
 
         public List<object> DistributedEvents = new List<object>();
     }

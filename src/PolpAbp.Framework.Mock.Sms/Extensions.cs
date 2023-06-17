@@ -1,12 +1,15 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Emailing;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Volo.Abp.Sms;
 
-namespace PolpAbp.Framework.Mock.Emailing
+namespace PolpAbp.Framework.Mock.Sms
 {
-    public static class Extensions
+    public class Extensions
     {
         /// <summary>
-        /// Building the service descriptor for dummy email sender. 
+        /// Building the service descriptor for dummy sms sender. 
         /// It should be used for update the DI. 
         /// Note that we do not introduce the package 
         /// Microsoft.Extensions.DependencyInjection.Extensions to reduce the package dependency.
@@ -16,8 +19,8 @@ namespace PolpAbp.Framework.Mock.Emailing
         {
             var descriptor =
               new ServiceDescriptor(
-                  typeof(IEmailSender),
-                  typeof(DummyEmailSender),
+                  typeof(ISmsSender),
+                  typeof(DummySmsSender),
                   ServiceLifetime.Singleton);
 
             return descriptor;
