@@ -35,6 +35,7 @@ namespace PolpAbp.Framework
         typeof(AbpEmailingModule),
         typeof(AbpUiNavigationModule),
         // Framework overriden features
+        typeof(PolpAbpFrameworkAbpExtensionsModule),
         typeof(PolpAbpFrameworkAbpExtensionsEmalingModule),
         typeof(PolpAbpFrameworkAbpExtensionsSmsModule),
         // Contracts 

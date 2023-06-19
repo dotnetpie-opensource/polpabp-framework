@@ -16,6 +16,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\PolpAbp.Framework.AbpExtensions.Emailing\PolpAbp.Framework.AbpExtensions.Emailing.csproj" />
 		<ProjectReference Include="..\PolpAbp.Framework.AbpExtensions.Sms\PolpAbp.Framework.AbpExtensions.Sms.csproj" />
+		<ProjectReference Include="..\PolpAbp.Framework.AbpExtensions\PolpAbp.Framework.AbpExtensions.csproj" />
 		<ProjectReference Include="..\PolpAbp.Framework.Application.Contracts\PolpAbp.Framework.Application.Contracts.csproj" />
 		<ProjectReference Include="..\PolpAbp.Framework.Domain\PolpAbp.Framework.Domain.csproj" />
 	</ItemGroup>

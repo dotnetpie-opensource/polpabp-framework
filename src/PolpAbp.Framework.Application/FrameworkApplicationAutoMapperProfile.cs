@@ -15,6 +15,11 @@ namespace PolpAbp.Framework
              * Alternatively, you can split your mapping configurations
              * into multiple profile classes for a better organization. */
 
+            CreateMap<IdentityRole, IdentityRoleDto>()
+                .ForMember(dst => dst.ExtraProperties, o => o.Ignore())
+                .IgnoreSourceMissingProperties();
+
+
             CreateMap<IdentityRoleDto, IdentityRoleAdaptorDto>();
 
             CreateMap<AuditLog, AuditLogListDto>()
