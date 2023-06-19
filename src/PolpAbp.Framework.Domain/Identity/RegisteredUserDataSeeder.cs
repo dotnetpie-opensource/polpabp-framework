@@ -71,7 +71,7 @@ namespace PolpAbp.Framework.Identity
                 }
 
                 //"user" role
-                const string userRoleName = "user";
+                const string userRoleName = "member";
                 var userRole = await RoleRepository.FindByNormalizedNameAsync(LookupNormalizer.NormalizeName(userRoleName));
                 if (userRole == null)
                 {

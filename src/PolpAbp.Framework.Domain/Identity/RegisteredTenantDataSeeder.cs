@@ -47,7 +47,7 @@ namespace PolpAbp.Framework.Identity
             using (CurrentTenant.Change(tenantId))
             {
                 //"user" role
-                const string userRoleName = "user";
+                const string userRoleName = "member";
                 var userRole = await RoleRepository.FindByNormalizedNameAsync(LookupNormalizer.NormalizeName(userRoleName));
                 if (userRole == null)
                 {
