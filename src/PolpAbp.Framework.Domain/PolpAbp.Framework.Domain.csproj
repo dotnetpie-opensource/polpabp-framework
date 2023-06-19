@@ -10,6 +10,7 @@
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Identity.Domain" Version="5.3.2" />
 		<PackageReference Include="Volo.Abp.Caching" Version="5.3.2" />
+		<PackageReference Include="Volo.Abp.PermissionManagement.Domain" Version="5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
