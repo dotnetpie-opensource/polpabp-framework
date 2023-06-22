@@ -5,7 +5,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace PolpAbp.Framework.Mock
 {
-    public class MockScopeContext : IMockScopeContext, IScopedDependency
+    public class MockScopeContext : IMockScopeContext, ISingletonDependency
     {
         public IServiceProvider ServiceProvider { get; set; }
 
