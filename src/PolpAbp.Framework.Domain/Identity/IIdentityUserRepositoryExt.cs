@@ -24,6 +24,8 @@ namespace PolpAbp.Framework.Identity
         /// <returns>List of users</returns>
         Task<List<IdentityUser>> FindUsersByEmailAsync(string email, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetListAsync(Guid[] ids, bool includeDetails = false, CancellationToken cancellationToken = default);
+        Task<int> GetRolesCountInOrganizationUnitAsync(Guid organizationUnitId, CancellationToken cancellationToken = default);
+        Task<List<Tuple<IdentityRole, DateTime>>> GetRolesInOrganizationUnitAsync(Guid organizationUnitId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersInOrganizationUnitAsync(Guid organizationUnitId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersInRoleAsync(Guid RoleId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);
         Task<List<IdentityUser>> GetUsersNotInOrganizationUnitAsync(Guid organizationUnitId, string sorting = null, int maxResultCount = int.MaxValue, int skipCount = 0, string filter = null, bool includeDetails = false, CancellationToken cancellationToken = default);

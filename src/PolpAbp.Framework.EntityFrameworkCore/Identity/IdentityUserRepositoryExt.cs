@@ -235,5 +235,47 @@ namespace PolpAbp.Framework.Identity
                 )
                 .LongCountAsync(GetCancellationToken(cancellationToken));
         }
+
+        public virtual async Task<int> GetRolesCountInOrganizationUnitAsync(
+               Guid organizationUnitId,
+               CancellationToken cancellationToken = default)
+        {
+            var dbContext = await GetDbContextAsync();
+
+            var query = from organizationRole in dbContext.Set<OrganizationUnitRole>()
+                        join role in dbContext.Roles on organizationRole.RoleId equals role.Id
+                        where organizationRole.OrganizationUnitId == organizationUnitId
+                        select role;
+
+            return await query.CountAsync(GetCancellationToken(cancellationToken));
+        }
+
+        public virtual async Task<List<Tuple<IdentityRole, DateTime>>> GetRolesInOrganizationUnitAsync(
+             Guid organizationUnitId,
+             string sorting = null,
+             int maxResultCount = int.MaxValue,
+             int skipCount = 0,
+             bool includeDetails = false,
+             CancellationToken cancellationToken = default)
+        {
+            var dbContext = await GetDbContextAsync();
+
+            var query = from organizationRole in dbContext.Set<OrganizationUnitRole>()
+                        join role in dbContext.Roles.IncludeDetails(includeDetails) on organizationRole.RoleId equals role.Id
+                        where organizationRole.OrganizationUnitId == organizationUnitId
+                        select new
+                        {
+                            Role = role,
+                            CreationTime = organizationRole.CreationTime
+                        };
+
+            query = query
+                .OrderBy(m => m.Role.Name)
+                .PageBy(skipCount, maxResultCount);
+
+            var ret = await query.ToListAsync(GetCancellationToken(cancellationToken));
+
+            return ret.Select(a => new Tuple<IdentityRole, DateTime>(a.Role, a.CreationTime)).ToList();
+        }
     }
 }
