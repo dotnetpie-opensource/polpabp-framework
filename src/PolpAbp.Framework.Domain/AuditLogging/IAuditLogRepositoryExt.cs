@@ -10,7 +10,7 @@ namespace PolpAbp.Framework.AuditLogging
 {
     public interface IAuditLogRepositoryExt
     {
-        Task<List<Tuple<AuditLog, AuditLogAction>>> GetActionListsync(
+        Task<List<Tuple<AuditLog, AuditLogAction>>> GetActionListAsync(
                 string sorting = null,
                 int maxResultCount = 50,
                 int skipCount = 0,

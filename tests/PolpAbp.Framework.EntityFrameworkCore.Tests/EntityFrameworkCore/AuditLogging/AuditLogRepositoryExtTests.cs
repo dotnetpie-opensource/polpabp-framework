@@ -29,7 +29,7 @@ namespace PolpAbp.Framework.EntityFrameworkCore.AuditLogging
         {
             using (_currentTenant.Change(FrameworkTestConsts.TenantId))
             {
-                var l = await _repoExt.GetActionListsync();
+                var l = await _repoExt.GetActionListAsync();
 
                 l.Count.ShouldBe(3);
             }
@@ -40,11 +40,11 @@ namespace PolpAbp.Framework.EntityFrameworkCore.AuditLogging
         {
             using (_currentTenant.Change(FrameworkTestConsts.TenantId))
             {
-                var l = await _repoExt.GetActionListsync(methodName: "Role");
+                var l = await _repoExt.GetActionListAsync(methodName: "Role");
 
                 l.Count.ShouldBe(1);
 
-                var m = await _repoExt.GetActionListsync(methodName: "List");
+                var m = await _repoExt.GetActionListAsync(methodName: "List");
 
                 m.Count.ShouldBe(3);
             }

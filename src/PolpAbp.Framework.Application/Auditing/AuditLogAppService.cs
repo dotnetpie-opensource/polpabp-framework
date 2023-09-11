@@ -1,4 +1,5 @@
 ﻿using PolpAbp.Framework.Auditing.Dto;
+using PolpAbp.Framework.AuditLogging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,13 @@ namespace PolpAbp.Framework.Auditing
     public class AuditLogAppService : FrameworkAppService, IAuditLogAppService
     {
         protected readonly IAuditLogRepository AuditLogRepository;
+        protected readonly IAuditLogRepositoryExt AuditLogRepositoryExt;
 
-		public AuditLogAppService(IAuditLogRepository auditLogRepository)
+		public AuditLogAppService(IAuditLogRepository auditLogRepository,
+            IAuditLogRepositoryExt auditLogRepositoryExt)
 		{
             AuditLogRepository = auditLogRepository;
+            AuditLogRepositoryExt = auditLogRepositoryExt;
 		}
 
         public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogsAsync(GetAuditLogsInput input, CancellationToken cancellationToken = default)
@@ -48,6 +52,51 @@ namespace PolpAbp.Framework.Auditing
                 cancellationToken: cancellationToken);
 
             var items = data.Select(x => ObjectMapper.Map<AuditLog, AuditLogListDto>(x)).ToList();
+
+            return new PagedResultDto<AuditLogListDto>(total, items);
+        }
+
+        public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogActionsAsync(GetAuditLogsInput input, CancellationToken cancellationToken = default)
+        {
+            var total = await AuditLogRepositoryExt.GetActionCountAsync(
+                startTime: input.StartDate,
+                endTime: input.EndDate,
+                httpMethod: input.MethodName,
+                userName: input.UserName,
+                applicationName: input.ServiceName,
+                minExecutionDuration: input.MinExecutionDuration,
+                maxExecutionDuration: input.MaxExecutionDuration,
+                hasException: input.HasException,
+                methodName: input.MethodName,
+                serviceName: input.ServiceName,
+                cancellationToken: cancellationToken);
+
+            var data = await AuditLogRepositoryExt.GetActionListAsync(
+                sorting: input.Sorting,
+                maxResultCount: input.MaxResultCount,
+                skipCount: input.SkipCount,
+                startTime: input.StartDate,
+                endTime: input.EndDate,
+                httpMethod: input.MethodName,
+                userName: input.UserName,
+                applicationName: input.ServiceName,
+                minExecutionDuration: input.MinExecutionDuration,
+                maxExecutionDuration: input.MaxExecutionDuration,
+                hasException: input.HasException,
+                methodName: input.MethodName,
+                serviceName: input.ServiceName,
+                cancellationToken: cancellationToken);
+
+            var items = data.Select(x =>
+            {
+                var y = ObjectMapper.Map<AuditLog, AuditLogListDto>(x.Item1);
+                y.ExecutionTime = x.Item2.ExecutionTime;
+                y.ExecutionDuration = x.Item2.ExecutionDuration;
+                y.Parameters = x.Item2.Parameters;
+
+                return y;
+
+            }).ToList();
 
             return new PagedResultDto<AuditLogListDto>(total, items);
         }
