@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Identity;
+﻿using Volo.Abp.AuditLogging.EntityFrameworkCore;
+using Volo.Abp.Identity;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 
@@ -6,7 +7,8 @@ namespace PolpAbp.Framework
 {
     [DependsOn(
         typeof(PolpAbpFrameworkDomainModule),
-        typeof(AbpIdentityEntityFrameworkCoreModule)
+        typeof(AbpIdentityEntityFrameworkCoreModule),
+        typeof(AbpAuditLoggingEntityFrameworkCoreModule)
     )]
     public class PolpAbpFrameworkEntityFrameworkCoreModule: AbpModule
     {

@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Volo.Abp.Identity.EntityFrameworkCore" Version="5.3.2" />
+		<PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="5.3.2" />
 	</ItemGroup>
 
 	<ItemGroup>
