@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using Volo.Abp.Auditing;
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
@@ -26,6 +28,7 @@ namespace PolpAbp.Framework
         private readonly IPermissionManager _permissionManager;
         private readonly IPermissionDataSeeder _permissionDataSeeder;
         private readonly ICurrentTenant _currentTenant;
+        private readonly IAuditingStore _auditingStore;
 
         public FrameworkTestDataSeedContributor(IdentityUserManager userManager,
             ITenantManager tenantManager,
@@ -37,6 +40,7 @@ namespace PolpAbp.Framework
             IdentityRoleManager identityRoleManager,
             IPermissionManager permissionManager,
             IPermissionDataSeeder permissionDataSeeder,
+            IAuditingStore auditingStore,
             ICurrentTenant currentTenant)
         {
             _tenantManager = tenantManager;
@@ -50,8 +54,10 @@ namespace PolpAbp.Framework
             _permissionManager = permissionManager;
             _permissionDataSeeder = permissionDataSeeder;
             _currentTenant = currentTenant;
+            _auditingStore = auditingStore;
         }
 
+        [UnitOfWork]
         public async Task SeedAsync(DataSeedContext context)
         {
             // Re-entrant
@@ -120,6 +126,64 @@ namespace PolpAbp.Framework
                 await _organizationUnitManager.CreateAsync(orgUnit);
 
                 await _userManager.AddToOrganizationUnitAsync(adminUser, orgUnit);
+
+
+                var ipAddress = "153.1.7.61";
+                // Prepare some data for audit logging
+                var auditLog1 = new AuditLogInfo
+                {
+                    TenantId = FrameworkTestConsts.TenantId,
+                    UserId = adminUser.Id,
+                    ExecutionTime = DateTime.Today,
+                    ExecutionDuration = 42,
+                    ClientIpAddress = ipAddress,
+                    ClientName = "Desktop",
+                    BrowserInfo = "Chrome",
+                    Comments = new List<string> { "first comment" },
+                    Actions =
+                    {
+                        new AuditLogActionInfo
+                        {
+                            ServiceName = "UserAppService",
+                            MethodName = "UserList",
+                            ExecutionDuration = 22,
+                            ExecutionTime = DateTime.Today,
+                            Parameters = "{}"
+                        },
+                        new AuditLogActionInfo
+                        {
+                            ServiceName = "RoleAppService",
+                            MethodName = "RoleList",
+                            ExecutionDuration = 22,
+                            ExecutionTime = DateTime.Today,
+                            Parameters = "{}"
+                        },
+                        new AuditLogActionInfo
+                        {
+                            ServiceName = "OtherAppService",
+                            MethodName = "OtherList",
+                            ExecutionDuration = 22,
+                            ExecutionTime = DateTime.Today,
+                            Parameters = "{}"
+                        }
+                    }
+                };
+
+                await _auditingStore.SaveAsync(auditLog1);
+
+                var auditLog2 = new AuditLogInfo
+                {
+                    TenantId = FrameworkTestConsts.TenantId,
+                    UserId = adminUser.Id,
+                    ExecutionTime = DateTime.Today,
+                    ExecutionDuration = 42,
+                    ClientIpAddress = ipAddress,
+                    ClientName = "Desktop2",
+                    BrowserInfo = "Firefox",
+                    Comments = new List<string> { "first comment" }
+                };
+
+                await _auditingStore.SaveAsync(auditLog2);
             }
         }
     }

@@ -8,6 +8,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.TenantManagement;
 using Volo.Abp.Threading;
 using Volo.Abp.PermissionManagement;
+using Volo.Abp.AuditLogging;
 
 namespace PolpAbp.Framework
 {
@@ -18,7 +19,8 @@ namespace PolpAbp.Framework
         typeof(AbpIdentityDomainModule),
         typeof(AbpTenantManagementDomainModule),
         typeof(AbpPermissionManagementDomainModule),
-        typeof(AbpIdentityApplicationContractsModule)
+        typeof(AbpIdentityApplicationContractsModule),
+        typeof(AbpAuditLoggingDomainModule)
         )]
     public class PolpAbpFrameworkTestBaseModule : AbpModule
     {
