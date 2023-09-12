@@ -1,5 +1,6 @@
 ﻿using PolpAbp.Framework.Auditing.Dto;
 using PolpAbp.Framework.AuditLogging;
+using PolpAbp.Framework.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,12 +17,15 @@ namespace PolpAbp.Framework.Auditing
     {
         protected readonly IAuditLogRepository AuditLogRepository;
         protected readonly IAuditLogRepositoryExt AuditLogRepositoryExt;
+        protected readonly IIdentityUserRepositoryExt IdentityUserRepositoryExt;
 
 		public AuditLogAppService(IAuditLogRepository auditLogRepository,
-            IAuditLogRepositoryExt auditLogRepositoryExt)
+            IAuditLogRepositoryExt auditLogRepositoryExt,
+            IIdentityUserRepositoryExt identityUserRepositoryExt)
 		{
             AuditLogRepository = auditLogRepository;
             AuditLogRepositoryExt = auditLogRepositoryExt;
+            IdentityUserRepositoryExt = identityUserRepositoryExt;
 		}
 
         public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogsAsync(GetAuditLogsInput input, CancellationToken cancellationToken = default)
@@ -87,9 +91,25 @@ namespace PolpAbp.Framework.Auditing
                 serviceName: input.ServiceName,
                 cancellationToken: cancellationToken);
 
+            // Get the user Ids 
+            var userIds = data.Where(a => a.Item1.UserId.HasValue).Select(b => b.Item1.UserId.Value).Distinct().ToArray();
+            var users = await IdentityUserRepositoryExt.GetListAsync(userIds, false, cancellationToken);
+
             var items = data.Select(x =>
             {
                 var y = ObjectMapper.Map<AuditLog, AuditLogListDto>(x.Item1);
+
+                if (y.UserId.HasValue)
+                {
+                    var z = users.FirstOrDefault(m => y.UserId == m.Id);
+                    if (z != null)
+                    {
+                        y.UserName = z.UserName;
+                    }
+                }
+
+                y.MethodName = x.Item2.MethodName;
+                y.ServiceName = x.Item2.ServiceName;
                 y.ExecutionTime = x.Item2.ExecutionTime;
                 y.ExecutionDuration = x.Item2.ExecutionDuration;
                 y.Parameters = x.Item2.Parameters;
@@ -97,6 +117,7 @@ namespace PolpAbp.Framework.Auditing
                 return y;
 
             }).ToList();
+
 
             return new PagedResultDto<AuditLogListDto>(total, items);
         }
