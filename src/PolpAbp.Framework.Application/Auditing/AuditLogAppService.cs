@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Application.Dtos;
 using Volo.Abp.AuditLogging;
+using Volo.Abp.Identity;
 
 namespace PolpAbp.Framework.Auditing
 {
@@ -18,23 +19,37 @@ namespace PolpAbp.Framework.Auditing
         protected readonly IAuditLogRepository AuditLogRepository;
         protected readonly IAuditLogRepositoryExt AuditLogRepositoryExt;
         protected readonly IIdentityUserRepositoryExt IdentityUserRepositoryExt;
+        protected readonly IIdentityUserRepository IdentityUserRepository;
 
 		public AuditLogAppService(IAuditLogRepository auditLogRepository,
             IAuditLogRepositoryExt auditLogRepositoryExt,
-            IIdentityUserRepositoryExt identityUserRepositoryExt)
+            IIdentityUserRepositoryExt identityUserRepositoryExt,
+            IIdentityUserRepository identityUserRepository)
 		{
             AuditLogRepository = auditLogRepository;
             AuditLogRepositoryExt = auditLogRepositoryExt;
             IdentityUserRepositoryExt = identityUserRepositoryExt;
+            IdentityUserRepository = identityUserRepository;
 		}
 
         public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogsAsync(GetAuditLogsInput input, CancellationToken cancellationToken = default)
         {
+            // Since Username maynot be stored in the databse, let's change it to user Id
+            Guid? userId = null;
+            if (!string.IsNullOrEmpty(input.UserName))
+            {
+                var user = await IdentityUserRepository.FindByNormalizedUserNameAsync(input.UserName);
+                if (user != null)
+                {
+                    userId = user.Id;
+                }
+            }
+
             var total = await AuditLogRepository.GetCountAsync(
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 httpMethod: input.MethodName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 applicationName: input.ServiceName,
                 minExecutionDuration: input.MinExecutionDuration,
                 maxExecutionDuration: input.MaxExecutionDuration,
@@ -48,7 +63,7 @@ namespace PolpAbp.Framework.Auditing
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 httpMethod: input.MethodName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 applicationName: input.ServiceName,
                 minExecutionDuration: input.MinExecutionDuration,
                 maxExecutionDuration: input.MaxExecutionDuration,
@@ -62,11 +77,22 @@ namespace PolpAbp.Framework.Auditing
 
         public async Task<PagedResultDto<AuditLogListDto>> GetAuditLogActionsAsync(GetAuditLogsInput input, CancellationToken cancellationToken = default)
         {
+            // Since Username maynot be stored in the databse, let's change it to user Id
+            Guid? userId = null;
+            if (!string.IsNullOrEmpty(input.UserName))
+            {
+                var user = await IdentityUserRepository.FindByNormalizedUserNameAsync(input.UserName);
+                if (user != null)
+                {
+                    userId = user.Id;
+                }
+            }
+
             var total = await AuditLogRepositoryExt.GetActionCountAsync(
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 httpMethod: input.MethodName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 applicationName: input.ServiceName,
                 minExecutionDuration: input.MinExecutionDuration,
                 maxExecutionDuration: input.MaxExecutionDuration,
@@ -82,7 +108,7 @@ namespace PolpAbp.Framework.Auditing
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 httpMethod: input.MethodName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 applicationName: input.ServiceName,
                 minExecutionDuration: input.MinExecutionDuration,
                 maxExecutionDuration: input.MaxExecutionDuration,
@@ -134,11 +160,22 @@ namespace PolpAbp.Framework.Auditing
 
         public async Task<PagedResultDto<EntityChangeListDto>> GetEntityChangesAsync(GetEntityChangeInput input, CancellationToken cancellationToken = default)
         {
+            // Since Username maynot be stored in the databse, let's change it to user Id
+            Guid? userId = null;
+            if (!string.IsNullOrEmpty(input.UserName))
+            {
+                var user = await IdentityUserRepository.FindByNormalizedUserNameAsync(input.UserName);
+                if (user != null)
+                {
+                    userId = user.Id;
+                }
+            }
+
             var total = await AuditLogRepositoryExt.GetEntityChangeCountAsync(
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 entityTypeFullName: input.EntityTypeFullName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 cancellationToken: cancellationToken);
 
             var data = await AuditLogRepositoryExt.GetEntityChangeListAsync(
@@ -148,7 +185,7 @@ namespace PolpAbp.Framework.Auditing
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 entityTypeFullName: input.EntityTypeFullName,
-                userName: input.UserName,
+                userId: userId, // Do not use username
                 cancellationToken: cancellationToken);
 
             // Get the user Ids 
