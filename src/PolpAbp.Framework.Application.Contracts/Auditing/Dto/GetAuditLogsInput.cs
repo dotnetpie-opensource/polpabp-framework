@@ -23,6 +23,7 @@ namespace PolpAbp.Framework.Auditing.Dto
 
         public int? MaxExecutionDuration { get; set; }
 
+        [Obsolete("Not used any more")]
         public void Normalize()
         {
             if (Sorting.IsNullOrWhiteSpace())

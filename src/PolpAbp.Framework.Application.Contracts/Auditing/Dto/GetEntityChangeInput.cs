@@ -13,6 +13,7 @@ namespace PolpAbp.Framework.Auditing.Dto
 
         public string EntityTypeFullName { get; set; }
 
+        [Obsolete("Do not use it")]
         public void Normalize()
         {
             if (Sorting.IsNullOrWhiteSpace())
@@ -42,6 +43,7 @@ namespace PolpAbp.Framework.Auditing.Dto
 
         public string EntityId { get; set; }
 
+        [Obsolete("Do not use it")]
         public void Normalize()
         {
             if (Sorting.IsNullOrWhiteSpace())
