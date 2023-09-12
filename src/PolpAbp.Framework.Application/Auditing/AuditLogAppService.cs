@@ -109,7 +109,17 @@ namespace PolpAbp.Framework.Auditing
                 }
 
                 y.MethodName = x.Item2.MethodName;
-                y.ServiceName = x.Item2.ServiceName;
+
+                var idx = x.Item2.ServiceName.LastIndexOf(".");
+                if (idx >= 0)
+                {
+                    y.ServiceName = x.Item2.ServiceName.Substring(idx + 1);
+                } 
+                else
+                {
+                    y.ServiceName = x.Item2.ServiceName;
+                }
+
                 y.ExecutionTime = x.Item2.ExecutionTime;
                 y.ExecutionDuration = x.Item2.ExecutionDuration;
                 y.Parameters = x.Item2.Parameters;
