@@ -134,22 +134,40 @@ namespace PolpAbp.Framework.Auditing
 
         public async Task<PagedResultDto<EntityChangeListDto>> GetEntityChangesAsync(GetEntityChangeInput input, CancellationToken cancellationToken = default)
         {
-            var total = await AuditLogRepository.GetEntityChangeCountAsync(
+            var total = await AuditLogRepositoryExt.GetEntityChangeCountAsync(
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 entityTypeFullName: input.EntityTypeFullName,
+                userName: input.UserName,
                 cancellationToken: cancellationToken);
 
-            var data = await AuditLogRepository.GetEntityChangeListAsync(
+            var data = await AuditLogRepositoryExt.GetEntityChangeListAsync(
                 sorting: input.Sorting,
                 maxResultCount: input.MaxResultCount,
                 skipCount: input.SkipCount,
                 startTime: input.StartDate,
                 endTime: input.EndDate,
                 entityTypeFullName: input.EntityTypeFullName,
+                userName: input.UserName,
                 cancellationToken: cancellationToken);
 
-            var items = data.Select(x => ObjectMapper.Map<EntityChange, EntityChangeListDto>(x)).ToList();
+            // Get the user Ids 
+            var userIds = data.Where(a => a.Item1.UserId.HasValue).Select(b => b.Item1.UserId.Value).Distinct().ToArray();
+            var users = await IdentityUserRepositoryExt.GetListAsync(userIds, false, cancellationToken);
+
+            var items = data.Select(x =>
+            {
+                var y = ObjectMapper.Map<EntityChange, EntityChangeListDto>(x.Item2);
+                if (y.UserId.HasValue)
+                {
+                    var z = users.FirstOrDefault(m => y.UserId == m.Id);
+                    if (z != null)
+                    {
+                        y.UserName = z.UserName;
+                    }
+                }
+                return y;
+            }).ToList();
 
             return new PagedResultDto<EntityChangeListDto>(total, items);
         }
